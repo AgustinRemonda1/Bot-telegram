@@ -1,24 +1,17 @@
-FROM node:14
+FROM mhart/alpine-node:16 as builder
+# build_target: prod|dev
+ARG build_target
+ENV BUILD_TARGET=$build_target
+ENV ENV_FILE=.env.$BUILD_TARGET
 
-# Set up environment
-ENV TERM=xterm-256color
-ENV PROJECT_NAME app
-ENV PROJECT_ROOT /opt/app
+WORKDIR /app
+COPY [".npmrc", "package*.json", "./"]
+ENV NEXT_TELEMETRY_DISABLED=1
+#WORKAROUND https://github.com/typicode/husky/issues/991
+RUN npm i -g husky && npm i
+COPY . ./
+COPY $ENV_FILE .env.local
+ENV NODE_ENV=production
+RUN npm run build && npm ci
 
-# Install dependencies
-RUN mkdir -p /tmp/$PROJECT_NAME
-ADD package.json /tmp/$PROJECT_NAME/package.json
-RUN cd /tmp/$PROJECT_NAME/ && npm install
-RUN mkdir -p $PROJECT_ROOT
-RUN cp -a /tmp/$PROJECT_NAME/node_modules $PROJECT_ROOT
-RUN npm install -g react-scripts
-
-# Create app directory
-WORKDIR $PROJECT_ROOT
-
-# Bundle app source
-COPY . $PROJECT_ROOT
-
-CMD npm start
-
-EXPOSE 3000
+CMD ["npm", "start"]
