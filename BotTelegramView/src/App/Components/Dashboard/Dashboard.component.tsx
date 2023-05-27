@@ -16,7 +16,7 @@ import { generateCardInfo, generateCommandConfigWithLang, generatePollConfigWith
 import { DashboardProps } from './Dashboard.interface';
 import { history } from '../../Utils/History.utils';
 import SectionTitle from '../SharedComponents/SectionTitle/SectionTitle.component';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
+import AutoRenewIcon from '@material-ui/icons/Autorenew';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 
@@ -169,7 +169,7 @@ const Dashboard = (props:DashboardProps) => {
                   disabled={fetchingRefresh}
                 >
                   <span className={spanIcon}>
-                    <AutorenewIcon/>
+                    <AutoRenewIcon/>
                   </span>
                   {language.refreshCommands}
                   {fetchingRefresh && 

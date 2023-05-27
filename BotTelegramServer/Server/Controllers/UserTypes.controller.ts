@@ -9,14 +9,14 @@ class UserTypesController {
     const userTypes: UserTypes[] = await UserTypesRepository.getAll();
     res.send(userTypes);
   };
-
+  
   getUserTypeById = async (req: any, res: any): Promise<void> => {
     const { id } = req.params;
 
     const userType: UserTypes = await UserTypesRepository.get(id);
     notFoundValidator(res, userType);
   };
-
+ 
   postUserType = async (req: any, res: any): Promise<void> => {
     const { body } = req;
 

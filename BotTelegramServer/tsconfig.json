@@ -11,7 +11,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true
   },
-  "include": ["Server/**/*"],
+  "include": ["Server/**/*", "../Bot"],
   "inlineSourceMap": true,
   "exclude": ["node_modules", "**/*.test.ts"]
 }

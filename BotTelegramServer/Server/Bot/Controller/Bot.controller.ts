@@ -120,14 +120,14 @@ class BotController {
   runCommands = async (): Promise<void> => {
     await botController.fetchCommands();
     this.bot.on("contact", (ctx) => this.contactCommand(ctx, this.fetchUser));
-
+    
     this.bot.on("message", async (ctx: TelegrafContext) => {
       const { text } = ctx.message;
       if (text && this.commands.length && !this.callPollCommand) {
         this.fetchUser(ctx);
 
         this.execCommand(text, ctx);
-
+        
         this.execHear(text, ctx);
 
         this.notUnderstandMessage(text, ctx);

@@ -6,6 +6,7 @@ export interface GuaraniUsersInterface {
   dni: number;
   emai: string;
   profile: string;
+  phoneNumber: number;
 }
 
 export interface BotUsersInterface {
@@ -25,7 +26,7 @@ export interface BotSubsUsersStateInterface {
   failed: boolean;
   sucess: boolean;
   botSubsUsers: null | BotSubsUsersInterface[];
-  botUsers: null | BotUsersInterface[];
+  botUsers: null | BotUsersInterface[];
   total: number;
   totalSubscribers: number;
   newLastAdmission: number;
