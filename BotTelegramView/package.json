@@ -8,7 +8,6 @@
     "dev": "next dev",
     "build": "NODE_ENV=production next build",
     "precommit": "lint-staged",
-    "prepare": "husky install",
     "start": "next start",
     "lint": "next lint",
     "version": "auto-changelog -p && git add CHANGELOG.md",
@@ -56,24 +55,12 @@
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-watch": "^7.0.0",
-    "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "lint-staged": "^10.5.4",
     "msw": "^0.39.1",
     "prettier": "2.3.2",
     "typescript": "4.3.5"
-  },
-  "lint-staged": {
-    "**/**/*.(js|ts|tsx)": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "*{json, md}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "msw": {
     "workerDirectory": "public"

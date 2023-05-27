@@ -1,5 +1,5 @@
 const DashboardPage = () => {
-  return 'hola';
+  return 'chau';
 };
 
 export default DashboardPage;
