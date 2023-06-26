@@ -2,5 +2,6 @@ export {
   fetchCommands,
   deleteCommand,
   updateCommand,
-  createCommand
+  createCommand,
+  refreshCommand
 } from './Commands';

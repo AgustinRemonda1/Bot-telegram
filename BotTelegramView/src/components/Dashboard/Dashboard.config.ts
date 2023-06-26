@@ -1,5 +1,5 @@
-export const generateCommandConfigWithLang = (configParams:any) => {
-  const { language } = configParams
+export const generateCommandConfigWithLang = (configParams: any) => {
+  const { language } = configParams;
 
   return [
     {
@@ -14,7 +14,8 @@ export const generateCommandConfigWithLang = (configParams:any) => {
     {
       name: language.status,
       property: 'status',
-      custom: (property: any) => property ? language.active : language.innactive,
+      custom: (property: any) =>
+        property ? language.active : language.innactive,
       align: 'center'
     },
     {
@@ -26,12 +27,12 @@ export const generateCommandConfigWithLang = (configParams:any) => {
       name: language.userType,
       property: 'description',
       nestedTable: 'userTypes'
-    },
-  ]
-}
+    }
+  ];
+};
 
-export const generatePollConfigWithLang = (configParams:any) => {
-  const { language } = configParams
+export const generatePollConfigWithLang = (configParams: any) => {
+  const { language } = configParams;
 
   return [
     {
@@ -47,18 +48,18 @@ export const generatePollConfigWithLang = (configParams:any) => {
       property: 'description',
       nestedTable: 'userType'
     }
-  ]
-}
+  ];
+};
 
 export const generateCardInfo = (configParams: any) => {
-  const { 
+  const {
     language,
     totalSubscribers,
     newLastAdmission,
     totalPolls,
     totalCommands
   } = configParams;
-  
+
   return [
     {
       name: language.totalSubscribers,
@@ -76,5 +77,5 @@ export const generateCardInfo = (configParams: any) => {
       name: language.totalCommands,
       value: totalCommands
     }
-  ]
-}
+  ];
+};

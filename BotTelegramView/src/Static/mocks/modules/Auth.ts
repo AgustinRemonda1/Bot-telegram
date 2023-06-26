@@ -10,7 +10,8 @@ export const auth = [
           username: 'username',
           first_name: 'first name',
           last_name: 'last name',
-          email: 'email'
+          email: 'email',
+          image: ''
         },
         token: 'asdasdasdasd'
       })
