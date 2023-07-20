@@ -8,30 +8,33 @@ import { MenuConfigInterface } from './Header.types';
 
 export const menuConfig = (language: any): MenuConfigInterface[] => [
   {
-    icon: BotAction,
+    icon: Home.src,
+    name: language.homepage,
+    route: '/Dashboard'
+  },
+  {
+    icon: BotAction.src,
     name: language.botActions,
     route: '/Dashboard/Bot-Actions'
   },
-  { icon: Polls, name: language.polls, route: '/Dashboard/Polls' },
-  { icon: UserTypes, name: language.userTypes, route: '/Dashboard/User-Types' },
+  { icon: Polls.src, name: language.polls, route: '/Dashboard/Polls' },
   {
-    icon: Subscribers,
+    icon: UserTypes.src,
+    name: language.userTypes,
+    route: '/Dashboard/User-Types'
+  },
+  {
+    icon: Subscribers.src,
     name: language.subscribers,
     route: '/Dashboard/Subscribers'
   },
   {
-    icon: Activities,
+    icon: Activities.src,
     name: language.activities,
     route: '/dashboard/activities',
     permissions: ['Activities']
   }
 ];
-
-export const homePageConfig = (language: any) => ({
-  icon: Home,
-  name: language.homepage,
-  route: '/Dashboard'
-});
 
 export const langOptions = [
   { name: 'ES', value: 'ES' },

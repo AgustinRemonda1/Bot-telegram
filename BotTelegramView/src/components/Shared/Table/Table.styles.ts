@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { BLUE, WHITE } from 'Static/Styles/Colors.index';
+import { SUTIL_GRAY, WHITE } from 'Static/Styles/Colors.index';
 import {
   TableContainer,
   CircularProgress,
@@ -21,7 +21,7 @@ export const Container = styled(TableContainer)<DrawerProps>`
   flex-direction: column;
   width: 100%;
   background: ${WHITE};
-  border: 1px solid ${BLUE};
+  border: 1px solid ${SUTIL_GRAY};
   font-size: 16px;
   transition: ${({ theme }) =>
     theme.transitions.create(['margin'], {
@@ -30,6 +30,7 @@ export const Container = styled(TableContainer)<DrawerProps>`
     })};
   ${({ theme, isOpenDrawer }) =>
     isOpenDrawer && 'margin-left: ' + theme.spacing(45) + ';'}
+  box-shadow: none;
 `;
 
 export const LoaderContainer = styled.div<DrawerProps>`

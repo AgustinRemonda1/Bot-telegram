@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { BLACK, GOOGLE_BLUE, WHITE, BLUE } from 'Static/Styles/Colors.index';
+import { GOOGLE_BLUE, WHITE, BLUE } from 'Static/Styles/Colors.index';
 import {
   Button,
   Card,
@@ -20,10 +20,9 @@ export const DashboardContainer = styled.div<IDashboardContainer>`
   justify-items: center;
   margin: 0 auto;
   flex-grow: 1;
-  width: ${({ open }) => (open ? '78%' : '93%')};
+  width: 100%;
   height: 100%;
   min-height: 30vh;
-  margin-left: ${({ open }) => (open ? '300px' : '80px')};
   overflow-x: hidden;
   transition: ${({ open }) =>
     open &&
@@ -39,12 +38,12 @@ export const Content = styled(Container)`
   justify-content: enter;
   margin-top: ${theme.spacing(12)};
   width: 100%;
-  max-width: 1265px;
   transition: ${theme.transitions.create(['margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
   })};
   flex-direction: column;
+  max-width: 95% !important;
 `;
 
 export const SectionContainer = styled.div`
@@ -67,6 +66,8 @@ export const CardContainer = styled.div`
 export const StatisticCard = styled(Card)`
   margin-right: 30px;
   width: 100%;
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const DashboardButton = styled(Button)`
@@ -95,84 +96,3 @@ export const LoaderContainer = styled.div`
 export const Loader = styled(CircularProgress)`
   z-index: 1;
 `;
-//export const useStyles = makeStyles(theme => ({
-//  root: {
-//    display: 'flex',
-//    alignItems: 'center',
-//    justifyItems: 'center',
-//    margin: '0 auto',
-//    flexGrow: 1,
-//    width: '93%',
-//    height: '100%',
-//    minHeight: '30vh',
-//    marginLeft: '80px',
-//    overflowX: 'hidden'
-//  },
-//  rootShift: {
-//    marginLeft: '300px',
-//    width: '78%',
-//    transition: theme.transitions.create(['margin'], {
-//      easing: theme.transitions.easing.sharp,
-//      duration: theme.transitions.duration.leavingScreen,
-//    }),
-//  },
-//  container: {
-//    display: 'flex',
-//    justifyItems: 'center',
-//    justifyContent: 'center',
-//    marginTop: theme.spacing(12),
-//    width: '100%',
-//    maxWidth: '1265px',
-//    transition: theme.transitions.create(['margin'], {
-//      easing: theme.transitions.easing.sharp,
-//      duration: theme.transitions.duration.leavingScreen,
-//    }),
-//    flexDirection: "column",
-//  },
-//  title: {
-//    color: BLACK
-//  },
-//  cardContainer: {
-//    width: '100%',
-//    display: "flex",
-//    marginBottom: "20px",
-//    "& div":{
-//      marginBottom: "20px"
-//    },
-//    "& div:last-child":{
-//      marginRight: '0px'
-//    }
-//  },
-//  cardContainerShift: {
-//  },
-//  card: {
-//    marginRight: "30px",
-//    width: '100%'
-//  },
-//  subContainer:{
-//    width: '100%'
-//  },
-//  buttonStyle:{
-//    float: 'right',
-//    padding: '8px 18px',
-//    background: GOOGLE_BLUE,
-//    color: WHITE,
-//    boxShadow: 'none',
-//    margin: "20px 0px",
-//    '&:hover': {
-//      background: BLUE
-//    }
-//  },
-//  spanIcon: {
-//    position: 'relative',
-//    top: '4px',
-//    right: '5px'
-//  },
-//  loader: {
-//    zIndex: 1,
-//  },
-//  loaderContainer: {
-//    position: 'absolute',
-//    top: '22%',
-//  },
-//}))

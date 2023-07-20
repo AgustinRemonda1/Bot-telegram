@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { LIGHT_BLUE, BLACK } from 'Static/Styles/Colors.index';
+import { BLACK, BLUE } from 'Static/Styles/Colors.index';
 import { AppBar, createTheme } from '@mui/material';
 
 interface IStyledAppBar {
@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const StyledAppBar = styled(AppBar)<IStyledAppBar>`
-  background: ${LIGHT_BLUE};
+  background: ${BLUE};
   box-shadow: none;
   min-height: 48px;
   margin-left: ${({ open }) => open && `${DRAWER_WIDTH}px`};
@@ -32,4 +32,12 @@ export const StyledAppBar = styled(AppBar)<IStyledAppBar>`
         })};
   color: ${BLACK};
   border-left: ${({ open }) => open && `1px ${BLACK} solid`};
+
+  & .css-hyum1k-MuiToolbar-root {
+    padding-left: 8px;
+  }
+`;
+
+export const ContentContainer = styled.div`
+  width: 100%;
 `;

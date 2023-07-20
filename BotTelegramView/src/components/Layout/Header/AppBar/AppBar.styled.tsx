@@ -1,17 +1,20 @@
 import styled from '@emotion/styled';
 import { WHITE } from 'Static/Styles/Colors.index';
 import { Menu, Avatar, Typography, Box } from '@mui/material';
+import { DRAWER_WIDTH } from '../Header.styled';
 
-export const DRAWER_WIDTH = 300;
+interface IProps {
+  open: boolean;
+}
 
-export const AppBarContainer = styled.div`
+export const AppBarContainer = styled.div<IProps>`
   display: flex;
   width: 100%;
+  padding-left: ${({ open }) => open && `${DRAWER_WIDTH}px`};
 `;
 
 export const MenuContainer = styled.div`
   display: flex;
-  margin-top: 8px;
   justify-content: flex-start;
   height: 100%;
   width: 100%;
@@ -29,8 +32,21 @@ interface IMenuButton {
 }
 
 export const MenuButton = styled.div<IMenuButton>`
-  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 6px 15px 6px 0;
+  padding: 5px 12px;
   display: ${({ open }) => open && 'none'};
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 100%;
+  }
+
+  & svg {
+    fill: ${WHITE};
+  }
 `;
 
 interface ISubTitle {
@@ -38,11 +54,19 @@ interface ISubTitle {
 }
 
 export const SubTitle = styled(Typography)<ISubTitle>`
-  margin-top: 4px;
+  margin-top: 10px;
 `;
 
 export const TitleAndIcon = styled(Box)`
   display: flex;
+  color: ${WHITE};
+  & div {
+    margin: 0 2px 0 5px;
+  }
+`;
+
+export const Title = styled.span`
+  margin-top: 1px;
 `;
 
 export const BotIcon = styled.div`

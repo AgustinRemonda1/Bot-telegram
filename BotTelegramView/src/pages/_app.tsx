@@ -15,8 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <LanguageProvider>
         <ModalController>
-          <Header />
-          <Component {...pageProps} />
+          <Header>
+            <Component {...pageProps} />
+          </Header>
         </ModalController>
       </LanguageProvider>
     </ThemeProvider>

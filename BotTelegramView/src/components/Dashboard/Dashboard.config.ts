@@ -15,18 +15,18 @@ export const generateCommandConfigWithLang = (configParams: any) => {
       name: language.status,
       property: 'status',
       custom: (property: any) =>
-        property ? language.active : language.innactive,
+        property ? language.active : language.inactive,
       align: 'center'
     },
     {
       name: language.commandType,
       property: 'description',
-      nestedTable: 'commandsTypes'
+      nestedTable: 'commandType'
     },
     {
       name: language.userType,
       property: 'description',
-      nestedTable: 'userTypes'
+      nestedTable: 'userType'
     }
   ];
 };

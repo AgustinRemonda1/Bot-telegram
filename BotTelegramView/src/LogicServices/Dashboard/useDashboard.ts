@@ -45,11 +45,11 @@ const useDashboard = () => {
   }, []);
 
   const onRedirectBotActions = useCallback(() => {
-    router.replace('dashboard/bot-actions');
+    router.replace('Dashboard/Bot-Actions');
   }, [router]);
 
   const onRedirectPoll = useCallback(() => {
-    router.replace('dashboard/polls');
+    router.replace('Dashboard/Polls');
   }, [router]);
 
   return {

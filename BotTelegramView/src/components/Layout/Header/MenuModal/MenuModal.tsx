@@ -1,14 +1,8 @@
 import React, { useContext } from 'react';
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  useTheme
-} from '@mui/material';
+import { ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { menuConfig, homePageConfig } from '../Header.config';
+import { menuConfig } from '../Header.config';
 import { ReactSVG } from 'react-svg';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import WithRequiredPermission from 'components/HOC/WithRequiredPermissions';
@@ -19,19 +13,17 @@ import {
   StyledDrawer,
   Toolbar,
   StyledIconButton,
-  StyledDivider,
   StyledIcon,
-  HomePageList
+  OptionList
 } from './MenuModal.styled';
 
 const MenuModal = ({}) => {
   const theme = useTheme();
   const { language } = useContext(LanguageContext);
-  const homepage = homePageConfig(language);
   const { open, onCloseDrawer, onChangeRoute } = useMenuModal();
 
   return (
-    <MenuModalContainer>
+    <MenuModalContainer open={open}>
       <StyledDrawer variant="permanent" open={open}>
         <Toolbar>
           <StyledIconButton onClick={onCloseDrawer}>
@@ -42,8 +34,7 @@ const MenuModal = ({}) => {
             )}
           </StyledIconButton>
         </Toolbar>
-        {open && <StyledDivider />}
-        <List>
+        <OptionList open={open}>
           {menuConfig(language).map(
             (item: MenuConfigInterface, index: number) => (
               <WithRequiredPermission
@@ -61,17 +52,7 @@ const MenuModal = ({}) => {
               </WithRequiredPermission>
             )
           )}
-        </List>
-        <HomePageList>
-          <ListItem button onClick={() => onChangeRoute(homepage.route)}>
-            <ListItemIcon>
-              <StyledIcon>
-                <ReactSVG src={homepage.icon} />
-              </StyledIcon>
-            </ListItemIcon>
-            <ListItemText primary={homepage.name} />
-          </ListItem>
-        </HomePageList>
+        </OptionList>
       </StyledDrawer>
     </MenuModalContainer>
   );

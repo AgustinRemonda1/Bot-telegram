@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Toolbar } from '@mui/material';
-import { HeaderContainer, StyledAppBar } from './Header.styled';
+import {
+  HeaderContainer,
+  StyledAppBar,
+  ContentContainer
+} from './Header.styled';
 import MenuModal from './MenuModal';
 import AppBar from './AppBar';
 import useHeader from './useHeader';
 
-const Header = () => {
+interface IProps {
+  children: ReactNode;
+}
+
+const Header = ({ children }: IProps) => {
   const { state, actions } = useHeader();
 
   return (
@@ -18,6 +26,7 @@ const Header = () => {
         )}
       </StyledAppBar>
       {state.auth && <MenuModal />}
+      <ContentContainer>{children}</ContentContainer>
     </HeaderContainer>
   );
 };

@@ -10,6 +10,7 @@ import {
   MenuContainer,
   SelectContainer,
   SubTitle,
+  Title,
   TitleAndIcon,
   UserName
 } from './AppBar.styled';
@@ -43,7 +44,7 @@ const AppBar = ({ props, actions }: IProps) => {
   } = useAppBar(actions);
 
   return (
-    <AppBarContainer>
+    <AppBarContainer open={state.open}>
       <MenuContainer>
         <MenuButton
           color="inherit"
@@ -55,11 +56,11 @@ const AppBar = ({ props, actions }: IProps) => {
           <MenuIcon />
         </MenuButton>
         <SubTitle component="div">
-          <TitleAndIcon fontWeight={800} fontSize={28}>
+          <TitleAndIcon fontWeight={600} fontSize={28}>
             <BotIcon>
               <ReactSVG src={BotLogo.src} />
             </BotIcon>
-            {language.botTelegramBackOffice.toUpperCase()}
+            <Title>{language.botTelegramBackOffice.toUpperCase()}</Title>
           </TitleAndIcon>
         </SubTitle>
       </MenuContainer>
