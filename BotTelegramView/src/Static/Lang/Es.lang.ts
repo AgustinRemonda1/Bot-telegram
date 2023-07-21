@@ -57,7 +57,7 @@ const ES = {
   moreOptions: 'Mas opciones',
   refreshCommands: 'Refrescar comandos',
   totalSubscribers: 'Total de suscriptores',
-  newLastAdmission: 'Nuevos último ingreso',
+  newLastAdmission: 'Usuarios de la ùltima semana',
   totalPolls: 'Encuestas totales',
   totalCommands: 'Comandos totales',
   dataAndActions: 'Datos'
