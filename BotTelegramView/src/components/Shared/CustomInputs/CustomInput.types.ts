@@ -6,4 +6,5 @@ export interface IProps {
   emptyFields?: null | string | number | boolean;
   correction?: boolean;
   disabled?: boolean;
+  multiline?: boolean;
 }

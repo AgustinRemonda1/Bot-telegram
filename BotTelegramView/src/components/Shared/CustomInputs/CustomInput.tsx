@@ -16,7 +16,8 @@ const CustomInput = ({
   emptyFields,
   name,
   correction,
-  disabled
+  disabled,
+  multiline
 }: IProps) => {
   const { language } = useContext(LanguageContext);
 
@@ -29,6 +30,7 @@ const CustomInput = ({
           name={name}
           value={value}
           disabled={disabled}
+          multiline={Boolean(multiline)}
         />
         {!value && emptyFields && (
           <InputLabelAlert variant="subtitle1">

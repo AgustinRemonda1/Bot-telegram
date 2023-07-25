@@ -30,12 +30,12 @@ const DeletePopUp = ({ open, onClose, onDelete }: IProps) => {
       >
         <PopUpContainer>
           <PopUpHeader id="pop-up-of-delete" onClose={onClose}>
-            {language.deleteRegistry}
+            {language.deleteRegistry.toUpperCase()}
           </PopUpHeader>
           <PopUpContent>
             <Text gutterBottom>
               <Box fontWeight={600} fontSize={16}>
-                {language.areYouSureYouWantToDeleteThisRegistry}
+                {language.areYouSureYouWantToDeleteThisRegistry.toUpperCase()}
               </Box>
             </Text>
           </PopUpContent>

@@ -1,41 +1,6 @@
 import styled from '@emotion/styled';
-import { Card, Container, createTheme } from '@mui/material';
+import { Card, Container } from '@mui/material';
 import { theme } from 'Static/Theme';
-interface IDashboardContainer {
-  open: boolean;
-}
-
-export const DashboardContainer = styled.div<IDashboardContainer>`
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  margin: 0 auto;
-  flex-grow: 1;
-  width: 100%;
-  height: 100%;
-  min-height: 30vh;
-  overflow-x: hidden;
-  transition: ${({ open }) =>
-    open &&
-    theme.transitions.create(['margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })};
-`;
-
-export const Content = styled(Container)`
-  display: flex;
-  justify-items: center;
-  justify-content: enter;
-  margin-top: ${theme.spacing(12)};
-  width: 100%;
-  transition: ${theme.transitions.create(['margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
-  })};
-  flex-direction: column;
-  max-width: 95% !important;
-`;
 
 export const SectionContainer = styled.div`
   width: 100%;

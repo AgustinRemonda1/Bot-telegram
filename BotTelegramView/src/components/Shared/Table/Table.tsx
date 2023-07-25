@@ -1,12 +1,5 @@
 import React, { useContext } from 'react';
-import {
-  Paper,
-  Table,
-  TableBody,
-  TablePagination,
-  Box,
-  useTheme
-} from '@mui/material';
+import { Paper, Table, TableBody, TablePagination, Box } from '@mui/material';
 import TableBodyRow from './TableBody';
 import TableHeader from './TableHeader';
 import TableSkeleton from './TableSkeleton';
@@ -18,7 +11,7 @@ import {
   Loader,
   LoaderContainer,
   NoDocumentsFound
-} from './Table.styles';
+} from './Table.styled';
 import { IProps } from './Table.types';
 import useTable from './useTable';
 
@@ -40,21 +33,16 @@ const CustomTable = ({
     onRefreshTable,
     dataset
   });
-  const theme = useTheme();
 
   return (
-    <Container theme={theme} isOpenDrawer={isOpenDrawer} component={Paper}>
+    <Container isOpenDrawer={isOpenDrawer} component={Paper}>
       {loader && (
-        <LoaderContainer theme={theme} isOpenDrawer={isOpenDrawer}>
+        <LoaderContainer isOpenDrawer={isOpenDrawer}>
           <Loader size={50} />
         </LoaderContainer>
       )}
       {!loader && !dataset.length && (
-        <NoDocumentsFound
-          theme={theme}
-          isOpenDrawer={isOpenDrawer}
-          variant="h4"
-        >
+        <NoDocumentsFound isOpenDrawer={isOpenDrawer} variant="h4">
           <Box fontWeight={700}>{language.noResultFound}</Box>
         </NoDocumentsFound>
       )}

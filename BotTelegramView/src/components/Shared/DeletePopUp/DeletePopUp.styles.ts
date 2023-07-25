@@ -1,14 +1,7 @@
 import styled from '@emotion/styled';
-import {
-  WHITE,
-  BLUE,
-  YELLOW,
-  DARK_YELLOW,
-  BLACK
-} from 'Static/Styles/Colors.index';
+import { WHITE, BLUE, BLACK, ORANGE } from 'Static/Styles/Colors.index';
 import { Button, Dialog, Typography, createTheme } from '@mui/material';
-
-const theme = createTheme();
+import { theme } from 'Static/Theme';
 
 interface PopUpProps {
   correction: boolean;
@@ -38,9 +31,10 @@ export const ButtonDecline = styled(Button)`
 export const ButtonAccept = styled(Button)`
   margin-right: ${theme.spacing(2)};
   padding: 4px 16px;
-  color: ${YELLOW};
+  color: ${ORANGE};
   box-shadow: none;
   &:hover {
-    background: ${DARK_YELLOW};
+    background: ${ORANGE};
+    color: ${WHITE};
   }
 `;

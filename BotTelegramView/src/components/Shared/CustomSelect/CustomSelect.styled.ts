@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
-import { BLACK, RED_ALERT } from 'Static/Styles/Colors.index';
-import { Typography, FormControl, MenuItem } from '@mui/material';
+import { BLACK, ORANGE, RED_ALERT } from 'Static/Styles/Colors.index';
+import { Typography, FormControl, MenuItem, Select } from '@mui/material';
 
 interface IPropsContainer {
   correction: boolean;
 }
+
+export const StyledSelect = styled(Select)`
+  .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: ${ORANGE} !important;
+  }
+`;
 
 export const Container = styled.div<IPropsContainer>`
   width: ${({ correction }) => (!correction ? '255px' : '92%')};
@@ -29,4 +35,5 @@ export const SelectLabelAlert = styled(Typography)`
 export const LoaderContainer = styled(MenuItem)`
   display: flex;
   justify-content: center;
+  z-index: 1251;
 `;

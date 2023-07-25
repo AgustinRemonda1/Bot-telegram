@@ -1,39 +1,23 @@
 import styled from '@emotion/styled';
-import {
-  BLUE,
-  GOOGLE_BLUE,
-  LIGHT_ORANGE,
-  ORANGE,
-  WHITE
-} from 'Static/Styles/Colors.index';
+import { LIGHT_ORANGE, ORANGE, WHITE } from 'Static/Styles/Colors.index';
 import {
   Typography,
   Box,
   IconButton,
-  Theme,
   Button,
   CircularProgress
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { theme } from 'Static/Theme';
 
-interface ContainerProps {
-  isOpenDrawer: boolean;
-  correction: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 500px;
-  width: ${({ correction }) => (correction ? '100%' : '100vw')};
-  margin-top: ${({ correction }) =>
-    correction ? theme.spacing(4) : theme.spacing(15)};
+  width: 100%;
+  margin-top: ${theme.spacing(4)};
   margin-bottom: ${theme.spacing(4)};
-  margin-left: ${({ isOpenDrawer, correction }) =>
-    !correction ? (isOpenDrawer ? theme.spacing(45) : theme.spacing(15)) : 0};
-  margin-right: ${({ correction }) => (correction ? 0 : theme.spacing(7))};
-  transition: ${theme.transitions.create(['margin'], {
+  transition: ${theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
   })};
@@ -84,9 +68,9 @@ export const TitleAndUnderlineContainer = styled.div`
 export const AddButton = styled(IconButton)`
   margin-bottom: 20px;
   margin-right: 7px;
-  background: ${GOOGLE_BLUE};
+  background: ${ORANGE};
   &:hover {
-    background: ${BLUE};
+    background: ${LIGHT_ORANGE};
   }
 `;
 

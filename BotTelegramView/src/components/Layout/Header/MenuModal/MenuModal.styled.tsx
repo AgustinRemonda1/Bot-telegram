@@ -82,7 +82,16 @@ export const OptionList = styled(List)<IProps>`
   padding-right: 4px;
   color: ${WHITE};
   background: ${DARK_BLUE};
-
+  transition: ${({ open }) =>
+    !open
+      ? theme.transitions.create(['width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen
+        })
+      : theme.transitions.create(['width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen
+        })};
   & > div:hover {
     background: ${LIGHT_BLUE};
     border-radius: 5px;

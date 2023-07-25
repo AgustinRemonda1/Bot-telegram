@@ -40,7 +40,7 @@ export interface ICommand {
   userType: IUserType;
   botResponses: IResponses;
   commandType: ICommandTypes;
-  botNestedCommands: INestedCommands[];
+  botNestedCommands: INestedCommands[] | never[];
   createdAt?: string;
   updatedAt?: string;
 }

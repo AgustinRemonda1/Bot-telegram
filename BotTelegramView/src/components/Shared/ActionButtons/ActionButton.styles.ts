@@ -32,11 +32,12 @@ export const StyledButton = styled(IconButton)<ButtonProps>`
   ${({ colorType }) =>
     colorType &&
     `
+      padding: 4px 5px 0 5px;
       fill: ${colorType};
       border: 1px solid ${colorType};
       &:hover {
       fill: ${WHITE};
       background: ${colorType};
-    }
+    
   `}
 `;

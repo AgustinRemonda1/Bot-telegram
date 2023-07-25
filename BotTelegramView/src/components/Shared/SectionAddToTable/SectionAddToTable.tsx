@@ -1,5 +1,5 @@
 import React from 'react';
-import SimpleTable from '../SimpleTable/SimpleTable.component';
+import SimpleTable from 'components/Shared/SimpleTable';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { IProps } from './SectionAddToTable.types';
 import { Container, SelectContainer } from './SectionAddToTable.styles';

@@ -35,7 +35,7 @@ export const generateInputConfig = ({
       onChange,
       value: String(poll.userTypeId),
       list: userTypes,
-      emptyFields
+      emptyFields: true
     },
     {
       type: 'text',
@@ -44,7 +44,8 @@ export const generateInputConfig = ({
       onChange,
       value: poll.description,
       emptyFields,
-      correction: true
+      correction: true,
+      multiline: true
     }
   ];
 };

@@ -5,7 +5,7 @@ import React, {
   useState,
   useMemo
 } from 'react';
-import { LanguageContext } from '../../../Static/Lang/Lang.lang';
+import { LanguageContext } from '../../../../Static/Lang/Lang.lang';
 import BotCommands from '../../../Interfaces/BotComands.interface';
 import GetCommandsContent from '../Listing/GetCommands.content';
 import { GetCommandsProps, OptionInterface } from './GetCommands.interface';

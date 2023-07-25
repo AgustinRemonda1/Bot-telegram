@@ -427,6 +427,28 @@ const NewCommand = (props: NewCommandProps) => {
     editMode
   };
 
+  const inputParamsCopy = {
+    language,
+    handleChangeInputs: (e: any) => {},
+    name: '',
+    command: '',
+    description: '',
+    userType: 1,
+    commandType: 1,
+    response: 'xd',
+    fileName: 's',
+    url: 's',
+    userTypesOptions: [],
+    commandTypesOptions: [],
+    emptyFirstFields: false,
+    emptySecondFields: false,
+    confirmation: false,
+    isAButtonCommand: false,
+    coordinates: '',
+    buttonList: '',
+    editMode: ''
+  };
+
   const firstInputs = inputFirstConfig(inputParams);
   const secondaryInputs = inputSecondaryConfig(inputParams);
   const tableConfig = { language, handleDeleteNestedCommand, editMode };

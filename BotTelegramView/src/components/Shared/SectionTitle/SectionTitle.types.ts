@@ -1,14 +1,15 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface IProps {
   titleLabel: string;
   correctionLabel?: boolean;
-  typeButton?: "AddButton" | "CustomButton";
+  typeButton?: 'AddButton' | 'CustomButton';
   action?: (event?: any) => void;
   hiddenSectionFrom?: boolean;
   correctionTitle?: boolean;
   buttonProps?: {
     label: string;
     icon: ReactNode;
-  }
+    disabled: boolean;
+  };
 }

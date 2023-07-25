@@ -3,7 +3,7 @@ import Table from 'components/Shared/Table';
 import { generateConfigWithLang } from './Listing.config';
 import SectionTitle from 'components/Shared/SectionTitle';
 import DeletePopUp from 'components/Shared/DeletePopUp';
-import { Container, ContentContainer } from 'components/Layout/Content';
+import { Container, Content } from 'components/Layout/Content';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import useListing from 'LogicServices/Polls/Listing/useListing';
 import useDelete from 'LogicServices/Polls/Listing/useDeletePopUp';
@@ -23,7 +23,7 @@ const Listing = () => {
 
   return (
     <Container>
-      <ContentContainer>
+      <Content>
         <SectionTitle
           action={() => creatorModal.actions.onOpen()}
           titleLabel={language.polls}
@@ -37,7 +37,7 @@ const Listing = () => {
           onRefreshTable={actions.onRefresh}
           refreshTable={state.pagination.refresh}
         />
-      </ContentContainer>
+      </Content>
       <Creator
         poll={creatorModal.state.poll}
         open={creatorModal.state.open}

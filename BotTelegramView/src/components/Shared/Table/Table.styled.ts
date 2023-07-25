@@ -6,12 +6,9 @@ import {
   Typography,
   Theme
 } from '@mui/material';
+import { theme } from 'Static/Theme';
 
-interface ThemeProps {
-  theme: Theme;
-}
-
-interface DrawerProps extends ThemeProps {
+interface DrawerProps {
   isOpenDrawer?: Boolean;
   [key: string]: any;
 }
@@ -23,13 +20,10 @@ export const Container = styled(TableContainer)<DrawerProps>`
   background: ${WHITE};
   border: 1px solid ${SUTIL_GRAY};
   font-size: 16px;
-  transition: ${({ theme }) =>
-    theme.transitions.create(['margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })};
-  ${({ theme, isOpenDrawer }) =>
-    isOpenDrawer && 'margin-left: ' + theme.spacing(45) + ';'}
+  transition: ${theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  })};
   box-shadow: none;
 `;
 
@@ -41,12 +35,11 @@ export const LoaderContainer = styled.div<DrawerProps>`
   max-width: ${({ isOpenDrawer }) => (isOpenDrawer ? '1022px' : '1265px')};
   height: 100%;
   max-height: 435px;
-  margin-top: ${({ theme }) => theme.spacing(38)};
-  transition: ${({ theme }) =>
-    theme.transitions.create(['width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })};
+  margin-top: ${theme.spacing(38)};
+  transition: ${theme.transitions.create(['width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  })};
 `;
 
 export const Loader = styled(CircularProgress)`
@@ -61,11 +54,10 @@ export const NoDocumentsFound = styled(Typography)<DrawerProps>`
   max-width: ${({ isOpenDrawer }) => (isOpenDrawer ? '1022px' : '1265px')};
   height: 100%;
   max-height: 435px;
-  margin-top: ${({ theme }) => theme.spacing(38)};
+  margin-top: ${theme.spacing(38)};
   color: ${WHITE};
-  transition: ${({ theme }) =>
-    theme.transitions.create(['width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })};
+  transition: ${theme.transitions.create(['width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  })};
 `;

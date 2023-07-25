@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import { ContentSize, SelectQuestionsContainer } from './Creator.styles';
+import { ContentSize, SelectQuestionsContainer } from './Creator.styled';
 import {
   generateInputConfig,
   inputNames,

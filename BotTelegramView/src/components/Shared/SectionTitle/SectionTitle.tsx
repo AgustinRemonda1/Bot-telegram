@@ -12,44 +12,36 @@ import {
   Loader,
   LoaderContainer
 } from './SectionTitle.styles';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import { ModalControllerContext } from 'components/HOC/ModalController';
 import { IProps } from './SectionTitle.types';
-//s
+
 const SectionTitle = ({
   titleLabel,
   correctionLabel,
   action,
   hiddenSectionFrom,
-  correctionTitle,
   buttonProps,
   typeButton
 }: IProps) => {
-  const { isOpenDrawer } = useContext(ModalControllerContext);
   const { language } = useContext(LanguageContext);
-  const theme = useTheme();
 
   return (
-    <Container
-      theme={theme}
-      isOpenDrawer={Boolean(isOpenDrawer)}
-      correction={Boolean(correctionTitle)}
-    >
+    <Container>
       {!hiddenSectionFrom && (
         <SubTitle variant="h5" gutterBottom>
           <Box fontWeight={700} m={1}>
-            {language.sectionFrom}
+            {language.sectionFrom.toUpperCase()}
           </Box>
         </SubTitle>
       )}
       <TitleAndUnderlineContainer>
         <Title variant="h4" gutterBottom correction={Boolean(correctionLabel)}>
           <Box fontWeight={700} m={1}>
-            {titleLabel}
+            {titleLabel.toUpperCase()}
           </Box>
         </Title>
-        <UnderLine theme={theme} hasAction={Boolean(action)} />
+        <UnderLine hasAction={Boolean(action)} />
         {action && (!typeButton || typeButton === 'AddButton') && (
           <AddButton>
             <AddIconColored onClick={action} />

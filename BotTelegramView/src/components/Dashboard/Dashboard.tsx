@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { CardContent, Box } from '@mui/material';
 import {
-  DashboardContainer,
-  Content,
   SectionContainer,
   CardContainer,
   StatisticCard
 } from './Dashboard.styled';
-import { ModalControllerContext } from 'components/HOC/ModalController';
+import { Container, Content } from 'components/Layout/Content';
 import SimpleTable from 'components/Shared/SimpleTable';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import {
@@ -22,7 +20,6 @@ import useDashboard from 'LogicServices/Dashboard/useDashboard';
 
 const Dashboard = () => {
   const { language } = useContext(LanguageContext);
-  const { isOpenDrawer } = useContext(ModalControllerContext);
   const { state, actions } = useDashboard();
 
   const configParams = {
@@ -33,13 +30,12 @@ const Dashboard = () => {
   const infoCards = generateCardInfo(configParams);
 
   return (
-    <DashboardContainer open={isOpenDrawer}>
+    <Container>
       <Content>
         <SectionContainer>
           <SectionTitle
             titleLabel={language.dataAndActions}
             hiddenSectionFrom={true}
-            correctionTitle={true}
             typeButton="CustomButton"
             action={actions.onRefreshCommands}
             buttonProps={{
@@ -67,7 +63,6 @@ const Dashboard = () => {
           <SectionTitle
             titleLabel={language.polls}
             hiddenSectionFrom={true}
-            correctionTitle={true}
             action={actions.onRedirectPoll}
             typeButton="CustomButton"
             buttonProps={{
@@ -86,7 +81,6 @@ const Dashboard = () => {
           <SectionTitle
             titleLabel={language.botActions}
             hiddenSectionFrom={true}
-            correctionTitle={true}
             action={actions.onRedirectBotActions}
             typeButton="CustomButton"
             buttonProps={{
@@ -102,7 +96,7 @@ const Dashboard = () => {
           />
         </SectionContainer>
       </Content>
-    </DashboardContainer>
+    </Container>
   );
 };
 

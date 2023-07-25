@@ -12,7 +12,7 @@ import {
   StyledDrawer,
   SubmitButton,
   Text
-} from './RightModal.style';
+} from './RightModal.styled';
 
 const RightModal = ({
   open,

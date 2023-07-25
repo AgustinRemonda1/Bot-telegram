@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
-import { GOOGLE_BLUE, WHITE, BLACK, BLUE } from 'Static/Styles/Colors.index';
+import {
+  WHITE,
+  BLACK,
+  BLUE,
+  ORANGE,
+  LIGHT_ORANGE
+} from 'Static/Styles/Colors.index';
 import { Typography, Button, CircularProgress, Drawer } from '@mui/material';
 
 interface SpacingProp {
@@ -8,6 +14,7 @@ interface SpacingProp {
 
 export const StyledDrawer = styled(Drawer)`
   overflow-y: hidden;
+  z-index: 1250;
 `;
 
 export const Header = styled.div<SpacingProp>`
@@ -37,11 +44,11 @@ export const Footer = styled.div`
 export const SubmitButton = styled(Button)`
   margin-right: 28px;
   padding: 8px 18px;
-  background: ${GOOGLE_BLUE};
+  background: ${ORANGE};
   color: ${WHITE};
   box-shadow: none;
   &:hover {
-    background: ${BLUE};
+    background: ${LIGHT_ORANGE};
   }
 `;
 

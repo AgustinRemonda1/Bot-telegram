@@ -13,6 +13,7 @@ export interface IInput {
   emptyFields?: null | string | number | boolean;
   correction?: boolean;
   disabled?: boolean;
+  multiline?: boolean;
 }
 
 export interface IProps {
