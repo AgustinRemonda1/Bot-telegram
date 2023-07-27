@@ -39,6 +39,7 @@ const Listing = () => {
         />
       </Content>
       <Creator
+        command={creatorModal.state.command}
         open={creatorModal.state.open}
         onClose={creatorModal.actions.onClose}
         onRefresh={actions.onRefresh}

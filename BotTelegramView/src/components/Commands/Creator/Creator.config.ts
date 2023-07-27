@@ -1,7 +1,7 @@
 import { IInput } from 'components/Shared/BuildInputs/BuildInput.types';
-import { IPoll } from 'LogicServices/Polls/Types';
 import { IOption } from 'LogicServices/Shared/Types';
 import trashIcon from 'Static/Assets/Images/delete.svg';
+import { ICommandCreator } from '~/LogicServices/Commands/Creator/Types';
 
 export const inputNames = {
   name: 'name',
@@ -12,20 +12,33 @@ export const inputNames = {
   response: 'response',
   fileName: 'fileName',
   url: 'url',
-  buttonList: 'buttonList',
-  coordinates: 'coordinates',
-  tableSelect: 'simpleTableSelect'
+  parameter: 'parameter',
+  nestedCommands: 'nestedCommands'
 };
 
-export const inputFirstConfig = (inputParams: any) => {
+interface IInputConfigProps {
+  language: {
+    [key: string]: string;
+  };
+  command: ICommandCreator;
+  onChangeInputs: (e: any) => void;
+  userTypesOptions: IOption[];
+  commandTypesOptions: IOption[];
+  isAButtonCommand: boolean;
+  emptyFields: boolean;
+  editMode: boolean;
+}
+
+export const generateMainInputs = (
+  inputParams: IInputConfigProps
+): IInput[] => {
   const {
     language,
     onChangeInputs,
     command,
     userTypesOptions,
     commandTypesOptions,
-    emptyFirstFields,
-    confirmation,
+    emptyFields,
     editMode
   } = inputParams;
 
@@ -36,7 +49,7 @@ export const inputFirstConfig = (inputParams: any) => {
       title: language.name,
       onChange: onChangeInputs,
       value: command.name,
-      emptyFields: confirmation && emptyFirstFields && !command.name
+      emptyFields
     },
     {
       type: 'text',
@@ -44,7 +57,7 @@ export const inputFirstConfig = (inputParams: any) => {
       title: language.command,
       onChange: onChangeInputs,
       value: command.telCommand,
-      emptyFields: confirmation && emptyFirstFields && !command.telCommand
+      emptyFields
     },
     {
       type: 'text',
@@ -52,7 +65,7 @@ export const inputFirstConfig = (inputParams: any) => {
       title: language.description,
       onChange: onChangeInputs,
       value: command.description,
-      emptyFields: confirmation && emptyFirstFields && !command.description,
+      emptyFields,
       correction: true,
       multiline: true
     },
@@ -61,9 +74,9 @@ export const inputFirstConfig = (inputParams: any) => {
       name: inputNames.userType,
       title: language.userType,
       onChange: onChangeInputs,
-      value: command.userTypeId,
+      value: command.userTypeId || 0,
       list: userTypesOptions,
-      emptyFields: confirmation && emptyFirstFields && !command.userTypeId,
+      emptyFields,
       disabled: editMode
     },
     {
@@ -71,9 +84,9 @@ export const inputFirstConfig = (inputParams: any) => {
       name: inputNames.commandType,
       title: language.commandType,
       onChange: onChangeInputs,
-      value: command.commandTypeId,
+      value: command.commandTypeId || 0,
       list: commandTypesOptions,
-      emptyFields: confirmation && emptyFirstFields && !command.commandTypeId,
+      emptyFields,
       disabled: editMode
     },
     {
@@ -81,25 +94,19 @@ export const inputFirstConfig = (inputParams: any) => {
       name: inputNames.response,
       title: language.response,
       onChange: onChangeInputs,
-      value: command.botResponse?.response,
-      emptyFields:
-        confirmation && emptyFirstFields && !command.botResponse.response,
+      value: command.botResponses?.response || '',
+      emptyFields,
       correction: true,
       multiline: true
     }
   ];
 };
 
-export const inputSecondaryConfig = (inputParams: any) => {
-  const {
-    language,
-    onChangeInputs,
-    fileName,
-    url,
-    emptySecondFields,
-    confirmation,
-    editMode
-  } = inputParams;
+export const generateFileInputs = (
+  inputParams: IInputConfigProps
+): IInput[] => {
+  const { language, onChangeInputs, command, emptyFields, editMode } =
+    inputParams;
 
   return [
     {
@@ -107,8 +114,8 @@ export const inputSecondaryConfig = (inputParams: any) => {
       name: inputNames.fileName,
       title: language.filename,
       onChange: onChangeInputs,
-      value: fileName,
-      emptyFields: confirmation && emptySecondFields && !fileName,
+      value: command.botResponses?.botResponseFiles?.filename || '',
+      emptyFields,
       disabled: editMode
     },
     {
@@ -116,49 +123,57 @@ export const inputSecondaryConfig = (inputParams: any) => {
       name: inputNames.url,
       title: language.url,
       onChange: onChangeInputs,
-      value: url,
-      emptyFields: confirmation && emptySecondFields && !url,
+      value: command.botResponses?.botResponseFiles?.url || '',
+      emptyFields,
       disabled: editMode
     }
   ];
 };
 
-export const coordinateOrButtonListInputConfig = (inputParams: any) => {
+export const generateParameterInput = (inputParams: any) => {
   const {
     language,
     onChangeInputs,
-    emptyFirstFields,
+    emptyFields,
     confirmation,
     isAButtonCommand,
-    coordinates,
-    buttonList,
+    command,
     editMode
   } = inputParams;
 
   return {
     type: 'text',
-    name: isAButtonCommand ? inputNames.buttonList : inputNames.coordinates,
+    name: inputNames.parameter,
     title: isAButtonCommand ? language.buttons : language.coordinates,
     onChange: onChangeInputs,
-    value: isAButtonCommand ? buttonList : coordinates,
-    emptyFields:
-      confirmation && emptyFirstFields && !(coordinates || buttonList),
+    value: command.botResponses?.parameter,
+    emptyFields,
     correction: true,
     disabled: editMode,
     multiline: true
   };
 };
 
-export const NestedCommandTableConfig = (configParams: any) => {
-  const { language, handleDeleteNestedCommand, editMode } = configParams;
+interface ITableConfig {
+  language: {
+    [key: string]: string;
+  };
+  onDeleteCommand: (id: number) => void;
+  editMode: boolean;
+}
+
+export const NestedCommandTableConfig = (configParams: ITableConfig) => {
+  const { language, onDeleteCommand, editMode } = configParams;
   return [
     {
       name: language.name,
-      property: 'name'
+      property: 'name',
+      nestedTable: 'botCommand'
     },
     {
       name: language.description,
-      property: 'description'
+      property: 'botCommand',
+      custom: (property: any) => property && property.botResponses.description
     },
     {
       name: language.actions,
@@ -169,10 +184,10 @@ export const NestedCommandTableConfig = (configParams: any) => {
           type: 'delete',
           id: 'button-poll-delete',
           title: language.delete,
-          icon: trashIcon,
+          icon: trashIcon.src,
           disabled: editMode,
           onClick: (dataset: any) => {
-            handleDeleteNestedCommand(dataset.bot_command_id);
+            onDeleteCommand(dataset.botCommand.botCommandId);
           }
         }
       ]

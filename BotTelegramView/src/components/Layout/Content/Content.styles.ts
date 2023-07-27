@@ -31,3 +31,13 @@ export const Content = styled(ContentContainer)`
   flex-direction: column;
   max-width: 95% !important;
 `;
+
+export const ContentSize = styled.div`
+  padding-top: 20px;
+  width: 100%;
+  max-width: 605px;
+  max-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;

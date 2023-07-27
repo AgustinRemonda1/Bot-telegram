@@ -8,9 +8,9 @@ const useUserTypes = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const userTypesOptions: IOption[] = useMemo(() => {
-    return userTypes.map((userType, index) => ({
+    return userTypes.map((userType) => ({
       id: userType.userTypeId,
-      name: userType.description
+      name: userType.name
     }));
   }, [userTypes]);
 

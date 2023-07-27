@@ -15,6 +15,9 @@ interface SpacingProp {
 export const StyledDrawer = styled(Drawer)`
   overflow-y: hidden;
   z-index: 1250;
+  & > div {
+    overflow: hidden;
+  }
 `;
 
 export const Header = styled.div<SpacingProp>`

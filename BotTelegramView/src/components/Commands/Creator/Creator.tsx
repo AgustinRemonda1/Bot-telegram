@@ -1,21 +1,23 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import { ContentSize } from './Creator.styled';
 import {
-  inputFirstConfig,
+  generateMainInputs,
   inputNames,
-  inputSecondaryConfig,
-  coordinateOrButtonListInputConfig,
+  generateFileInputs,
+  generateParameterInput,
   NestedCommandTableConfig
 } from './Creator.config';
+import { ContentSize } from 'components/Layout/Content';
 import RightModal from 'components/Shared/RightModal';
 import BuildInputs from 'components/Shared/BuildInputs';
-import { ICommand } from '~/LogicServices/Commands/Types';
+import { ICommand } from 'LogicServices/Commands/Types';
 import SectionAddToTable from 'components/Shared/SectionAddToTable/SectionAddToTable';
 import useCommands from 'LogicServices/Commands/Creator/useCommands';
-import { commandTypesOptions, userTypesOptions } from './Creator.data';
-import useCreator from '~/LogicServices/Commands/Creator/useCreator';
-import { ICommandCreator } from '~/LogicServices/Commands/Creator/Types';
+import useCreator from 'LogicServices/Commands/Creator/useCreator';
+import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
+import useUserTypes from 'LogicServices/Shared/useUserTypes';
+import useCommandTypes from 'LogicServices/Commands/Creator/useCommandTypes';
+import useNestedCommands from '~/LogicServices/Commands/Creator/useNestedCommands';
 
 interface IProps {
   command?: ICommand | null;
@@ -35,28 +37,36 @@ const Creator = ({ command, open, onClose, onRefresh }: IProps) => {
     command: state.command,
     onChange: actions.onChange
   });
+  const userTypes = useUserTypes();
+  const commandTypes = useCommandTypes();
+  const nestedCommands = useNestedCommands({
+    command: state.command,
+    onChange: actions.onChange
+  });
 
-  const title = command ? language.editCommand : language.newCommand;
+  const title = state.flags.editMode
+    ? language.editCommand
+    : language.newCommand;
+
   const inputParams = {
     language,
     onChangeInputs: commandEdit.onChangeAttributes,
     command: state.command,
-    userTypesOptions: userTypesOptions,
-    commandTypesOptions: commandTypesOptions,
-    emptyFirstFields: false,
-    confirmation: false,
-    editMode: command
+    userTypesOptions: userTypes.state.userTypesOptions,
+    commandTypesOptions: commandTypes.state.commandTypesOptions,
+    isAButtonCommand: state.flags.isAButtonCommand,
+    emptyFields: state.emptyFields,
+    editMode: state.flags.editMode
   };
 
-  const firstInputs = inputFirstConfig(inputParams);
-  //const secondaryInputs = inputSecondaryConfig(inputParams);
-  //const inputButtonOrCoordinate =
-  //  coordinateOrButtonListInputConfig(inputParams);
-  //const tableConfig = {
-  //  language,
-  //  handleDeleteNestedCommand: () => {},
-  //  editMode: false
-  //};
+  const mainInputs = generateMainInputs(inputParams);
+  const fileInputs = generateFileInputs(inputParams);
+  const parameterInput = generateParameterInput(inputParams);
+  const tableConfig = {
+    language,
+    onDeleteCommand: nestedCommands.actions.onDeleteCommand,
+    editMode: state.flags.editMode
+  };
 
   return (
     <RightModal
@@ -67,9 +77,28 @@ const Creator = ({ command, open, onClose, onRefresh }: IProps) => {
       loading={state.loading}
     >
       <ContentSize>
-        {firstInputs.map((input, index) => (
-          <BuildInputs key={'first' + index} input={input} />
+        {mainInputs.map((input, index) => (
+          <BuildInputs key={'main' + index} input={input} />
         ))}
+        {state.flags.isAFileCommand &&
+          fileInputs.map((input, index) => (
+            <BuildInputs key={'file' + index} input={input} />
+          ))}
+        {state.flags.isAParameterCommand && (
+          <BuildInputs input={parameterInput} />
+        )}
+        {state.flags.isANestedCommand && (
+          <SectionAddToTable
+            name={inputNames.nestedCommands}
+            config={NestedCommandTableConfig(tableConfig)}
+            dataset={state.command.botNestedCommands}
+            title={language.addCommand}
+            list={nestedCommands.state.nestedCommandsOptions}
+            onChange={nestedCommands.actions.onAddCommand}
+            loader={nestedCommands.state.loading}
+            disabled={state.flags.editMode}
+          />
+        )}
       </ContentSize>
     </RightModal>
   );
@@ -77,18 +106,4 @@ const Creator = ({ command, open, onClose, onRefresh }: IProps) => {
 
 export default Creator;
 
-//        {true &&
-//          secondaryInputs.map((input, index) => (
-//            <BuildInputs key={'secondary' + index} input={input} />
-//          ))}
 //        <BuildInputs input={inputButtonOrCoordinate} />
-//        <SectionAddToTable
-//          config={NestedCommandTableConfig(tableConfig)}
-//          dataset={[]}
-//          title={language.addCommand}
-//          value={0}
-//          list={[]}
-//          onChange={() => {}}
-//          loader={false}
-//          disabled={false}
-//        />

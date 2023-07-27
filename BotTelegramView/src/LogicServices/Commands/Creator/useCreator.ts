@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ICommandCreator } from './Types';
-//import { savePoll } from './service';
-//import useValidation from './useValidation';
+import useCreatorFlags from './useCreatorFlags';
+import useValidation from './useValidation';
+import { saveCommand } from './service';
 
 interface IProps {
   commandToEdit: ICommandCreator | null;
@@ -17,7 +18,12 @@ const INITIAL_COMMAND: ICommandCreator = {
   status: true,
   userTypeId: 0,
   botResponses: {
-    response: ''
+    response: '',
+    parameter: '',
+    botResponseFiles: {
+      filename: '',
+      url: ''
+    }
   },
   botNestedCommands: []
 };
@@ -27,12 +33,19 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
   const [confirmation, setConfirmation] = useState<boolean>(false);
   const [hasEmptyFields, setHasEmptyFields] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  //const { emptyFields } = useValidation({ command });
+  const flags = useCreatorFlags({ command });
+  const { emptyFields } = useValidation({ command, flags });
 
   useEffect(() => {
     if (commandToEdit) {
-      setCommand(commandToEdit);
+      setCommand({
+        ...commandToEdit,
+        description:
+          commandToEdit.botResponses?.description || commandToEdit.description,
+        botNestedCommands: commandToEdit.botNestedCommands || []
+      });
     }
+    !commandToEdit && setCommand(INITIAL_COMMAND);
     setConfirmation(false);
     setHasEmptyFields(false);
   }, [commandToEdit]);
@@ -40,7 +53,7 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
   useEffect(() => {
     if (confirmation) {
       setConfirmation(false);
-      //savePoll(command, Boolean(commandToEdit));
+      saveCommand(command, Boolean(commandToEdit));
       setLoading(false);
       onClose();
       onRefresh(true);
@@ -52,21 +65,22 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
   }, []);
 
   const onSave = useCallback(() => {
-    if (false) {
+    if (emptyFields) {
       setHasEmptyFields(true);
     } else {
       setHasEmptyFields(false);
       setLoading(true);
       setConfirmation(true);
     }
-  }, []);
+  }, [emptyFields]);
 
   return {
     state: {
       command,
-      emptyFields: hasEmptyFields,
+      emptyFields: emptyFields && hasEmptyFields,
       hasEmptyFields,
-      loading
+      loading,
+      flags: { ...flags, editMode: Boolean(commandToEdit) }
     },
     actions: { onChange, onSave }
   };

@@ -20,12 +20,12 @@ export const generateCommandConfigWithLang = (configParams: any) => {
     },
     {
       name: language.commandType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'commandType'
     },
     {
       name: language.userType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'userType'
     }
   ];

@@ -1,9 +1,9 @@
 import { IUserType } from 'LogicServices/UserTypes/Types';
 
 export interface ICommandTypes {
-  commandTypesId?: number;
+  commandTypeId?: number;
   type?: string;
-  description?: string;
+  name?: string;
 }
 
 export interface INestedCommands {

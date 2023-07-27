@@ -5,6 +5,7 @@ import { commands } from './modules/Commands';
 import { polls } from './modules/Poll';
 import { botStatistics } from './modules/Statistics';
 import { userTypes } from './modules/UserTypes';
+import { commandTypes } from './modules/CommandTypes';
 
 const handlers = [
   ...auth,
@@ -13,7 +14,8 @@ const handlers = [
   ...userTypes,
   ...polls,
   ...commands,
-  ...botStatistics
+  ...botStatistics,
+  ...commandTypes
 ];
 
 export default handlers;

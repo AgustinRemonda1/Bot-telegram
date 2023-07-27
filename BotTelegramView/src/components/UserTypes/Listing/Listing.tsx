@@ -4,7 +4,7 @@ import { LanguageContext } from 'Static/Lang/Lang.lang';
 import { Container, Content } from 'components/Layout/Content';
 import { generateConfigWithLang } from './Listing.config';
 import SectionTitle from 'components/Shared/SectionTitle';
-import useListing from 'LogicServices/UserTypes/Listing/useListing';
+import useListing from 'LogicServices/UserTypes/Listing';
 
 const GetUserTypesContent = () => {
   const { state } = useListing();

@@ -7,7 +7,7 @@ export interface IInput {
   type: string;
   title: string;
   onChange: (e: any) => void;
-  value: string | null;
+  value: string | null | number;
   name: string;
   list?: IOption[] | null;
   emptyFields?: null | string | number | boolean;

@@ -14,7 +14,37 @@ const useCommands = ({ command, onChange }: IProps) => {
       const target = e.target.name;
 
       if (target === inputNames.response) {
-        onChange({ ...command, botResponses: { response: value } });
+        onChange({
+          ...command,
+          botResponses: { ...command.botResponses, response: value }
+        });
+      } else if (target === inputNames.fileName) {
+        onChange({
+          ...command,
+          botResponses: {
+            ...command.botResponses,
+            botResponseFiles: {
+              ...command.botResponses.botResponseFiles,
+              filename: value
+            }
+          }
+        });
+      } else if (target === inputNames.url) {
+        onChange({
+          ...command,
+          botResponses: {
+            ...command.botResponses,
+            botResponseFiles: {
+              ...command.botResponses.botResponseFiles,
+              url: value
+            }
+          }
+        });
+      } else if (target === inputNames.parameter) {
+        onChange({
+          ...command,
+          botResponses: { ...command.botResponses, parameter: value }
+        });
       } else {
         onChange({ ...command, [target]: value });
       }

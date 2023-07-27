@@ -1,7 +1,7 @@
 export interface IUserType {
   userTypeId: number;
   type: string;
-  description: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
 }

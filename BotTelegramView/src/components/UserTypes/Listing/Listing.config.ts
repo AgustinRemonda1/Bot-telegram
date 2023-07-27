@@ -8,7 +8,7 @@ export const generateConfigWithLang = (configParams: any) => {
     },
     {
       name: language.type,
-      property: 'description'
+      property: 'name'
     }
   ];
 };

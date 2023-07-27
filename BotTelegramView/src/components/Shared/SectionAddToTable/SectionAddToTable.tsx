@@ -5,17 +5,26 @@ import { IProps } from './SectionAddToTable.types';
 import { Container, SelectContainer } from './SectionAddToTable.styles';
 
 const SectionAddToTable = (props: IProps) => {
-  const { dataset, loader, config, list, title, value, onChange, disabled } =
-    props;
-
+  const {
+    dataset,
+    loader,
+    config,
+    list,
+    title,
+    value,
+    onChange,
+    disabled,
+    name
+  } = props;
+  console.log(dataset);
   return (
     <Container>
       <SelectContainer>
         <CustomSelect
-          name={'simpleTableSelect'}
+          name={name}
           title={title}
-          list={list}
-          value={value}
+          list={list || []}
+          value={value || null}
           onChange={onChange}
           disabled={disabled}
         />

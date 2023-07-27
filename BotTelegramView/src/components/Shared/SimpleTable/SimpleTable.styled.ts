@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { BLUE, WHITE } from 'Static/Styles/Colors.index';
+import { SUTIL_GRAY, WHITE } from 'Static/Styles/Colors.index';
 import { TableContainer, CircularProgress, Typography } from '@mui/material';
 import { theme } from 'Static/Theme';
 
@@ -7,7 +7,7 @@ export const Container = styled(TableContainer)`
   display: flex;
   width: 100%;
   background: ${WHITE};
-  border: 1px solid ${BLUE};
+  border: 1px solid ${SUTIL_GRAY};
   font-size: 16px;
   transition: ${theme.transitions.create(['margin'], {
     easing: theme.transitions.easing.sharp,

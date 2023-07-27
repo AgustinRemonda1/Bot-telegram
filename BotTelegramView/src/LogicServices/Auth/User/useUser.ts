@@ -7,7 +7,6 @@ const useUser = () => {
 
   useEffect(() => {
     const user = getCookieValue('user');
-    console.log(JSON, user, JSON.parse)
     user && setUser(JSON.parse(user));
   }, []);
 
