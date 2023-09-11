@@ -4,7 +4,7 @@ import { getCookieValue, setCookieValue } from 'Static/Utils/Cookies.utils';
 import { useRouter } from 'next/router';
 
 const useAuth = () => {
-  const { user } = useUser();
+  const { user, onClearUser } = useUser();
   const [token, setToken] = useState<string>('');
   const router = useRouter();
 
@@ -17,9 +17,11 @@ const useAuth = () => {
   const onSignOut = useCallback(() => {
     setCookieValue('token', '');
     setCookieValue('user', '');
+    setToken('');
+    onClearUser();
 
     router.replace('/Auth/Login');
-  }, [router]);
+  }, [router, onClearUser]);
 
   return {
     state: { user, auth: Boolean(user && token) },

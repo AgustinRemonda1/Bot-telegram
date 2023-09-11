@@ -5,9 +5,10 @@ import { generateConfigWithLang } from './Listing.config';
 import SectionTitle from 'components/Shared/SectionTitle';
 import DeletePopUp from 'components/Shared/DeletePopUp';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import useListing from 'LogicServices/Commands/Listing/useListing';
-import useDelete from 'LogicServices/Commands/Listing/useDeletePopUp';
-import useCreatorModal from 'LogicServices/Commands/Listing/useCreatorModal';
+import useListing, {
+  useDelete,
+  useCreatorModal
+} from 'LogicServices/Commands/Listing';
 import Creator from 'components/Commands/Creator';
 
 const Listing = () => {

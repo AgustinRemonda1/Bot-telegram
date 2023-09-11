@@ -4,7 +4,7 @@ import useAuth from '~/LogicServices/Auth/Auth/useAuth';
 const useHeader = () => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const { state } = useAuth();
-
+  console.log(state.auth);
   const onOpenMenu = useCallback((event: any) => {
     setAnchorEl(event.currentTarget);
   }, []);

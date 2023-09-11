@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { IPoll } from '../Types';
+import { validator } from 'LogicServices/Shared/utils';
 
 interface IProps {
   poll: IPoll;
@@ -7,13 +8,11 @@ interface IProps {
 
 const useValidation = ({ poll }: IProps) => {
   const emptyFields = useMemo(() => {
-    const name = Boolean(poll.name);
-    const description = Boolean(poll.description);
-    const userTypeId = Boolean(poll.userTypeId);
+    const pollInputs = validator(poll, ['name', 'description', 'userTypeId']);
     const questions =
       poll.questions && poll.questions.every((question) => question.question);
 
-    return !name || !description || !userTypeId || !questions;
+    return !pollInputs || !questions;
   }, [poll]);
 
   return { emptyFields };

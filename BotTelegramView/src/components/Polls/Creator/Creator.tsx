@@ -12,9 +12,8 @@ import BuildInputs from 'components/Shared/BuildInputs';
 import CustomSelect from 'components/Shared/CustomSelect';
 import { generateInputQuestions } from './Creators.utils';
 import { IPoll } from 'LogicServices/Polls/Types';
-import useCreator from 'LogicServices/Polls/Creator/useCreator';
+import useCreator, { usePoll } from 'LogicServices/Polls/Creator';
 import useUserTypes from 'LogicServices/Shared/useUserTypes';
-import usePoll from 'LogicServices/Polls/Creator/usePoll';
 
 interface IProps {
   poll: IPoll | null;

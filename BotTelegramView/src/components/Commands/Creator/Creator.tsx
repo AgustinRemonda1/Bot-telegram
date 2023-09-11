@@ -10,14 +10,15 @@ import {
 import { ContentSize } from 'components/Layout/Content';
 import RightModal from 'components/Shared/RightModal';
 import BuildInputs from 'components/Shared/BuildInputs';
-import { ICommand } from 'LogicServices/Commands/Types';
 import SectionAddToTable from 'components/Shared/SectionAddToTable/SectionAddToTable';
-import useCommands from 'LogicServices/Commands/Creator/useCommands';
-import useCreator from 'LogicServices/Commands/Creator/useCreator';
-import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
+import useCreator, {
+  useCommandTypes,
+  useCommands,
+  useNestedCommands
+} from 'LogicServices/Commands/Creator';
 import useUserTypes from 'LogicServices/Shared/useUserTypes';
-import useCommandTypes from 'LogicServices/Commands/Creator/useCommandTypes';
-import useNestedCommands from '~/LogicServices/Commands/Creator/useNestedCommands';
+import { ICommand } from 'LogicServices/Commands/Types';
+import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
 
 interface IProps {
   command?: ICommand | null;

@@ -5,9 +5,10 @@ import SectionTitle from 'components/Shared/SectionTitle';
 import DeletePopUp from 'components/Shared/DeletePopUp';
 import { Container, Content } from 'components/Layout/Content';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import useListing from 'LogicServices/Polls/Listing/useListing';
-import useDelete from 'LogicServices/Polls/Listing/useDeletePopUp';
-import useCreatorModal from 'LogicServices/Polls/Listing/useCreatorModal';
+import useListing, {
+  useCreatorModal,
+  useDelete
+} from 'LogicServices/Polls/Listing';
 import Creator from 'components/Polls/Creator';
 
 const Listing = () => {
