@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect } from 'react';
-import useAuth from '~/LogicServices/Auth/Auth/useAuth';
+import useAuth from 'LogicServices/Auth/Auth/useAuth';
 import { getCookieValue } from '~/Static/Utils/Cookies.utils';
 
 interface IProps {
@@ -8,12 +8,12 @@ interface IProps {
 }
 
 const PrivateRoute = ({ children }: IProps) => {
-  //  const router = useRouter();
-  //  useEffect(() => {
-  //    const token = getCookieValue('token');
-  //
-  //    !token && router.replace('/Auth/Login');
-  //  }, []);
+  const router = useRouter();
+  const { state } = useAuth();
+
+  useEffect(() => {
+    !state.auth && router.replace('/Auth/Login');
+  }, [state.auth]);
   return <>{children}</>;
 };
 

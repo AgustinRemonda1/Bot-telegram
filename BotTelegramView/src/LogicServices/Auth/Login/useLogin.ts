@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { inputNames } from 'components/Auth/Login/Login.config';
 import { useRouter } from 'next/router';
 import { loginRequest } from 'RepoServices/Auth/Login/Login';
 import { IUser } from '../User';
 import { getCookieValue, setCookieValue } from '~/Static/Utils/Cookies.utils';
+import { AuthContext } from '../Auth';
 
 interface iLoginResponse {
   user: IUser;
@@ -16,6 +17,7 @@ const useLogin = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const router = useRouter();
+  const { actions } = useContext(AuthContext);
 
   useEffect(() => {
     const auth = getCookieValue('user') && getCookieValue('token');
@@ -34,13 +36,18 @@ const useLogin = () => {
     }
   }, []);
 
-  const login = useCallback((res: iLoginResponse) => {
-    const userStringify = JSON.stringify(res.user);
-    setCookieValue('user', userStringify);
-    setCookieValue('token', res.token);
-    setLoading(false);
-    router.replace('/Dashboard');
-  }, []);
+  const login = useCallback(
+    (res: iLoginResponse) => {
+      const userStringify = JSON.stringify(res.user);
+      setCookieValue('user', userStringify);
+      setCookieValue('token', res.token);
+
+      actions && actions.onLogin(res);
+      setLoading(false);
+      router.replace('/Dashboard');
+    },
+    [actions]
+  );
 
   const onLogin = useCallback(async () => {
     if (password && username) {
