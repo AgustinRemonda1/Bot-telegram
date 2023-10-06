@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Table from 'components/Shared/Table';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import { Container, ContentContainer } from 'components/Layout/Content';
+import { Container, Content } from 'components/Layout/Content';
 import { generateConfigWithLang } from './Listing.config';
 import SectionTitle from 'components/Shared/SectionTitle';
-import useListing from 'LogicServices/UserTypes/Listing/useListing';
+import useListing from 'LogicServices/UserTypes/Listing';
 
 const GetUserTypesContent = () => {
   const { state } = useListing();
@@ -13,7 +13,7 @@ const GetUserTypesContent = () => {
 
   return (
     <Container>
-      <ContentContainer>
+      <Content>
         <SectionTitle titleLabel={language.userTypes} />
         <Table
           config={generateConfigWithLang(configParams) || []}
@@ -21,7 +21,7 @@ const GetUserTypesContent = () => {
           loader={state.loading}
           totalRows={Number(null)}
         />
-      </ContentContainer>
+      </Content>
     </Container>
   );
 };

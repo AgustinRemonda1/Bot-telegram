@@ -4,8 +4,9 @@ import {
   SelectFormControl,
   SelectLabel,
   SelectLabelAlert,
-  LoaderContainer
-} from './CustomSelect.style';
+  LoaderContainer,
+  StyledSelect
+} from './CustomSelect.styled';
 import { MenuItem, Select, CircularProgress } from '@mui/material';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import { capitalize } from 'Static/Utils/FormatStrings.utils';
@@ -27,7 +28,7 @@ const CustomSelect = ({
     <Container correction={Boolean(correction)}>
       <SelectFormControl>
         <SelectLabel variant="subtitle1">{title}</SelectLabel>
-        <Select
+        <StyledSelect
           onChange={onChange}
           value={value}
           name={name}
@@ -44,8 +45,8 @@ const CustomSelect = ({
               <CircularProgress size={35} />
             </LoaderContainer>
           )}
-        </Select>
-        {!value && emptyFields && (
+        </StyledSelect>
+        {!Number(value) && emptyFields && (
           <SelectLabelAlert variant="subtitle1">
             {language.thisFieldIsRequired}
           </SelectLabelAlert>

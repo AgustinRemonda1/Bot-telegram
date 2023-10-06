@@ -3,7 +3,7 @@ import usePopUp from 'LogicServices/Shared/usePopUp';
 import { ICommand } from '../Types';
 
 const useCreatorModal = () => {
-  const [ICommand, setCommand] = useState<ICommand | null>(null);
+  const [command, setCommand] = useState<ICommand | null>(null);
   const { state, actions } = usePopUp();
 
   const onOpen = useCallback(
@@ -22,7 +22,7 @@ const useCreatorModal = () => {
   return {
     state: {
       ...state,
-      ICommand
+      command
     },
     actions: { onOpen, onClose }
   };

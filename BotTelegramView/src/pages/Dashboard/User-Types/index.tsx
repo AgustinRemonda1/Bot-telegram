@@ -1,7 +1,12 @@
 import Listing from 'components/UserTypes/Listing';
+import PrivateRoute from 'components/HOC/PrivateRoute/PrivateRoute';
 
 const UserTypesPage = () => {
-  return <Listing />;
+  return (
+    <PrivateRoute>
+      <Listing />
+    </PrivateRoute>
+  );
 };
 
 export default UserTypesPage;

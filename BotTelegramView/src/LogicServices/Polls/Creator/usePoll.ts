@@ -66,7 +66,6 @@ const usePoll = ({ open, poll, questionsNumber, onChange }: IProps) => {
     (e: any, questionIndex: number) => {
       const questions = poll.questions || [];
       const value = e.target.value;
-      console.log(value, 'asdasd');
 
       const questionReplace = questions.map((question, index) => {
         if (index === questionIndex) {

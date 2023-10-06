@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import Table from 'components/Shared/Table';
-import { Container, ContentContainer } from 'components/Layout/Content';
+import { Container, Content } from 'components/Layout/Content';
 import { generateConfigWithLang } from './Listing.config';
 import SectionTitle from 'components/Shared/SectionTitle';
 import DeletePopUp from 'components/Shared/DeletePopUp';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import useListing from 'LogicServices/Commands/Listing/useListing';
-import useDelete from 'LogicServices/Commands/Listing/useDeletePopUp';
-import useCreatorModal from 'LogicServices/Commands/Listing/useCreatorModal';
+import useListing, {
+  useDelete,
+  useCreatorModal
+} from 'LogicServices/Commands/Listing';
+import Creator from 'components/Commands/Creator';
 
 const Listing = () => {
   const { language } = useContext(LanguageContext);
@@ -22,7 +24,7 @@ const Listing = () => {
 
   return (
     <Container>
-      <ContentContainer>
+      <Content>
         <SectionTitle
           titleLabel={language.botActions}
           action={() => creatorModal.actions.onOpen()}
@@ -36,7 +38,13 @@ const Listing = () => {
           onRefreshTable={actions.onRefresh}
           refreshTable={state.pagination.refresh}
         />
-      </ContentContainer>
+      </Content>
+      <Creator
+        command={creatorModal.state.command}
+        open={creatorModal.state.open}
+        onClose={creatorModal.actions.onClose}
+        onRefresh={actions.onRefresh}
+      />
       <DeletePopUp
         open={deletePopUp.state.open}
         onClose={deletePopUp.actions.onClose}

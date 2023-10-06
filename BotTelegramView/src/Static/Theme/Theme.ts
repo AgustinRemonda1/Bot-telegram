@@ -4,10 +4,21 @@ import {
   SUTIL_GRAY,
   WHITE,
   DARK_GRAY,
-  LIGHT_BLUE
+  LIGHT_BLUE,
+  ORANGE,
+  LIGHT_ORANGE,
+  DARK_ORANGE
 } from 'Static/Styles/Colors.index';
 
 export const theme = createTheme({
+  palette: {
+    primary: {
+      light: LIGHT_ORANGE,
+      main: ORANGE,
+      dark: DARK_ORANGE,
+      contrastText: WHITE
+    }
+  },
   components: {
     MuiTableRow: {
       styleOverrides: {

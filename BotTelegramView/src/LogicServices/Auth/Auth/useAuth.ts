@@ -1,25 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
-import useUser from '../User/useUser';
-import { getCookieValue, setCookieValue } from 'Static/Utils/Cookies.utils';
+import { useCallback, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { AuthContext } from './AuthContext';
 
 const useAuth = () => {
-  const { user } = useUser();
-  const [token, setToken] = useState<string>('');
+  const { user, token, actions } = useContext(AuthContext);
   const router = useRouter();
 
-  useEffect(() => {
-    const token = getCookieValue('token');
-
-    token && setToken(token);
-  }, []);
-
   const onSignOut = useCallback(() => {
-    setCookieValue('token', '');
-    setCookieValue('user', '');
+    actions.onSignOut();
 
     router.replace('/Auth/Login');
-  }, [router]);
+  }, [router, actions]);
 
   return {
     state: { user, auth: Boolean(user && token) },

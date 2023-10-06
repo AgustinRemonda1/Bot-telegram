@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import request from 'RepoServices/Requests';
 import { ICommand } from 'LogicServices/Commands/Types';
+import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
 
 export interface IRequest {
   page: number;
@@ -31,6 +32,20 @@ export const fetchCommands = async ({ page, pageSize }: IRequest) => {
   }
 };
 
+export const fetchAllCommands = async () => {
+  try {
+    const res: AxiosResponse<IFetchResponse> = await request.get(
+      `/api/bot-commands/all`
+    );
+
+    return {
+      commands: res.data.commands
+    };
+  } catch (error) {
+    return 'error';
+  }
+};
+
 export const deleteCommand = async (id: number) => {
   try {
     const res: AxiosResponse<IMessageResponse> = await request.delete(
@@ -43,7 +58,7 @@ export const deleteCommand = async (id: number) => {
   }
 };
 
-export const createCommand = async (command: ICommand) => {
+export const createCommand = async (command: ICommandCreator) => {
   try {
     const res: AxiosResponse<IMessageResponse> = await request.post(
       `/api/bot-command`,
@@ -56,7 +71,7 @@ export const createCommand = async (command: ICommand) => {
   }
 };
 
-export const updateCommand = async (command: ICommand) => {
+export const updateCommand = async (command: ICommandCreator) => {
   try {
     const res: AxiosResponse<IMessageResponse> = await request.put(
       `/api/bot-command/${command.botCommandId}`,

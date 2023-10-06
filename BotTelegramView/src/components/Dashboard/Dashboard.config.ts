@@ -20,12 +20,12 @@ export const generateCommandConfigWithLang = (configParams: any) => {
     },
     {
       name: language.commandType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'commandType'
     },
     {
       name: language.userType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'userType'
     }
   ];
@@ -62,19 +62,19 @@ export const generateCardInfo = (configParams: any) => {
 
   return [
     {
-      name: language.totalSubscribers,
+      name: language.totalSubscribers.toUpperCase(),
       value: totalSubscribers
     },
     {
-      name: language.newLastAdmission,
+      name: language.newLastAdmission.toUpperCase(),
       value: newLastAdmission
     },
     {
-      name: language.totalPolls,
+      name: language.totalPolls.toUpperCase(),
       value: totalPolls
     },
     {
-      name: language.totalCommands,
+      name: language.totalCommands.toUpperCase(),
       value: totalCommands
     }
   ];

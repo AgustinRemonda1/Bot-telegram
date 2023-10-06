@@ -44,7 +44,8 @@ export const generateInputConfig = ({
       onChange,
       value: poll.description,
       emptyFields,
-      correction: true
+      correction: true,
+      multiline: true
     }
   ];
 };

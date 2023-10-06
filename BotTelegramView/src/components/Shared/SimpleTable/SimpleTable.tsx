@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Table, TableBody, Box, useTheme, Paper } from '@mui/material';
+import { Table, TableBody, Box } from '@mui/material';
 import TableBodyRow from '../Table/TableBody';
 import TableHeader from '../Table/TableHeader';
 import TableSkeleton from '../Table/TableSkeleton';
@@ -9,23 +9,22 @@ import {
   Loader,
   LoaderContainer,
   NoDocumentsFound
-} from '../Table/Table.styles';
+} from './SimpleTable.styled';
 import { IProps } from './SimpleTable.types';
 
 const TableContent = ({ config, dataset, loader }: IProps) => {
   const { language } = useContext(LanguageContext);
-  const theme = useTheme();
   const SKELETON_ROWS = 3;
 
   return (
-    <Container theme={theme} component={Paper}>
+    <Container>
       {loader && (
-        <LoaderContainer theme={theme}>
+        <LoaderContainer>
           <Loader size={50} />
         </LoaderContainer>
       )}
       {!loader && !dataset.length && (
-        <NoDocumentsFound theme={theme} variant="h4">
+        <NoDocumentsFound variant="h4">
           <Box fontWeight={700}>{language.noResultFound}</Box>
         </NoDocumentsFound>
       )}

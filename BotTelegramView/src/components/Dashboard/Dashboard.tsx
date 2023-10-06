@@ -1,17 +1,11 @@
 import React, { useContext } from 'react';
 import { CardContent, Box } from '@mui/material';
 import {
-  DashboardContainer,
-  Content,
   SectionContainer,
   CardContainer,
-  StatisticCard,
-  DashboardButton,
-  IconContainer,
-  LoaderContainer,
-  Loader
+  StatisticCard
 } from './Dashboard.styled';
-import { ModalControllerContext } from 'components/HOC/ModalController';
+import { Container, Content } from 'components/Layout/Content';
 import SimpleTable from 'components/Shared/SimpleTable';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import {
@@ -26,7 +20,6 @@ import useDashboard from 'LogicServices/Dashboard/useDashboard';
 
 const Dashboard = () => {
   const { language } = useContext(LanguageContext);
-  const { isOpenDrawer } = useContext(ModalControllerContext);
   const { state, actions } = useDashboard();
 
   const configParams = {
@@ -37,92 +30,73 @@ const Dashboard = () => {
   const infoCards = generateCardInfo(configParams);
 
   return (
-    <DashboardContainer open={isOpenDrawer}>
+    <Container>
       <Content>
         <SectionContainer>
           <SectionTitle
             titleLabel={language.dataAndActions}
             hiddenSectionFrom={true}
-            correctionTitle={true}
+            typeButton="CustomButton"
+            action={actions.onRefreshCommands}
+            buttonProps={{
+              label: language.refreshCommands,
+              icon: <AutorenewIcon />,
+              disabled: state.loading
+            }}
           />
         </SectionContainer>
         <CardContainer>
           {infoCards.map((infoCard, index) => (
             <StatisticCard key={'info-card' + index}>
               <CardContent>
-                <Box fontSize={18} fontWeight={300}>
+                <Box fontSize={20} fontWeight={500}>
                   {infoCard.name}
                 </Box>
-                <Box fontSize={40} fontWeight={700}>
+                <Box fontSize={40} fontWeight={800}>
                   {infoCard.value}
                 </Box>
               </CardContent>
             </StatisticCard>
           ))}
-          <StatisticCard>
-            <CardContent>
-              <Box fontSize={18} fontWeight={300}>
-                {language.actions}
-              </Box>
-              <DashboardButton
-                variant="contained"
-                onClick={actions.onRefreshCommands}
-                disabled={state.loading}
-              >
-                <IconContainer>
-                  <AutorenewIcon />
-                </IconContainer>
-                {language.refreshCommands}
-                {state.loading && (
-                  <LoaderContainer>
-                    <Loader size={35} />
-                  </LoaderContainer>
-                )}
-              </DashboardButton>
-            </CardContent>
-          </StatisticCard>
         </CardContainer>
         <SectionContainer>
           <SectionTitle
             titleLabel={language.polls}
             hiddenSectionFrom={true}
-            correctionTitle={true}
+            action={actions.onRedirectPoll}
+            typeButton="CustomButton"
+            buttonProps={{
+              label: language.moreOptions,
+              icon: <MoreHorizIcon />,
+              disabled: state.loading
+            }}
           />
           <SimpleTable
             config={generatePollConfigWithLang(configParams)}
             dataset={state.polls || []}
             loader={state.loading}
           />
-          <DashboardButton variant="contained" onClick={actions.onRedirectPoll}>
-            <IconContainer>
-              <MoreHorizIcon />
-            </IconContainer>
-            {language.moreOptions}
-          </DashboardButton>
         </SectionContainer>
         <SectionContainer>
           <SectionTitle
             titleLabel={language.botActions}
             hiddenSectionFrom={true}
-            correctionTitle={true}
+            action={actions.onRedirectBotActions}
+            typeButton="CustomButton"
+            buttonProps={{
+              label: language.moreOptions,
+              icon: <MoreHorizIcon />,
+              disabled: state.loading
+            }}
           />
           <SimpleTable
             config={generateCommandConfigWithLang(configParams)}
             dataset={state.commands || []}
             loader={state.loading}
           />
-          <DashboardButton
-            variant="contained"
-            onClick={actions.onRedirectBotActions}
-          >
-            <IconContainer>
-              <MoreHorizIcon />
-            </IconContainer>
-            {language.moreOptions}
-          </DashboardButton>
         </SectionContainer>
       </Content>
-    </DashboardContainer>
+    </Container>
   );
 };
 

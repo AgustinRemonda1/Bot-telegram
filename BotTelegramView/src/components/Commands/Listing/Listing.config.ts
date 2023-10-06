@@ -25,12 +25,12 @@ export const generateConfigWithLang = (configParams: any) => {
     },
     {
       name: language.commandType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'commandType'
     },
     {
       name: language.userType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'userType'
     },
     {
@@ -39,7 +39,7 @@ export const generateConfigWithLang = (configParams: any) => {
       isActions: true,
       actions: [
         {
-          type: 'view',
+          type: 'edit',
           id: 'button-poll-edit',
           title: language.edit,
           icon: editIcon.src,

@@ -37,7 +37,8 @@ const ES = {
   status: 'Estado',
   inactive: 'Inactivo',
   active: 'Activo',
-  newCommand: 'Nuevo comando',
+  newCommand: 'Nuevo Comando',
+  editCommand: 'Editar Comando',
   dni: 'DNI',
   lastName: 'Apellido',
   response: 'Respuesta',
@@ -57,7 +58,7 @@ const ES = {
   moreOptions: 'Mas opciones',
   refreshCommands: 'Refrescar comandos',
   totalSubscribers: 'Total de suscriptores',
-  newLastAdmission: 'Nuevos último ingreso',
+  newLastAdmission: 'Usuarios de la ùltima semana',
   totalPolls: 'Encuestas totales',
   totalCommands: 'Comandos totales',
   dataAndActions: 'Datos'

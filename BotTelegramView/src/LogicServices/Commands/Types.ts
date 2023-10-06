@@ -1,9 +1,9 @@
 import { IUserType } from 'LogicServices/UserTypes/Types';
 
 export interface ICommandTypes {
-  commandTypesId?: number;
+  commandTypeId?: number;
   type?: string;
-  description?: string;
+  name?: string;
 }
 
 export interface INestedCommands {
@@ -40,7 +40,7 @@ export interface ICommand {
   userType: IUserType;
   botResponses: IResponses;
   commandType: ICommandTypes;
-  botNestedCommands: INestedCommands[];
+  botNestedCommands: INestedCommands[] | never[];
   createdAt?: string;
   updatedAt?: string;
 }

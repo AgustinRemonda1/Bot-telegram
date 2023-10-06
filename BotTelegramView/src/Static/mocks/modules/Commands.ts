@@ -1,42 +1,30 @@
 import { rest } from 'msw';
+import { commandsDataMock } from 'Static/Data';
 
 export const commands = [
   rest.get('/api/bot-commands', (req, res, ctx) => {
     const pageSize = req.url.searchParams.get('pageSize');
-    const toNumber = Number(pageSize);
+    const page = req.url.searchParams.get('page');
+    const pageSizeNumber = Number(pageSize);
+    const pageNumber = Number(page) + 1;
 
-    const command = {
-      botCommandId: 1,
-      commandTypeId: 1,
-      name: 'hola',
-      telCommand: 'hola',
-      description: 'manola',
-      status: true,
-      userTypeId: 1,
-      userType: {
-        userTypeId: 1,
-        type: 'user',
-        description: 'user',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      },
-      botResponses: {},
-      commandType: {
-        commandTypesId: 1,
-        type: 'user',
-        description: 'user'
-      },
-      botNestedCommands: [],
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
-
-    const commands = new Array(toNumber).fill(command);
+    const startNumber =
+      pageNumber === 1 ? 0 : pageNumber > 2 ? pageNumber * 10 : 10;
 
     return res(
       ctx.json({
-        commands,
-        total: 10
+        commands: commandsDataMock.slice(
+          startNumber,
+          pageSizeNumber * pageNumber
+        ),
+        total: commandsDataMock.length
+      })
+    );
+  }),
+  rest.get('/api/bot-commands/all', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        commands: commandsDataMock
       })
     );
   }),

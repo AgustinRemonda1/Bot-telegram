@@ -5,7 +5,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { menuConfig } from '../Header.config';
 import { ReactSVG } from 'react-svg';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import WithRequiredPermission from 'components/HOC/WithRequiredPermissions';
+import WithRequiredPermission from 'components/HOC/WithRequiredPermission';
 import { MenuConfigInterface } from '../Header.types';
 import useMenuModal from './useMenuModal';
 import {

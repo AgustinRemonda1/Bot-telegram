@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import { ContentSize, SelectQuestionsContainer } from './Creator.styles';
+import { ContentSize } from 'components/Layout/Content';
+import { SelectQuestionsContainer } from './Creator.styled';
 import {
   generateInputConfig,
   inputNames,
@@ -11,9 +12,8 @@ import BuildInputs from 'components/Shared/BuildInputs';
 import CustomSelect from 'components/Shared/CustomSelect';
 import { generateInputQuestions } from './Creators.utils';
 import { IPoll } from 'LogicServices/Polls/Types';
-import useCreator from 'LogicServices/Polls/Creator/useCreator';
-import useUserTypes from 'LogicServices/Polls/Creator/useUserTypes';
-import usePoll from 'LogicServices/Polls/Creator/usePoll';
+import useCreator, { usePoll } from 'LogicServices/Polls/Creator';
+import useUserTypes from 'LogicServices/Shared/useUserTypes';
 
 interface IProps {
   poll: IPoll | null;

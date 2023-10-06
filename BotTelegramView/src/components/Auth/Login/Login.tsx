@@ -7,7 +7,7 @@ import {
   AlertLabel,
   LoaderContainer,
   Loader
-} from './Login.styles';
+} from './Login.styled';
 import { inputNames } from './Login.config';
 import useLogin from 'LogicServices/Auth/Login/useLogin';
 import { LanguageContext } from 'Static/Lang/Lang.lang';

@@ -14,8 +14,10 @@ export const findTypeAndBuild = (input: IInput): JSX.Element => {
         onChange={input.onChange}
         value={input.value}
         emptyFields={input.emptyFields}
+        list={[]}
         correction={input.correction}
         disabled={input.disabled}
+        multiline={input.multiline}
       />
     )
   ) : (
@@ -24,10 +26,11 @@ export const findTypeAndBuild = (input: IInput): JSX.Element => {
       title={input.title}
       onChange={input.onChange}
       value={input.value}
-      list={input && input.list}
+      list={(input && input.list) || []}
       emptyFields={input.emptyFields}
       correction={input.correction}
       disabled={input.disabled}
+      multiline={input.multiline}
     />
   );
 };

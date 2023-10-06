@@ -1,5 +1,6 @@
 export {
   fetchCommands,
+  fetchAllCommands,
   deleteCommand,
   updateCommand,
   createCommand,
