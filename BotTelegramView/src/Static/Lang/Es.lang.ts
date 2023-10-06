@@ -60,7 +60,7 @@ const ES = {
   newLastAdmission: 'Nuevos último ingreso',
   totalPolls: 'Encuestas totales',
   totalCommands: 'Comandos totales',
-  dataAndActions: 'Datos y acciones'
+  dataAndActions: 'Datos'
 };
 
 export default ES;

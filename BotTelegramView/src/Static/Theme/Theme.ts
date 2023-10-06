@@ -1,5 +1,11 @@
 import { createTheme } from '@mui/material';
-import { BLUE, GRAY, WHITE, DARK_GRAY } from 'Static/Styles/Colors.index';
+import {
+  GRAY,
+  SUTIL_GRAY,
+  WHITE,
+  DARK_GRAY,
+  LIGHT_BLUE
+} from 'Static/Styles/Colors.index';
 
 export const theme = createTheme({
   components: {
@@ -21,12 +27,12 @@ export const theme = createTheme({
         },
         head: {
           color: WHITE,
-          borderBottom: '1px solid ' + BLUE,
-          backgroundColor: BLUE,
+          borderBottom: '1px solid ' + SUTIL_GRAY,
+          backgroundColor: LIGHT_BLUE,
           padding: '10px 0px 10px 22px'
         },
         body: {
-          borderBottom: '1px solid ' + BLUE
+          borderBottom: '1px solid ' + SUTIL_GRAY
         }
       }
     },

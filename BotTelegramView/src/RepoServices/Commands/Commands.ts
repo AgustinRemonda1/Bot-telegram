@@ -68,3 +68,13 @@ export const updateCommand = async (command: ICommand) => {
     return 'error';
   }
 };
+
+export const refreshCommand = async () => {
+  try {
+    await request.put(`/api/bot-command/refresh`);
+
+    return 'ok';
+  } catch (error) {
+    return 'error';
+  }
+};

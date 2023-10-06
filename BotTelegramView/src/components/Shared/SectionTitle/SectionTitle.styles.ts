@@ -15,7 +15,6 @@ interface ContainerProps extends ThemeProps {
 export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
-  max-width: 1265px;
   min-width: 500px;
   width: ${({ correction }) => (correction ? '100%' : '100vw')};
   margin-top: ${({ theme, correction }) =>
@@ -36,12 +35,12 @@ interface TitleProps {
 }
 
 export const Title = styled(Typography)<TitleProps>`
-  min-width: 400px;
-  ${({ correction }) => correction && 'width: 415px;'}
+  padding-right: 30px;
+  white-space: nowrap;
 `;
 
 export const SubTitle = styled(Typography)`
-  color: ${GOOGLE_BLUE};
+  color: ${ORANGE};
   margin-right: 2px;
   padding-left: 2px;
 `;
@@ -54,8 +53,8 @@ export const UnderLine = styled(Box)<UnderLineProps>`
   display: flex;
   position: relative;
   border-bottom: 1px ${ORANGE} solid;
-  width: 200vh;
-  bottom: 25px;
+  width: 100%;
+  bottom: 40px;
   ${({ hasAction }) => hasAction && 'margin-right: 50px;'}
   transition: ${({ theme }) =>
     theme.transitions.create(['width'], {

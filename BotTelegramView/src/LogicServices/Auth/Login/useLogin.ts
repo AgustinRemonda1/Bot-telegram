@@ -35,7 +35,8 @@ const useLogin = () => {
   }, []);
 
   const login = useCallback((res: iLoginResponse) => {
-    setCookieValue('user', res.user);
+    const userStringfy = JSON.stringify(res.user);
+    setCookieValue('user', userStringfy);
     setCookieValue('token', res.token);
     setLoading(false);
     router.replace('/Dashboard');

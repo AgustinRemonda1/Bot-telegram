@@ -1,7 +1,3 @@
-import { useUser as useUserCore } from './useUser';
-export * from './UserRepo.type';
-export * from './Permissions.type';
-export * from './interface';
-import { UserCookieRepo } from 'RepoServices/User';
+export { default } from './useUser';
 
-export const useUser = () => useUserCore({ userRepo: UserCookieRepo() });
+export type { IUser } from './types';
