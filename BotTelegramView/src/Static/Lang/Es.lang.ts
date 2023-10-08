@@ -61,7 +61,11 @@ const ES = {
   newLastAdmission: 'Usuarios de la ùltima semana',
   totalPolls: 'Encuestas totales',
   totalCommands: 'Comandos totales',
-  dataAndActions: 'Datos'
+  dataAndActions: 'Datos',
+  welcomeTo: 'Bienvenido al',
+  botBackoffice: 'Backoffice del bot',
+  permissionDenied: 'Permiso denegado',
+  signInToViewThisPage: 'Inicia sesión para ver esta página.'
 };
 
 export default ES;

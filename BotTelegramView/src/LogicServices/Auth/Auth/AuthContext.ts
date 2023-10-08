@@ -9,6 +9,7 @@ export interface IOnLogin {
 export interface IAuthContext {
   user?: IUser | null;
   token?: string;
+  loading?: boolean;
   actions: {
     onLogin: ({ user, token }: IOnLogin) => void;
     onSignOut: () => void;

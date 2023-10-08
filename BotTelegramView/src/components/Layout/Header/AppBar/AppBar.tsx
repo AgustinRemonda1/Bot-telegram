@@ -20,7 +20,7 @@ import { LanguageContext } from 'Static/Lang/Lang.lang';
 import SelectOptions from 'components/Shared/SelectOptions';
 import { langOptions } from '../Header.config';
 import { ReactSVG } from 'react-svg';
-import BotLogo from 'Static/Assets/Images/logo-bot.svg';
+import BotLogo from 'Static/Assets/Icons/logo-bot.svg';
 import { IUser } from 'LogicServices/Auth/User';
 import useAppBar from './useAppBar';
 

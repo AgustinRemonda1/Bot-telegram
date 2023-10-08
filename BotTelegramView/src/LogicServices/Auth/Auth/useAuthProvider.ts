@@ -6,6 +6,7 @@ import { IOnLogin } from './AuthContext';
 const useAuthProvider = () => {
   const [token, setToken] = useState<string>('');
   const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const token = getCookieValue('token');
@@ -13,6 +14,7 @@ const useAuthProvider = () => {
 
     token && setToken(token);
     user && setUser(JSON.parse(user));
+    setLoading(false);
   }, []);
 
   const onLogin = useCallback(({ token, user }: IOnLogin) => {
@@ -29,7 +31,7 @@ const useAuthProvider = () => {
   }, []);
 
   return {
-    state: { user, token },
+    state: { user, token, loading },
     actions: { onLogin, onSignOut }
   };
 };

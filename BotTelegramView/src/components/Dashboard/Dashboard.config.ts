@@ -45,7 +45,7 @@ export const generatePollConfigWithLang = (configParams: any) => {
     },
     {
       name: language.userType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'userType'
     }
   ];

@@ -61,7 +61,11 @@ const EN = {
   newLastAdmission: 'New last admission',
   totalPolls: 'Total polls',
   totalCommands: 'Total Commands',
-  dataAndActions: 'Data and Actions'
+  dataAndActions: 'Data and Actions',
+  welcomeTo: 'Welcome to',
+  botBackoffice: 'Bot backoffice',
+  permissionDenied: 'Permission denied',
+  signInToViewThisPage: 'Sign in to view this page.'
 };
 
 export default EN;

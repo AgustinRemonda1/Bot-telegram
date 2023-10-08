@@ -1,9 +1,9 @@
-import BotAction from 'Static/Assets/Images/robot.svg';
-import Polls from 'Static/Assets/Images/poll-box.svg';
-import UserTypes from 'Static/Assets/Images/account-group.svg';
-import Subscribers from 'Static/Assets/Images/account.svg';
-import Activities from 'Static/Assets/Images/clipboard-text-multiple.svg';
-import Home from 'Static/Assets/Images/home.svg';
+import BotAction from 'Static/Assets/Icons/robot.svg';
+import Polls from 'Static/Assets/Icons/poll-box.svg';
+import UserTypes from 'Static/Assets/Icons/account-group.svg';
+import Subscribers from 'Static/Assets/Icons/account.svg';
+import Activities from 'Static/Assets/Icons/clipboard-text-multiple.svg';
+import Home from 'Static/Assets/Icons/home.svg';
 import { MenuConfigInterface } from './Header.types';
 
 export const menuConfig = (language: any): MenuConfigInterface[] => [

@@ -1,11 +1,11 @@
 import Listing from 'components/Commands/Listing';
-import PrivateRoute from 'components/HOC/PrivateRoute/PrivateRoute';
+import PageGuard from 'components/HOC/PageGuard';
 
 const CommandsPage = () => {
   return (
-    <PrivateRoute>
+    <PageGuard>
       <Listing />
-    </PrivateRoute>
+    </PageGuard>
   );
 };
 

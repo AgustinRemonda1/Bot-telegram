@@ -1,5 +1,5 @@
-import editIcon from 'Static/Assets/Images/pencil.svg';
-import trashIcon from 'Static/Assets/Images/delete.svg';
+import editIcon from 'Static/Assets/Icons/pencil.svg';
+import trashIcon from 'Static/Assets/Icons/delete.svg';
 
 export const commandNotEditable = [5, 6, 12, 13, 10];
 

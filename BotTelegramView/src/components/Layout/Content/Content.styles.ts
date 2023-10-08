@@ -7,9 +7,10 @@ export const Container = styled.div`
   align-items: center;
   justify-items: center;
   margin: 0 auto;
+  margin-bottom: 30px;
   flex-grow: 1;
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 30vh;
   overflow-x: hidden;
   transition: ${theme.transitions.create(['margin', 'width'], {
@@ -20,7 +21,6 @@ export const Container = styled.div`
 
 export const Content = styled(ContentContainer)`
   display: flex;
-  justify-items: center;
   justify-content: enter;
   margin-top: ${theme.spacing(12)};
   width: 100%;

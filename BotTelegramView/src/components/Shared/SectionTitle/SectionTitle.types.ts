@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 export interface IProps {
+  sectionLabel?: string;
   titleLabel: string;
   correctionLabel?: boolean;
   typeButton?: 'AddButton' | 'CustomButton';

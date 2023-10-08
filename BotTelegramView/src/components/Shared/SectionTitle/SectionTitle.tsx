@@ -17,6 +17,7 @@ import { LanguageContext } from 'Static/Lang/Lang.lang';
 import { IProps } from './SectionTitle.types';
 
 const SectionTitle = ({
+  sectionLabel,
   titleLabel,
   correctionLabel,
   action,
@@ -31,7 +32,7 @@ const SectionTitle = ({
       {!hiddenSectionFrom && (
         <SubTitle variant="h5" gutterBottom>
           <Box fontWeight={700} m={1}>
-            {language.sectionFrom.toUpperCase()}
+            {sectionLabel ? sectionLabel : language.sectionFrom.toUpperCase()}
           </Box>
         </SubTitle>
       )}

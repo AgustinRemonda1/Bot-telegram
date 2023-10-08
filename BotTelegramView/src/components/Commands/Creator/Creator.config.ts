@@ -1,6 +1,6 @@
 import { IInput } from 'components/Shared/BuildInputs/BuildInput.types';
 import { IOption } from 'LogicServices/Shared/Types';
-import trashIcon from 'Static/Assets/Images/delete.svg';
+import trashIcon from 'Static/Assets/Icons/delete.svg';
 import { ICommandCreator } from '~/LogicServices/Commands/Creator/Types';
 
 export const inputNames = {

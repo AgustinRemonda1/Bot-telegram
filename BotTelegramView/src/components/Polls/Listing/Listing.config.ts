@@ -1,5 +1,5 @@
-import editIcon from 'Static/Assets/Images/pencil.svg';
-import trashIcon from 'Static/Assets/Images/delete.svg';
+import editIcon from 'Static/Assets/Icons/pencil.svg';
+import trashIcon from 'Static/Assets/Icons/delete.svg';
 
 export const generateConfigWithLang = (configParams: any) => {
   const { language, onOpenDeletePopUp, onOpenPollPopUp } = configParams;
@@ -15,7 +15,7 @@ export const generateConfigWithLang = (configParams: any) => {
     },
     {
       name: language.userType,
-      property: 'description',
+      property: 'name',
       nestedTable: 'userType'
     },
     {

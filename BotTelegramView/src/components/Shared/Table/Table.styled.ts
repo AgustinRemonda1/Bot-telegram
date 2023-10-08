@@ -1,11 +1,6 @@
 import styled from '@emotion/styled';
 import { SUTIL_GRAY, WHITE } from 'Static/Styles/Colors.index';
-import {
-  TableContainer,
-  CircularProgress,
-  Typography,
-  Theme
-} from '@mui/material';
+import { TableContainer, CircularProgress, Typography } from '@mui/material';
 import { theme } from 'Static/Theme';
 
 interface DrawerProps {
@@ -16,6 +11,7 @@ interface DrawerProps {
 export const Container = styled(TableContainer)<DrawerProps>`
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100%;
   background: ${WHITE};
   border: 1px solid ${SUTIL_GRAY};
@@ -25,6 +21,7 @@ export const Container = styled(TableContainer)<DrawerProps>`
     duration: theme.transitions.duration.leavingScreen
   })};
   box-shadow: none;
+  overflow: hidden;
 `;
 
 export const LoaderContainer = styled.div<DrawerProps>`
@@ -51,7 +48,7 @@ export const NoDocumentsFound = styled(Typography)<DrawerProps>`
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: ${({ isOpenDrawer }) => (isOpenDrawer ? '1022px' : '1265px')};
+  max-width: ${({ isOpenDrawer }) => (isOpenDrawer ? '1022px' : '100%')};
   height: 100%;
   max-height: 435px;
   margin-top: ${theme.spacing(38)};

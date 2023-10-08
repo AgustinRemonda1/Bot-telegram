@@ -17,7 +17,7 @@ export const fetchBotUsers = async ({ page, pageSize }: IRequest) => {
     const res: AxiosResponse<IFetchResponse> = await request.get(
       `/api/bot-users?page=${page}&pageSize=${pageSize}`
     );
-
+    console.log(res);
     return {
       botUsers: res.data.botUsers,
       total: res.data.total

@@ -1,11 +1,11 @@
 import Listing from 'components/BotUsers/Listing';
-import PrivateRoute from 'components/HOC/PrivateRoute/PrivateRoute';
+import PageGuard from 'components/HOC/PageGuard';
 
 const BotUsersPage = () => {
   return (
-    <PrivateRoute>
+    <PageGuard>
       <Listing />
-    </PrivateRoute>
+    </PageGuard>
   );
 };
 

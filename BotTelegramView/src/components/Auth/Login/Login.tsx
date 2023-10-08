@@ -1,28 +1,46 @@
 import React, { useContext } from 'react';
-import { TextField, Typography, Container } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import {
+  Container,
   LoginContainer,
   FormContainer,
+  IconContainer,
+  LoginImage,
   SubmitButton,
   AlertLabel,
   LoaderContainer,
-  Loader
+  Loader,
+  SectionContainer
 } from './Login.styled';
 import { inputNames } from './Login.config';
 import useLogin from 'LogicServices/Auth/Login/useLogin';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
+import Img from 'Static/Assets/Images/botchat.jpg';
+import BotLogo from 'Static/Assets/Icons/logo-bot.svg';
+import { ReactSVG } from 'react-svg';
+import SectionTitle from 'components/Shared/SectionTitle';
 
 const Login = () => {
   const { state, actions } = useLogin();
   const { language } = useContext(LanguageContext);
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container>
+      <SectionContainer>
+        <SectionTitle
+          titleLabel={language.botBackoffice}
+          sectionLabel={language.welcomeTo}
+        />
+      </SectionContainer>
       <LoginContainer>
-        <Typography component="h1" variant="h5">
-          {language.signIn}
-        </Typography>
+        <LoginImage src={Img.src} />
         <FormContainer noValidate>
+          <IconContainer>
+            <ReactSVG src={BotLogo.src} />
+          </IconContainer>
+          <Typography component="h1" variant="h4">
+            {language.signIn}
+          </Typography>
           <TextField
             variant="outlined"
             margin="normal"
@@ -35,6 +53,7 @@ const Login = () => {
             autoFocus
             onChange={actions.onChange}
             value={state.username}
+            style={{ marginTop: '45px' }}
           />
           <TextField
             variant="outlined"

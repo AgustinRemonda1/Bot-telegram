@@ -1,11 +1,11 @@
 import Listing from 'components/UserTypes/Listing';
-import PrivateRoute from 'components/HOC/PrivateRoute/PrivateRoute';
+import PageGuard from 'components/HOC/PageGuard';
 
 const UserTypesPage = () => {
   return (
-    <PrivateRoute>
+    <PageGuard>
       <Listing />
-    </PrivateRoute>
+    </PageGuard>
   );
 };
 

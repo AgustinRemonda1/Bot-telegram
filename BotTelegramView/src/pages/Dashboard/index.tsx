@@ -1,11 +1,11 @@
 import Dashboard from 'components/Dashboard';
-import PrivateRoute from 'components/HOC/PrivateRoute/PrivateRoute';
+import PageGuard from 'components/HOC/PageGuard';
 
 const DashboardPage = () => {
   return (
-    <PrivateRoute>
+    <PageGuard>
       <Dashboard />
-    </PrivateRoute>
+    </PageGuard>
   );
 };
 

@@ -29,6 +29,7 @@ export const StyledDrawer = styled(Drawer)<IProps>`
   white-space: nowrap;
   color: ${WHITE};
   height: 100%;
+  min-height: 98.3vh;
   transition: ${({ open }) =>
     !open
       ? theme.transitions.create(['width'], {

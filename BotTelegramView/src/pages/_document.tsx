@@ -46,7 +46,7 @@ class MyDocument extends Document<any> {
             href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
             rel="stylesheet"
           />
-          {/*<style>{'html,body { padding: 0; margin: 0;}'}</style>*/}
+          {<style>{'html,body { padding: 0; margin: 0;}'}</style>}
           {this.props.styleTags /* rendering the actual stylesheet */}
         </Head>
         <body style={{ overflowX: 'hidden' }}>
