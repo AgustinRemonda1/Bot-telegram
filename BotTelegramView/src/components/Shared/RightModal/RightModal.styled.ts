@@ -7,10 +7,7 @@ import {
   LIGHT_ORANGE
 } from 'Static/Styles/Colors.index';
 import { Typography, Button, CircularProgress, Drawer } from '@mui/material';
-
-interface SpacingProp {
-  spacing: Function;
-}
+import { theme } from 'Static/Theme';
 
 export const StyledDrawer = styled(Drawer)`
   overflow-y: hidden;
@@ -20,10 +17,10 @@ export const StyledDrawer = styled(Drawer)`
   }
 `;
 
-export const Header = styled.div<SpacingProp>`
+export const Header = styled.div`
   margin: 0;
-  padding: ${({ spacing }) => spacing(1)};
-  padding-left: ${({ spacing }) => spacing(2)};
+  padding: ${theme.spacing(1)};
+  padding-left: ${theme.spacing(2)};
   background: ${BLUE};
 `;
 
@@ -55,8 +52,8 @@ export const SubmitButton = styled(Button)`
   }
 `;
 
-export const CloseButton = styled(Button)<SpacingProp>`
-  margin-right: ${({ spacing }) => spacing(4)};
+export const CloseButton = styled(Button)`
+  margin-right: ${theme.spacing(4)};
   padding: 8px 18px;
   color: ${BLACK};
   box-shadow: none;

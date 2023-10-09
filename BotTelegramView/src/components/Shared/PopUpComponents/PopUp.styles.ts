@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import { createTheme, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import { WHITE, LIGHT_BLUE } from 'Static/Styles/Colors.index';
-
-const theme = createTheme();
+import { theme } from 'Static/Theme';
 
 export const Text = styled(Typography)`
   display: block;

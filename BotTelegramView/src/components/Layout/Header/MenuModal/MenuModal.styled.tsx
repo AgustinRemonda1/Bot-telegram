@@ -6,14 +6,13 @@ import {
   LIGHT_BLUE,
   LIGHT_ORANGE
 } from 'Static/Styles/Colors.index';
-import { createTheme, List, IconButton, Drawer } from '@mui/material';
+import { List, IconButton, Drawer } from '@mui/material';
 import { DRAWER_WIDTH } from '../Header.styled';
+import { theme } from 'Static/Theme';
 
 interface IProps {
   open: boolean;
 }
-
-const theme = createTheme();
 
 export const MenuModalContainer = styled.div<IProps>`
   flex-grow: 1;

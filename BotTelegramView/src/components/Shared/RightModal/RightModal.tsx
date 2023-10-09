@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Box, useTheme } from '@mui/material';
-import { LanguageContext } from '../../../Static/Lang/Lang.lang';
+import { Box } from '@mui/material';
+import { LanguageContext } from 'Static/Lang/Lang.lang';
 import { IProps } from './RightModal.types';
 import {
   CloseButton,
@@ -23,18 +23,18 @@ const RightModal = ({
   onSave
 }: IProps) => {
   const { language } = useContext(LanguageContext);
-  const theme = useTheme();
+
   return (
     <div>
       <StyledDrawer anchor="right" open={open} onClose={onClose}>
-        <Header spacing={theme.spacing}>
+        <Header>
           <Text>
             <Box fontWeight={600}>{title}</Box>
           </Text>
         </Header>
         <Content>{children}</Content>
         <Footer>
-          <CloseButton onClick={onClose} spacing={theme.spacing}>
+          <CloseButton onClick={onClose}>
             <Box fontWeight={600}>{language.close}</Box>
           </CloseButton>
           <SubmitButton variant="contained" disabled={loading} onClick={onSave}>

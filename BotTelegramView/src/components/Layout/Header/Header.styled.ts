@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { BLACK, BLUE } from 'Static/Styles/Colors.index';
-import { AppBar, createTheme } from '@mui/material';
+import { AppBar } from '@mui/material';
+import { theme } from 'Static/Theme';
 
 interface IStyledAppBar {
   open: boolean;
 }
 
-const theme = createTheme();
 export const DRAWER_WIDTH = 300;
 
 export const HeaderContainer = styled.div`

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { WHITE, BLUE, BLACK, ORANGE } from 'Static/Styles/Colors.index';
-import { Button, Dialog, Typography, createTheme } from '@mui/material';
+import { Button, Dialog, Typography } from '@mui/material';
 import { theme } from 'Static/Theme';
 
 interface PopUpProps {
