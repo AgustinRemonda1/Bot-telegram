@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { fetchUserTypes } from 'RepoServices/UserTypes';
 import { IUserType } from 'LogicServices/UserTypes/Types';
-import { IOption } from '~/LogicServices/Shared/Types';
+import { IOption } from 'LogicServices/Shared/Types';
 
 const useUserTypes = () => {
   const [userTypes, setUserTypes] = useState<IUserType[]>([]);
