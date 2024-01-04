@@ -1,14 +1,16 @@
-export const generateConfigWithLang = (configParams: any) => {
-  const { language } = configParams;
+import { ILanguage } from 'Static/Lang/Lang.lang';
 
-  return [
-    {
-      name: language.userTypeId,
-      property: 'userTypeId'
-    },
-    {
-      name: language.type,
-      property: 'name'
-    }
-  ];
-};
+interface IConfig {
+  language: ILanguage;
+}
+
+export const generateConfigWithLang = ({ language }: IConfig) => [
+  {
+    name: language.userTypeId,
+    property: 'userTypeId'
+  },
+  {
+    name: language.type,
+    property: 'name'
+  }
+];

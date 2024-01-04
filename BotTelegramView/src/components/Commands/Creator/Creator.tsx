@@ -106,5 +106,3 @@ const Creator = ({ command, open, onClose, onRefresh }: IProps) => {
 };
 
 export default Creator;
-
-//        <BuildInputs input={inputButtonOrCoordinate} />

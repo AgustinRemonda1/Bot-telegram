@@ -11,7 +11,7 @@ const useMenuModal = () => {
   }, [setOpenState]);
 
   const onChangeRoute = useCallback(
-    (route: string | undefined): void => {
+    (route?: string): void => {
       if (route && router) {
         router.replace(route);
       }

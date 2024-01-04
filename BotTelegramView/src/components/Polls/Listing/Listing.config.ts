@@ -1,7 +1,16 @@
 import editIcon from 'Static/Assets/Icons/pencil.svg';
 import trashIcon from 'Static/Assets/Icons/delete.svg';
+import { ILanguage } from 'Static/Lang/Lang.lang';
+import { IPoll } from 'LogicServices/Polls/Types';
+import { IConfig } from 'LogicServices/Shared/Types';
 
-export const generateConfigWithLang = (configParams: any) => {
+interface IConfigProps {
+  language: ILanguage;
+  onOpenDeletePopUp: (id: number) => void;
+  onOpenPollPopUp: (poll?: IPoll) => void;
+}
+
+export const generateConfigWithLang = (configParams: IConfigProps) => {
   const { language, onOpenDeletePopUp, onOpenPollPopUp } = configParams;
 
   return [
@@ -28,8 +37,8 @@ export const generateConfigWithLang = (configParams: any) => {
           id: 'button-poll-edit',
           title: language.edit,
           icon: editIcon.src,
-          onClick: (dataset: any) => {
-            onOpenPollPopUp(dataset);
+          onClick: (poll: IPoll) => {
+            onOpenPollPopUp(poll);
           }
         },
         {
@@ -37,11 +46,11 @@ export const generateConfigWithLang = (configParams: any) => {
           id: 'button-poll-delete',
           title: language.delete,
           icon: trashIcon.src,
-          onClick: (dataset: any) => {
-            onOpenDeletePopUp(dataset.pollId);
+          onClick: (poll: IPoll) => {
+            onOpenDeletePopUp(Number(poll.pollId));
           }
         }
       ]
     }
-  ];
+  ] as IConfig[];
 };

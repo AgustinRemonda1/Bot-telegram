@@ -11,6 +11,7 @@ import {
   NoDocumentsFound
 } from './SimpleTable.styled';
 import { IProps } from './SimpleTable.types';
+import { IDataset } from '~/LogicServices/Shared/Types';
 
 const TableContent = ({ config, dataset, loader }: IProps) => {
   const { language } = useContext(LanguageContext);
@@ -32,7 +33,7 @@ const TableContent = ({ config, dataset, loader }: IProps) => {
         <TableHeader config={config} />
         <TableBody>
           {!loader ? (
-            dataset.map((document: any, i: number) => (
+            dataset.map((document: IDataset, i: number) => (
               <TableBodyRow
                 key={`row ${i}`}
                 config={config}

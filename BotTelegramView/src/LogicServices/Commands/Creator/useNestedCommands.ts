@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { fetchAllCommands } from 'RepoServices/Commands';
-import { IOption } from 'LogicServices/Shared/Types';
+import { IEvent, IOption } from 'LogicServices/Shared/Types';
 import { ICommand } from '../Types';
 import { ICommandCreator } from './Types';
 
@@ -40,10 +40,10 @@ const useNestedCommands = ({ command, onChange }: IProps) => {
   }, []);
 
   const onAddCommand = useCallback(
-    (e: any) => {
+    (e: IEvent) => {
       const value = e.target.value;
       const commandToAdd = nestedCommands.find(
-        (command) => command.botCommandId === value
+        (command) => command.botCommandId === Number(value)
       );
 
       if (commandToAdd) {
@@ -55,7 +55,6 @@ const useNestedCommands = ({ command, onChange }: IProps) => {
           ]
         });
       }
-      console.log(command);
     },
     [command, nestedCommands, onChange]
   );

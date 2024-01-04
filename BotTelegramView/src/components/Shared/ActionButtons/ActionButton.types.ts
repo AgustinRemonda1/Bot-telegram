@@ -1,13 +1,6 @@
-export interface IAction {
-  type: string;
-  id: string;
-  title: string;
-  disabled?: (dataset: any) => boolean | boolean;
-  icon: any;
-  onClick: (dataset: any) => void;
-}
+import { IAction, IDataset } from '~/LogicServices/Shared/Types';
 
 export interface IProps {
   actions: IAction[];
-  dataset: any;
+  dataset: IDataset;
 }

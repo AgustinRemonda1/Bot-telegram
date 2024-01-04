@@ -1,11 +1,8 @@
-export interface IOption {
-  id: number;
-  name: string;
-}
+import { IEvent, IOption } from 'LogicServices/Shared/Types';
 
 export interface IProps {
   title: string;
-  onChange: (e: any) => void;
+  onChange: (e: IEvent) => void;
   value: string | number | null;
   name: string;
   emptyFields?: null | string | number | boolean;

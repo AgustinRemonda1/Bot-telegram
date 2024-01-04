@@ -20,7 +20,9 @@ describe('usePoll', () => {
     const { result } = renderHook(() => usePoll(INITIAL_PROPS));
 
     act(() =>
-      result.current.actions.onChangeQuestionNumber({ target: { value: 4 } })
+      result.current.actions.onChangeQuestionNumber({
+        target: { value: '4', name: '' }
+      })
     );
 
     expect(result.current.state.questionNumber).toEqual(4);
@@ -83,7 +85,7 @@ describe('usePoll', () => {
     act(() =>
       result.current.actions.onChangeQuestions(
         {
-          target: { value: 'pregunta' }
+          target: { value: 'pregunta', name: '' }
         },
         0
       )

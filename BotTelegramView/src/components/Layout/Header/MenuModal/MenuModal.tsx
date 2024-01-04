@@ -6,7 +6,7 @@ import { menuConfig } from '../Header.config';
 import { ReactSVG } from 'react-svg';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import WithRequiredPermission from 'components/HOC/WithRequiredPermission';
-import { MenuConfigInterface } from '../Header.types';
+import { IMenuConfig } from '../Header.types';
 import useMenuModal from './useMenuModal';
 import {
   MenuModalContainer,
@@ -17,7 +17,7 @@ import {
   OptionList
 } from './MenuModal.styled';
 
-const MenuModal = ({}) => {
+const MenuModal = () => {
   const theme = useTheme();
   const { language } = useContext(LanguageContext);
   const { open, onCloseDrawer, onChangeRoute } = useMenuModal();
@@ -35,23 +35,21 @@ const MenuModal = ({}) => {
           </StyledIconButton>
         </Toolbar>
         <OptionList open={open}>
-          {menuConfig(language).map(
-            (item: MenuConfigInterface, index: number) => (
-              <WithRequiredPermission
-                requiredPermission={item.permissions}
-                key={`menu options ${index}`}
-              >
-                <ListItem button onClick={() => onChangeRoute(item.route)}>
-                  <ListItemIcon>
-                    <StyledIcon>
-                      <ReactSVG src={item.icon} />
-                    </StyledIcon>
-                  </ListItemIcon>
-                  <ListItemText primary={item.name} />
-                </ListItem>
-              </WithRequiredPermission>
-            )
-          )}
+          {menuConfig(language).map((item: IMenuConfig, index: number) => (
+            <WithRequiredPermission
+              requiredPermission={item.permissions}
+              key={`menu options ${index}`}
+            >
+              <ListItem button onClick={() => onChangeRoute(item.route)}>
+                <ListItemIcon>
+                  <StyledIcon>
+                    <ReactSVG src={item.icon} />
+                  </StyledIcon>
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItem>
+            </WithRequiredPermission>
+          ))}
         </OptionList>
       </StyledDrawer>
     </MenuModalContainer>

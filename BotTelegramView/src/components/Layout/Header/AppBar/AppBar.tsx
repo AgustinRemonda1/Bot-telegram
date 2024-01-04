@@ -23,6 +23,7 @@ import { ReactSVG } from 'react-svg';
 import BotLogo from 'Static/Assets/Icons/logo-bot.svg';
 import { IUser } from 'LogicServices/Auth/User';
 import useAppBar from './useAppBar';
+import { IEvent } from '../Header.types';
 
 interface IProps {
   props: {
@@ -31,7 +32,7 @@ interface IProps {
     anchorEl: Element | null;
   };
   actions: {
-    onOpenMenu: (event: any) => void;
+    onOpenMenu: (event: IEvent) => void;
     onCloseMenu: () => void;
   };
 }

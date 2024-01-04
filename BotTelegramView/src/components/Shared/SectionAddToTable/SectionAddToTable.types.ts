@@ -1,16 +1,13 @@
-export interface OptionInterface {
-  id: number;
-  name: string;
-}
+import { IConfig, IDataset, IEvent, IOption } from 'LogicServices/Shared/Types';
 
 export interface IProps {
-  config: any;
-  dataset: any;
+  config: IConfig[];
+  dataset: IDataset;
   name: string;
   loader: boolean;
   title: string;
-  onChange: (e: any) => void;
+  onChange: (e: IEvent) => void;
   value?: string | number | null;
-  list: OptionInterface[] | null;
+  list: IOption[] | null;
   disabled?: boolean;
 }

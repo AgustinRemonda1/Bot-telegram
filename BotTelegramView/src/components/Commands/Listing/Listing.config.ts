@@ -1,9 +1,18 @@
 import editIcon from 'Static/Assets/Icons/pencil.svg';
 import trashIcon from 'Static/Assets/Icons/delete.svg';
+import { ICommand } from '~/LogicServices/Commands/Types';
+import { ILanguage } from '~/Static/Lang/Lang.lang';
+import { IConfig } from 'LogicServices/Shared/Types';
 
 export const commandNotEditable = [5, 6, 12, 13, 10];
 
-export const generateConfigWithLang = (configParams: any) => {
+interface IConfigProps {
+  language: ILanguage;
+  onOpenDeletePopUp: (id: number) => void;
+  onOpenPollPopUp: (command?: ICommand) => void;
+}
+
+export const generateConfigWithLang = (configParams: IConfigProps) => {
   const { language, onOpenDeletePopUp, onOpenPollPopUp } = configParams;
 
   return [
@@ -14,13 +23,14 @@ export const generateConfigWithLang = (configParams: any) => {
     {
       name: language.description,
       property: 'botResponses',
-      custom: (property: any) => property && property.description
+      custom: (botResponses: ICommand['botResponses']) =>
+        botResponses && botResponses.description
     },
     {
       name: language.status,
       property: 'status',
-      custom: (property: any) =>
-        property ? language.active : language.inactive,
+      custom: (status: ICommand['status']) =>
+        status ? language.active : language.inactive,
       align: 'center'
     },
     {
@@ -43,10 +53,10 @@ export const generateConfigWithLang = (configParams: any) => {
           id: 'button-poll-edit',
           title: language.edit,
           icon: editIcon.src,
-          disabled: (dataset: any) =>
-            Boolean(commandNotEditable.includes(dataset.commandTypeId)),
-          onClick: (dataset: any) => {
-            onOpenPollPopUp(dataset);
+          disabled: (command: ICommand) =>
+            Boolean(commandNotEditable.includes(command.commandTypeId)),
+          onClick: (command: ICommand) => {
+            onOpenPollPopUp(command);
           }
         },
         {
@@ -54,13 +64,13 @@ export const generateConfigWithLang = (configParams: any) => {
           id: 'button-poll-delete',
           title: language.delete,
           icon: trashIcon.src,
-          disabled: (dataset: any) =>
-            Boolean(commandNotEditable.includes(dataset.commandTypeId)),
-          onClick: (dataset: any) => {
-            onOpenDeletePopUp(dataset.botCommandId);
+          disabled: (command: ICommand) =>
+            Boolean(commandNotEditable.includes(command.commandTypeId)),
+          onClick: (command: ICommand) => {
+            onOpenDeletePopUp(Number(command.botCommandId));
           }
         }
       ]
     }
-  ];
+  ] as IConfig[];
 };

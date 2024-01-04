@@ -1,7 +1,15 @@
-export const generateCommandConfigWithLang = (configParams: any) => {
-  const { language } = configParams;
+import { ILanguage } from 'Static/Lang/Lang.lang';
+import { ICommand } from '~/LogicServices/Commands/Types';
+import { IConfig } from '~/LogicServices/Shared/Types';
 
-  return [
+interface ITablesConfigProps {
+  language: ILanguage;
+}
+
+export const generateCommandConfigWithLang = ({
+  language
+}: ITablesConfigProps) =>
+  [
     {
       name: language.name,
       property: 'name'
@@ -9,13 +17,14 @@ export const generateCommandConfigWithLang = (configParams: any) => {
     {
       name: language.description,
       property: 'botResponses',
-      custom: (property: any) => property && property.description
+      custom: (botResponses: ICommand['botResponses']) =>
+        botResponses && botResponses.description
     },
     {
       name: language.status,
       property: 'status',
-      custom: (property: any) =>
-        property ? language.active : language.inactive,
+      custom: (status: ICommand['status']) =>
+        status ? language.active : language.inactive,
       align: 'center'
     },
     {
@@ -28,13 +37,10 @@ export const generateCommandConfigWithLang = (configParams: any) => {
       property: 'name',
       nestedTable: 'userType'
     }
-  ];
-};
+  ] as IConfig[];
 
-export const generatePollConfigWithLang = (configParams: any) => {
-  const { language } = configParams;
-
-  return [
+export const generatePollConfigWithLang = ({ language }: ITablesConfigProps) =>
+  [
     {
       name: language.name,
       property: 'name'
@@ -48,10 +54,17 @@ export const generatePollConfigWithLang = (configParams: any) => {
       property: 'name',
       nestedTable: 'userType'
     }
-  ];
-};
+  ] as IConfig[];
 
-export const generateCardInfo = (configParams: any) => {
+interface IConfigCardsProps {
+  language: ILanguage;
+  totalSubscribers: number;
+  newLastAdmission: number;
+  totalPolls: number;
+  totalCommands: number;
+}
+
+export const generateCardInfo = (configParams: IConfigCardsProps) => {
   const {
     language,
     totalSubscribers,

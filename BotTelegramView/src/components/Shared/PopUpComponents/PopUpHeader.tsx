@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import { DialogTitle, Text } from './PopUp.styles';
 
-const PopUpHeader = ({ children, onClose, ...other }: any) => {
+interface IProps {
+  children: ReactNode;
+  [key: string]: any;
+}
+
+const PopUpHeader = ({ children, ...other }: IProps) => {
   return (
     <DialogTitle disableTypography {...other}>
       <Text>

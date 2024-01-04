@@ -1,7 +1,9 @@
 import { IInput } from 'components/Shared/BuildInputs/BuildInput.types';
-import { IOption } from 'LogicServices/Shared/Types';
+import { IConfig, IEvent, IOption } from 'LogicServices/Shared/Types';
 import trashIcon from 'Static/Assets/Icons/delete.svg';
-import { ICommandCreator } from '~/LogicServices/Commands/Creator/Types';
+import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
+import { ICommand, INestedCommands } from 'LogicServices/Commands/Types';
+import { ILanguage } from 'Static/Lang/Lang.lang';
 
 export const inputNames = {
   name: 'name',
@@ -10,18 +12,16 @@ export const inputNames = {
   userType: 'userTypeId',
   commandType: 'commandTypeId',
   response: 'response',
-  fileName: 'fileName',
+  filename: 'filename',
   url: 'url',
   parameter: 'parameter',
   nestedCommands: 'nestedCommands'
 };
 
 interface IInputConfigProps {
-  language: {
-    [key: string]: string;
-  };
+  language: ILanguage;
   command: ICommandCreator;
-  onChangeInputs: (e: any) => void;
+  onChangeInputs: (e: IEvent) => void;
   userTypesOptions: IOption[];
   commandTypesOptions: IOption[];
   isAButtonCommand: boolean;
@@ -111,7 +111,7 @@ export const generateFileInputs = (
   return [
     {
       type: 'text',
-      name: inputNames.fileName,
+      name: inputNames.filename,
       title: language.filename,
       onChange: onChangeInputs,
       value: command.botResponses?.botResponseFiles?.filename || '',
@@ -130,12 +130,11 @@ export const generateFileInputs = (
   ];
 };
 
-export const generateParameterInput = (inputParams: any) => {
+export const generateParameterInput = (inputParams: IInputConfigProps) => {
   const {
     language,
     onChangeInputs,
     emptyFields,
-    confirmation,
     isAButtonCommand,
     command,
     editMode
@@ -151,13 +150,11 @@ export const generateParameterInput = (inputParams: any) => {
     correction: true,
     disabled: editMode,
     multiline: true
-  };
+  } as IInput;
 };
 
 interface ITableConfig {
-  language: {
-    [key: string]: string;
-  };
+  language: ILanguage;
   onDeleteCommand: (id: number) => void;
   editMode: boolean;
 }
@@ -173,7 +170,7 @@ export const NestedCommandTableConfig = (configParams: ITableConfig) => {
     {
       name: language.description,
       property: 'botCommand',
-      custom: (property: any) => property && property.botResponses.description
+      custom: (command: ICommand) => command && command.botResponses.description
     },
     {
       name: language.actions,
@@ -186,11 +183,11 @@ export const NestedCommandTableConfig = (configParams: ITableConfig) => {
           title: language.delete,
           icon: trashIcon.src,
           disabled: editMode,
-          onClick: (dataset: any) => {
-            onDeleteCommand(dataset.botCommand.botCommandId);
+          onClick: (command: INestedCommands) => {
+            onDeleteCommand(Number(command.botCommand.botCommandId));
           }
         }
       ]
     }
-  ];
+  ] as IConfig[];
 };

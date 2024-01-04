@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const getCookieValue = (name: any) => {
+export const getCookieValue = (name: string) => {
   try {
     const serializedData = Cookie.get(name);
     if (!serializedData) {
@@ -12,13 +12,13 @@ export const getCookieValue = (name: any) => {
   }
 };
 
-export const setCookieValue = (name: any, value: any) => {
+export const setCookieValue = (name: string, value: string | object) => {
   try {
     Cookie.set(name, value);
   } catch {}
 };
 
-export const removeCookieValue = (name: any) => {
+export const removeCookieValue = (name: string) => {
   try {
     Cookie.remove(name);
   } catch {}

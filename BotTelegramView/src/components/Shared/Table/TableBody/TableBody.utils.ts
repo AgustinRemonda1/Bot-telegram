@@ -1,6 +1,7 @@
 import { capitalizeStrings } from 'Static/Utils/FormatStrings.utils';
+import { IConfig, IDataset } from 'LogicServices/Shared/Types';
 
-export const renderCell = (cell: any, dataset: any) => {
+export const renderCell = (cell: IConfig, dataset: IDataset) => {
   if (cell.nestedTable) {
     const relationFound = dataset && dataset[cell.nestedTable];
     const property = relationFound && relationFound[cell.property];

@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
+import { IEvent } from '~/LogicServices/Shared/Types';
 
 export interface IProps {
   sectionLabel?: string;
   titleLabel: string;
   correctionLabel?: boolean;
   typeButton?: 'AddButton' | 'CustomButton';
-  action?: (event?: any) => void;
+  action?: Function;
   hiddenSectionFrom?: boolean;
   correctionTitle?: boolean;
   buttonProps?: {

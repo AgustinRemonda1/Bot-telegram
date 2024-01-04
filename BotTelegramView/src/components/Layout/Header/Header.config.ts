@@ -4,9 +4,10 @@ import UserTypes from 'Static/Assets/Icons/account-group.svg';
 import Subscribers from 'Static/Assets/Icons/account.svg';
 import Activities from 'Static/Assets/Icons/clipboard-text-multiple.svg';
 import Home from 'Static/Assets/Icons/home.svg';
-import { MenuConfigInterface } from './Header.types';
+import { IMenuConfig } from './Header.types';
+import { ILanguage } from 'Static/Lang/Lang.lang';
 
-export const menuConfig = (language: any): MenuConfigInterface[] => [
+export const menuConfig = (language: ILanguage): IMenuConfig[] => [
   {
     icon: Home.src,
     name: language.homepage,

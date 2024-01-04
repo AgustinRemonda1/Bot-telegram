@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
+import { IDataset, IEvent } from 'LogicServices/Shared/Types';
 
 interface IProps {
-  dataset: any;
+  dataset: IDataset[];
   loader: boolean;
   onChangePage?: (page: number, pageSize: number) => void;
   onRefreshTable?: (refresh: boolean) => void;
@@ -30,7 +31,7 @@ const useTable = ({
   }, [refreshTable, onRefreshTable]);
 
   const onPageChange = useCallback(
-    (event: any, newPage: number) => {
+    (event: IEvent, newPage: number) => {
       setPage(newPage);
       onChangePage && onChangePage(newPage, rowsPerPage);
     },
@@ -38,9 +39,10 @@ const useTable = ({
   );
 
   const onRowsPerPageChange = useCallback(
-    (event: any) => {
-      onChangePage && onChangePage(0, event.target.value);
-      setRowsPerPage(event.target.value);
+    ({ target }: IEvent) => {
+      const value = Number(target.value);
+      onChangePage && onChangePage(0, value);
+      setRowsPerPage(value);
       setPage(0);
     },
     [onChangePage]

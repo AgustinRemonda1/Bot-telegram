@@ -42,7 +42,7 @@ const EN = {
   dni: 'DNI',
   lastName: 'Last name',
   response: 'Response',
-  filename: 'Filename',
+  filename: 'File name',
   url: 'Url',
   nestedCommands: 'Nested commands',
   command: 'Command',

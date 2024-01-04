@@ -3,6 +3,7 @@ import { IPoll } from '../Types';
 import { buildQuestions, createArrayIterator } from './utils';
 import { inputNames } from 'components/Polls/Creator/Creator.config';
 import { INITIAL_POLL } from './useCreator';
+import { IEvent } from 'LogicServices/Shared/Types';
 
 interface IProps {
   open: boolean;
@@ -40,14 +41,14 @@ const usePoll = ({ open, poll, questionsNumber, onChange }: IProps) => {
     }
   }, [questionNumber, poll]);
 
-  const onChangeQuestionNumber = useCallback((e: any) => {
+  const onChangeQuestionNumber = useCallback((e: IEvent) => {
     const value = Number(e.target.value);
 
     setQuestionNumber(value);
   }, []);
 
   const onChangePollFields = useCallback(
-    (e: any) => {
+    (e: IEvent) => {
       const name = e.target.name;
       const value = e.target.value;
 
@@ -63,7 +64,7 @@ const usePoll = ({ open, poll, questionsNumber, onChange }: IProps) => {
   );
 
   const onChangeQuestions = useCallback(
-    (e: any, questionIndex: number) => {
+    (e: IEvent, questionIndex: number) => {
       const questions = poll.questions || [];
       const value = e.target.value;
 

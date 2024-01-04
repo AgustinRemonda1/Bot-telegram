@@ -1,5 +1,7 @@
+import { IConfig, IDataset } from 'LogicServices/Shared/Types';
+
 export interface IProps {
-  config: any;
-  dataset: any;
+  config: IConfig[];
+  dataset: IDataset[];
   loader: boolean;
 }

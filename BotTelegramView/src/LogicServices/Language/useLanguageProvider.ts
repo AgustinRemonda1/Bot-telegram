@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { language } from 'Static/Lang/Lang.lang';
 import { setCookieValue, getCookieValue } from 'Static/Utils/Cookies.utils';
+import { IEvent } from '../Shared/Types';
 
 const useLanguageProvider = () => {
   const { ES, EN } = language;
@@ -28,7 +29,7 @@ const useLanguageProvider = () => {
     }
   }, [lang]);
 
-  const onChangeLanguage = useCallback((e: any): void => {
+  const onChangeLanguage = useCallback((e: IEvent): void => {
     setLang(e.target.value);
   }, []);
 

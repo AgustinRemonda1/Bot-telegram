@@ -7,10 +7,11 @@ import {
   LoaderContainer,
   StyledSelect
 } from './CustomSelect.styled';
-import { MenuItem, Select, CircularProgress } from '@mui/material';
+import { MenuItem, CircularProgress } from '@mui/material';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import { capitalize } from 'Static/Utils/FormatStrings.utils';
 import { IProps } from './CustomSelect.types';
+import { IEvent } from '~/LogicServices/Shared/Types';
 
 const CustomSelect = ({
   title,
@@ -29,7 +30,7 @@ const CustomSelect = ({
       <SelectFormControl>
         <SelectLabel variant="subtitle1">{title}</SelectLabel>
         <StyledSelect
-          onChange={onChange}
+          onChange={(e) => onChange({ target: e.target as IEvent['target'] })}
           value={value}
           name={name}
           disabled={disabled}

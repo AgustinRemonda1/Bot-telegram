@@ -10,7 +10,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -37,7 +37,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -64,7 +64,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -91,7 +91,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -118,7 +118,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -145,7 +145,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -172,7 +172,7 @@ export const botUsersDataMock = [
     userType: {
       userTypeId: 1,
       type: 'user',
-      description: 'user',
+      name: 'user',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },

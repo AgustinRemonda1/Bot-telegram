@@ -1,13 +1,12 @@
 import { IInput } from 'components/Shared/BuildInputs/BuildInput.types';
 import { IPoll } from 'LogicServices/Polls/Types';
-import { IOption } from 'LogicServices/Shared/Types';
+import { IEvent, IOption } from 'LogicServices/Shared/Types';
+import { ILanguage } from 'Static/Lang/Lang.lang';
 
 interface IInputConfigProps {
-  language: {
-    [key: string]: string;
-  };
+  language: ILanguage;
   poll: IPoll;
-  onChange: (e: any) => void;
+  onChange: (e: IEvent) => void;
   emptyFields: boolean;
   userTypes: IOption[];
 }

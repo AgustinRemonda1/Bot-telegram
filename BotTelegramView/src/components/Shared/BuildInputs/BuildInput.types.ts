@@ -1,3 +1,5 @@
+import { IEvent } from '~/LogicServices/Shared/Types';
+
 export interface IOption {
   id: number;
   name: string;
@@ -6,7 +8,7 @@ export interface IOption {
 export interface IInput {
   type: string;
   title: string;
-  onChange: (e: any) => void;
+  onChange: (e: IEvent) => void | ((e: IEvent, num: number) => void);
   value: string | null | number;
   name: string;
   list?: IOption[] | null;

@@ -45,13 +45,13 @@ const SectionTitle = ({
         <UnderLine hasAction={Boolean(action)} />
         {action && (!typeButton || typeButton === 'AddButton') && (
           <AddButton>
-            <AddIconColored onClick={action} />
+            <AddIconColored onClick={() => action()} />
           </AddButton>
         )}
         {typeButton === 'CustomButton' && buttonProps && (
           <CustomButton
             variant="contained"
-            onClick={action && action}
+            onClick={() => action && action()}
             disabled={buttonProps.disabled}
           >
             <IconContainer>{buttonProps.icon}</IconContainer>

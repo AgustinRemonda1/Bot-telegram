@@ -1,15 +1,15 @@
 import { IQuestion, IPoll } from 'LogicServices/Polls/Types';
 import BuildInputs from 'components/Shared/BuildInputs';
 import { IInputQuestions } from './Creator.types';
+import { ILanguage } from 'Static/Lang/Lang.lang';
+import { IEvent } from '~/LogicServices/Shared/Types';
 
 interface ICreateInputs {
   index: number;
-  language: {
-    [key: string]: string;
-  };
+  language: ILanguage;
   value: string;
   hasEmptyFields: boolean;
-  onChangeQuestions: (e: any, index: number) => void;
+  onChangeQuestions: (e: IEvent, index: number) => void;
 }
 
 export const createInputQuestions = (params: ICreateInputs) => {
@@ -18,7 +18,7 @@ export const createInputQuestions = (params: ICreateInputs) => {
     type: 'text',
     name: 'question' + index,
     title: language.question + ' ' + (index + 1),
-    onChange: (e: any) => onChangeQuestions(e, index),
+    onChange: (e: IEvent) => onChangeQuestions(e, index),
     value,
     correction: true,
     emptyFields: !value && hasEmptyFields
@@ -27,11 +27,9 @@ export const createInputQuestions = (params: ICreateInputs) => {
 
 interface IGenerateInputs {
   poll: IPoll;
-  language: {
-    [key: string]: string;
-  };
+  language: ILanguage;
   hasEmptyFields: boolean;
-  onChangeQuestions: (e: any, index: number) => void;
+  onChangeQuestions: (e: IEvent, index: number) => void;
 }
 
 export const generateInputQuestions = ({

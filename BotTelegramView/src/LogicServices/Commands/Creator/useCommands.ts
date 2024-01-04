@@ -1,6 +1,10 @@
 import { useCallback } from 'react';
 import { ICommandCreator } from './Types';
-import { inputNames } from '~/components/Commands/Creator/Creator.config';
+import { inputNames } from 'components/Commands/Creator/Creator.config';
+
+interface IEvent {
+  target: { name: string; value: string };
+}
 
 interface IProps {
   command: ICommandCreator;
@@ -9,7 +13,7 @@ interface IProps {
 
 const useCommands = ({ command, onChange }: IProps) => {
   const onChangeAttributes = useCallback(
-    (e: any) => {
+    (e: IEvent) => {
       const value = e.target.value;
       const target = e.target.name;
 
@@ -18,7 +22,7 @@ const useCommands = ({ command, onChange }: IProps) => {
           ...command,
           botResponses: { ...command.botResponses, response: value }
         });
-      } else if (target === inputNames.fileName) {
+      } else if (target === inputNames.filename) {
         onChange({
           ...command,
           botResponses: {
@@ -45,6 +49,11 @@ const useCommands = ({ command, onChange }: IProps) => {
           ...command,
           botResponses: { ...command.botResponses, parameter: value }
         });
+      } else if (
+        target === inputNames.userType ||
+        target === inputNames.commandType
+      ) {
+        onChange({ ...command, [target]: Number(value) });
       } else {
         onChange({ ...command, [target]: value });
       }

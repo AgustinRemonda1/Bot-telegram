@@ -14,6 +14,7 @@ import {
 } from './Table.styled';
 import { IProps } from './Table.types';
 import useTable from './useTable';
+import { IDataset } from '~/LogicServices/Shared/Types';
 
 const CustomTable = ({
   loader,
@@ -50,7 +51,7 @@ const CustomTable = ({
         <TableHeader config={config} />
         <TableBody>
           {!loader ? (
-            dataset.map((document: any, i: number) => (
+            dataset.map((document: IDataset, i: number) => (
               <TableBodyRow
                 key={`row ${i}`}
                 config={config}

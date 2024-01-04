@@ -3,17 +3,18 @@ import { TableCell, TableRow, Box } from '@mui/material';
 import CheckAction from '../../Checkbox/CheckAction';
 import ActionButton from '../../ActionButtons/ActionButton';
 import { renderCell } from './TableBody.utils';
+import { IConfig, IDataset } from 'LogicServices/Shared/Types';
 
 export interface IProps {
-  config: any;
-  dataset: any;
+  config: IConfig[];
+  dataset: IDataset;
 }
 
 const TableBodyRow = ({ config, dataset }: IProps) => {
   return (
     <TableRow>
       {config &&
-        config.map((cell: any, i: number) => (
+        config.map((cell: IConfig, i: number) => (
           <TableCell key={`body cell ${i}`} align={'' || cell.align}>
             {!cell.isCheck && !cell.isActions ? (
               <Box fontWeight={400}>{renderCell(cell, dataset)}</Box>
@@ -24,7 +25,9 @@ const TableBodyRow = ({ config, dataset }: IProps) => {
                 onChange={cell.onClick}
               />
             ) : (
-              <ActionButton dataset={dataset} actions={cell.actions} />
+              cell.actions && (
+                <ActionButton dataset={dataset} actions={cell.actions} />
+              )
             )}
           </TableCell>
         ))}

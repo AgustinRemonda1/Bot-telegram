@@ -1,7 +1,4 @@
-export interface IOption {
-  id: number;
-  name: string;
-}
+import { IEvent } from 'LogicServices/Shared/Types';
 
 export interface IPollQuestion {
   pollId: null | number;
@@ -13,7 +10,7 @@ export interface IInputQuestions {
   type: string;
   name: string;
   title: string;
-  onChange: any;
+  onChange: (e: IEvent) => void;
   value: string;
   correction: boolean;
 }

@@ -5,10 +5,15 @@ import { loginRequest } from 'RepoServices/Auth/Login/Login';
 import { IUser } from '../User';
 import { getCookieValue, setCookieValue } from '~/Static/Utils/Cookies.utils';
 import { AuthContext } from '../Auth';
+import { IEvent } from 'LogicServices/Shared/Types';
 
 interface iLoginResponse {
   user: IUser;
   token: string;
+}
+
+interface IKeyEvent {
+  key: string;
 }
 
 const useLogin = () => {
@@ -25,7 +30,7 @@ const useLogin = () => {
     auth ? router.replace('/Dashboard') : router.replace('/Auth/Login');
   }, []);
 
-  const onChange = useCallback((event: any) => {
+  const onChange = useCallback((event: IEvent) => {
     const name = event.target.name;
     const value = event.target.value;
 
@@ -59,7 +64,7 @@ const useLogin = () => {
   }, [password, username]);
 
   const onEnter = useCallback(
-    (event: any) => event.key === 'Enter' && onLogin(),
+    (event: IKeyEvent) => event.key === 'Enter' && onLogin(),
     [onLogin]
   );
 

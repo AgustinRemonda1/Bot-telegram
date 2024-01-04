@@ -16,7 +16,7 @@ const SectionAddToTable = (props: IProps) => {
     disabled,
     name
   } = props;
-  console.log(dataset);
+
   return (
     <Container>
       <SelectContainer>
