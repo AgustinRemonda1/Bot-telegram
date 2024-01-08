@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { ICommandCreator, IFlags } from './Types';
 import { validator } from 'LogicServices/Shared/utils';
 
-interface IProps {
+export interface IProps {
   command: ICommandCreator;
   flags: IFlags;
 }
@@ -25,11 +25,11 @@ const useValidation = ({ command, flags }: IProps) => {
     const nestedCommands = !validator(command, ['botNestedCommands.length']);
 
     if (flags.isAParameterCommand) {
-      return mainInputs && paramInput;
+      return mainInputs || paramInput;
     } else if (flags.isAFileCommand) {
-      return mainInputs && filesInputs;
+      return mainInputs || filesInputs;
     } else if (flags.isANestedCommand) {
-      return mainInputs && nestedCommands;
+      return mainInputs || nestedCommands;
     }
     return mainInputs;
   }, [command, flags]);

@@ -2,13 +2,12 @@ import { useState, useEffect, useCallback, useContext } from 'react';
 import { inputNames } from 'components/Auth/Login/Login.config';
 import { useRouter } from 'next/router';
 import { loginRequest } from 'RepoServices/Auth/Login/Login';
-import { IUser } from '../User';
 import { getCookieValue, setCookieValue } from '~/Static/Utils/Cookies.utils';
 import { AuthContext } from '../Auth';
 import { IEvent } from 'LogicServices/Shared/Types';
+import { getUser } from './utils';
 
 interface iLoginResponse {
-  user: IUser;
   token: string;
 }
 
@@ -43,11 +42,12 @@ const useLogin = () => {
 
   const login = useCallback(
     (res: iLoginResponse) => {
-      const userStringify = JSON.stringify(res.user);
+      const user = getUser(res.token);
+      const userStringify = JSON.stringify(user);
       setCookieValue('user', userStringify);
       setCookieValue('token', res.token);
 
-      actions && actions.onLogin(res);
+      actions && actions.onLogin({ ...res, user });
       setLoading(false);
       router.replace('/Dashboard');
     },

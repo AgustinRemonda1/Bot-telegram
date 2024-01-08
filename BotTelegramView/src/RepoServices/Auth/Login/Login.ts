@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios';
-import { IUser } from 'LogicServices/Auth/User';
 import request from 'RepoServices/Requests';
 
 interface ILoginRequest {
@@ -8,7 +7,6 @@ interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  user: IUser;
   token: string;
 }
 
@@ -20,7 +18,6 @@ export const loginRequest = async (login: ILoginRequest) => {
     );
 
     return {
-      user: res.data.user,
       token: res.data.token
     };
   } catch (error) {

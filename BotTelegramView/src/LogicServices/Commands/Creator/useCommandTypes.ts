@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { fetchCommandTypes } from 'RepoServices/CommandTypes';
-import { IOption } from '~/LogicServices/Shared/Types';
+import { IOption } from 'LogicServices/Shared/Types';
 import { ICommandTypes } from '../Types';
 
 const useCommandTypes = () => {

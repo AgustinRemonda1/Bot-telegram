@@ -10,7 +10,7 @@ interface IProps {
   onRefresh: (refresh: boolean) => void;
 }
 
-const INITIAL_COMMAND: ICommandCreator = {
+export const INITIAL_COMMAND: ICommandCreator = {
   commandTypeId: 0,
   name: '',
   telCommand: '',

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { IUser } from '../User';
+import { IUser } from 'LogicServices/Auth';
 
 export interface IOnLogin {
   token: string;

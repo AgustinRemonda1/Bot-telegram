@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { IUser } from '../User/types';
+import { IUser } from '../types';
 import { getCookieValue, setCookieValue } from 'Static/Utils/Cookies.utils';
 import { IOnLogin } from './AuthContext';
 
