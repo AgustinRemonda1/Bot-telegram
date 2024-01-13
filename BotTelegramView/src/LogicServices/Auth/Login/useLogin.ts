@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { inputNames } from 'components/Auth/Login/Login.config';
 import { useRouter } from 'next/router';
-import { loginRequest } from 'RepoServices/Auth/Login/Login';
-import { getCookieValue, setCookieValue } from '~/Static/Utils/Cookies.utils';
-import { AuthContext } from '../Auth';
+import { loginRequest } from 'RepoServices/Auth/Login';
+import { getCookieValue, setCookieValue } from 'Static/Utils/Cookies.utils';
+import { useAuthContext } from '../Auth';
 import { IEvent } from 'LogicServices/Shared/Types';
 import { getUser } from './utils';
 
@@ -21,7 +21,7 @@ const useLogin = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const router = useRouter();
-  const { actions } = useContext(AuthContext);
+  const { actions } = useAuthContext();
 
   useEffect(() => {
     const auth = getCookieValue('user') && getCookieValue('token');
@@ -57,6 +57,7 @@ const useLogin = () => {
   const onLogin = useCallback(async () => {
     if (password && username) {
       setLoading(true);
+      console.log(password, username);
       loginRequest({ username, password })
         .then((res) => login(res as iLoginResponse))
         .catch((err) => console.log(err));

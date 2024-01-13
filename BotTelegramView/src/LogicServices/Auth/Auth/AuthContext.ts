@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { IUser } from 'LogicServices/Auth';
 
 export interface IOnLogin {
@@ -19,3 +19,5 @@ export interface IAuthContext {
 export const AuthContext = createContext<IAuthContext>({
   actions: { onLogin: ({ user, token }) => {}, onSignOut: () => {} }
 });
+
+export const useAuthContext = () => useContext(AuthContext);

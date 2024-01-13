@@ -1,9 +1,9 @@
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { AuthContext } from './AuthContext';
+import { useAuthContext } from './AuthContext';
 
 const useAuth = () => {
-  const { user, token, loading, actions } = useContext(AuthContext);
+  const { user, token, loading, actions } = useAuthContext();
   const router = useRouter();
 
   const onSignOut = useCallback(() => {
