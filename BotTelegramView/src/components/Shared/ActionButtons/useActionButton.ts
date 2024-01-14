@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { IDataset } from '~/LogicServices/Shared/Types';
+import { IAction, IDataset } from 'LogicServices/Shared/Types';
 
 interface IProps {
   dataset: IDataset;
@@ -9,7 +9,7 @@ const useActionButton = ({ dataset }: IProps) => {
   const [click, setClick] = useState<boolean>(false);
 
   const onClick = useCallback(
-    (action: IDataset) => {
+    (action: IAction) => {
       setClick(true);
       action.onClick(dataset);
     },
@@ -20,11 +20,11 @@ const useActionButton = ({ dataset }: IProps) => {
     setClick(click);
   }, []);
 
-  const disabled = useCallback((action: IDataset): boolean => {
+  const disabled = useCallback((action: IAction): boolean => {
     if (typeof action.disabled === 'function') {
       return action.disabled(dataset);
     }
-    return action.disabled;
+    return Boolean(action.disabled);
   }, []);
 
   return { click, onClickTooltip, onClick, disabled };
