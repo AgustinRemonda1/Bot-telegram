@@ -1,9 +1,12 @@
-import React, { useState, createContext, ReactNode } from 'react';
+import React, { useState, createContext, ReactNode, useContext } from 'react';
 
 export const ModalControllerContext = createContext({
   isOpenDrawer: false,
   setOpenState: (open: boolean) => {}
 });
+
+export const useModalControllerContext = () =>
+  useContext(ModalControllerContext);
 
 interface IProps {
   children: ReactNode;

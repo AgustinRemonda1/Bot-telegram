@@ -1,9 +1,9 @@
-import { useContext, useCallback } from 'react';
-import { ModalControllerContext } from 'components/HOC/ModalController';
+import { useCallback } from 'react';
+import { useModalControllerContext } from 'components/HOC/ModalController';
 import { useRouter } from 'next/router';
 
 const useMenuModal = () => {
-  const { isOpenDrawer, setOpenState } = useContext(ModalControllerContext);
+  const { isOpenDrawer, setOpenState } = useModalControllerContext();
   const router = useRouter();
 
   const onCloseDrawer = useCallback((): void => {

@@ -1,5 +1,5 @@
-import { useCallback, useContext } from 'react';
-import { ModalControllerContext } from 'components/HOC/ModalController';
+import { useCallback } from 'react';
+import { useModalControllerContext } from 'components/HOC/ModalController';
 import useAuth from 'LogicServices/Auth/Auth/useAuth';
 
 interface IProps {
@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const useAppBar = ({ onCloseMenu }: IProps) => {
-  const { isOpenDrawer, setOpenState } = useContext(ModalControllerContext);
+  const { isOpenDrawer, setOpenState } = useModalControllerContext();
   const { action } = useAuth();
 
   const onOpenDrawer = useCallback(() => {

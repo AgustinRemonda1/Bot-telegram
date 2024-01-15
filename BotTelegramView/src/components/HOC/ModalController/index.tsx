@@ -1,1 +1,5 @@
-export { default, ModalControllerContext } from './ModalController.hoc';
+export {
+  default,
+  ModalControllerContext,
+  useModalControllerContext
+} from './ModalController.hoc';
