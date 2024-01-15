@@ -1,6 +1,6 @@
 import { ILanguage } from 'Static/Lang/Lang.lang';
-import { IBotUsers } from '~/LogicServices/BotUsers/Types';
-import { IConfig } from '~/LogicServices/Shared/Types';
+import { IBotUsers } from 'LogicServices/BotUsers/Types';
+import { IConfig } from 'LogicServices/Shared/Types';
 
 interface IConfigProps {
   language: ILanguage;

@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { IEvent } from '~/LogicServices/Shared/Types';
 
 export interface IProps {
   sectionLabel?: string;

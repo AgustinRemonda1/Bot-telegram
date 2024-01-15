@@ -1,6 +1,6 @@
 import { ILanguage } from 'Static/Lang/Lang.lang';
-import { ICommand } from '~/LogicServices/Commands/Types';
-import { IConfig } from '~/LogicServices/Shared/Types';
+import { ICommand } from 'LogicServices/Commands/Types';
+import { IConfig } from 'LogicServices/Shared/Types';
 
 interface ITablesConfigProps {
   language: ILanguage;

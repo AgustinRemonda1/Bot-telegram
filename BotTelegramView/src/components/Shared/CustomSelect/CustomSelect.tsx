@@ -11,7 +11,7 @@ import { MenuItem, CircularProgress } from '@mui/material';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 import { capitalize } from 'Static/Utils/FormatStrings.utils';
 import { IProps } from './CustomSelect.types';
-import { IEvent } from '~/LogicServices/Shared/Types';
+import { IEvent } from 'LogicServices/Shared/Types';
 
 const CustomSelect = ({
   title,

@@ -1,4 +1,4 @@
-import { IEvent } from '~/LogicServices/Shared/Types';
+import { IEvent } from 'LogicServices/Shared/Types';
 
 export interface IOption {
   id: number;

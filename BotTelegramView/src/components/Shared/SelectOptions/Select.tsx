@@ -2,7 +2,7 @@ import React from 'react';
 import { MenuItem, FormControl, InputLabel } from '@mui/material';
 import { StyledSelect } from './Select.styles';
 import { IProps } from './Select.types';
-import { IEvent } from '~/LogicServices/Shared/Types';
+import { IEvent } from 'LogicServices/Shared/Types';
 
 const SelectOptions = ({ title, listOptions, onChange, value }: IProps) => {
   return (

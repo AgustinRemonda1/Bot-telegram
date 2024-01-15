@@ -14,7 +14,7 @@ import {
 } from './Table.styled';
 import { IProps } from './Table.types';
 import useTable from './useTable';
-import { IDataset } from '~/LogicServices/Shared/Types';
+import { IDataset } from 'LogicServices/Shared/Types';
 
 const CustomTable = ({
   loader,

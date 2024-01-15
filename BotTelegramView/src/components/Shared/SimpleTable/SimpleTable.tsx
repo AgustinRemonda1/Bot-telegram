@@ -11,7 +11,7 @@ import {
   NoDocumentsFound
 } from './SimpleTable.styled';
 import { IProps } from './SimpleTable.types';
-import { IDataset } from '~/LogicServices/Shared/Types';
+import { IDataset } from 'LogicServices/Shared/Types';
 
 const TableContent = ({ config, dataset, loader }: IProps) => {
   const { language } = useContext(LanguageContext);

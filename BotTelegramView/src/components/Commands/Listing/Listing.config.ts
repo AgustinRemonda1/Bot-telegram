@@ -1,7 +1,7 @@
 import editIcon from 'Static/Assets/Icons/pencil.svg';
 import trashIcon from 'Static/Assets/Icons/delete.svg';
-import { ICommand } from '~/LogicServices/Commands/Types';
-import { ILanguage } from '~/Static/Lang/Lang.lang';
+import { ICommand } from 'LogicServices/Commands/Types';
+import { ILanguage } from 'Static/Lang/Lang.lang';
 import { IConfig } from 'LogicServices/Shared/Types';
 
 export const commandNotEditable = [5, 6, 12, 13, 10];

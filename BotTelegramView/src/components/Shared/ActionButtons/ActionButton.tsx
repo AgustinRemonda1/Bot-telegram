@@ -3,7 +3,7 @@ import { ReactSVG } from 'react-svg';
 import Tooltip from '../Tooltip/Tooltip';
 import { Container, StyledButton } from './ActionButton.styles';
 import { IProps } from './ActionButton.types';
-import { IAction } from '~/LogicServices/Shared/Types';
+import { IAction } from 'LogicServices/Shared/Types';
 import { getColorWithType } from './ActionButton.utils';
 import useActionButton from './useActionButton';
 
