@@ -65,7 +65,12 @@ const EN = {
   welcomeTo: 'Welcome to',
   botBackoffice: 'Bot backoffice',
   permissionDenied: 'Permission denied',
-  signInToViewThisPage: 'Sign in to view this page.'
+  signInToViewThisPage: 'Sign in to view this page.',
+  createBaseCommand: 'Crear Comando base',
+  createCommandTypeFeatures: 'Crear Caracteristicas del tipo de comando.',
+  finish: 'Finalizar',
+  back: 'Atras',
+  next: 'siguiente'
 };
 
 export default EN;

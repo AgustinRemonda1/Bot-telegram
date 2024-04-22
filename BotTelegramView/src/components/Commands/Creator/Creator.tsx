@@ -56,7 +56,9 @@ const Creator = ({ command, open, onClose, onRefresh }: IProps) => {
     userTypesOptions: userTypes.state.userTypesOptions,
     commandTypesOptions: commandTypes.state.commandTypesOptions,
     isAButtonCommand: state.flags.isAButtonCommand,
-    emptyFields: state.emptyFields,
+    emptyFields:
+      (state.mainEmptyFields || state.secondaryEmptyFields) &&
+      state.hasEmptyFields,
     editMode: state.flags.editMode
   };
 

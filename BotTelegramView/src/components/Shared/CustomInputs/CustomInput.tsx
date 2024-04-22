@@ -31,6 +31,7 @@ const CustomInput = ({
           value={value}
           disabled={disabled}
           multiline={Boolean(multiline)}
+          rows={Boolean(multiline) ? 5 : 1}
         />
         {!value && emptyFields && (
           <InputLabelAlert variant="subtitle1">

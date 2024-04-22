@@ -7,7 +7,7 @@ interface IPropsContainer {
 }
 
 export const Container = styled.div<IPropsContainer>`
-  width: ${({ correction }) => (!correction ? '255px' : '92%')};
+  width: ${({ correction }) => (!correction ? '44%' : '92%')};
 `;
 
 export const InputFormControl = styled(FormControl)`

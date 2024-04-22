@@ -31,10 +31,17 @@ export const INITIAL_COMMAND: ICommandCreator = {
 const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
   const [command, setCommand] = useState<ICommandCreator>(INITIAL_COMMAND);
   const [confirmation, setConfirmation] = useState<boolean>(false);
-  const [hasEmptyFields, setHasEmptyFields] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const flags = useCreatorFlags({ command });
-  const { emptyFields } = useValidation({ command, flags });
+  const {
+    hasEmptyFields,
+    mainEmptyFields,
+    secondaryEmptyFields,
+    onHasEmptyFields
+  } = useValidation({
+    command,
+    flags
+  });
 
   useEffect(() => {
     if (commandToEdit) {
@@ -45,9 +52,9 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
         botNestedCommands: commandToEdit.botNestedCommands || []
       });
     }
+
     !commandToEdit && setCommand(INITIAL_COMMAND);
     setConfirmation(false);
-    setHasEmptyFields(false);
   }, [commandToEdit]);
 
   useEffect(() => {
@@ -65,24 +72,20 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
   }, []);
 
   const onSave = useCallback(() => {
-    if (emptyFields) {
-      setHasEmptyFields(true);
-    } else {
-      setHasEmptyFields(false);
-      setLoading(true);
-      setConfirmation(true);
-    }
-  }, [emptyFields]);
+    setLoading(true);
+    setConfirmation(true);
+  }, []);
 
   return {
     state: {
       command,
-      emptyFields: emptyFields && hasEmptyFields,
+      mainEmptyFields: mainEmptyFields,
+      secondaryEmptyFields: secondaryEmptyFields,
       hasEmptyFields,
       loading,
       flags: { ...flags, editMode: Boolean(commandToEdit) }
     },
-    actions: { onChange, onSave }
+    actions: { onChange, onSave, onHasEmptyFields }
   };
 };
 

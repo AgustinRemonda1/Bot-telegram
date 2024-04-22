@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { ICommandCreator, IFlags } from './Types';
 import { validator } from 'LogicServices/Shared/utils';
 
@@ -8,7 +8,9 @@ export interface IProps {
 }
 
 const useValidation = ({ command, flags }: IProps) => {
-  const emptyFields = useMemo(() => {
+  const [hasEmptyFields, setHasEmptyFields] = useState<boolean>(false);
+
+  const mainEmptyFields = useMemo(() => {
     const mainInputs = !validator(command, [
       'name',
       'description',
@@ -17,6 +19,10 @@ const useValidation = ({ command, flags }: IProps) => {
       'userTypeId',
       'botResponses.response'
     ]);
+    return mainInputs;
+  }, [command, flags]);
+
+  const secondaryEmptyFields = useMemo(() => {
     const filesInputs = !validator(command, [
       'botResponses.botResponseFiles.filename',
       'botResponses.botResponseFiles.url'
@@ -25,16 +31,32 @@ const useValidation = ({ command, flags }: IProps) => {
     const nestedCommands = !validator(command, ['botNestedCommands.length']);
 
     if (flags.isAParameterCommand) {
-      return mainInputs || paramInput;
+      return paramInput;
     } else if (flags.isAFileCommand) {
-      return mainInputs || filesInputs;
+      return filesInputs;
     } else if (flags.isANestedCommand) {
-      return mainInputs || nestedCommands;
+      return nestedCommands;
     }
-    return mainInputs;
+    return false;
   }, [command, flags]);
 
-  return { emptyFields };
+  const onHasEmptyFields = useCallback(
+    (externalFlag?: boolean) => {
+      if (typeof externalFlag === 'boolean') {
+        setHasEmptyFields(externalFlag);
+      } else {
+        setHasEmptyFields(mainEmptyFields || secondaryEmptyFields);
+      }
+    },
+    [mainEmptyFields, secondaryEmptyFields]
+  );
+
+  return {
+    hasEmptyFields,
+    mainEmptyFields,
+    secondaryEmptyFields,
+    onHasEmptyFields
+  };
 };
 
 export default useValidation;
