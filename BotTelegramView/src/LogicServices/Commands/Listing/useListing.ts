@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { fetchCommands } from 'RepoServices/Commands';
 import { ICommand } from '../Types';
 import usePagination from 'LogicServices/Shared/usePagination';
+import { useRouter } from 'next/router';
 
 const useListing = () => {
   const [commands, setCommands] = useState<ICommand[]>([]);
   const { state, actions } = usePagination();
+  const router = useRouter();
 
   useEffect(() => {
     actions.onLoading(true);
@@ -22,6 +24,17 @@ const useListing = () => {
     getCommands();
   }, [state.pagination, state.refresh]);
 
+  const onCreateCommand = useCallback(() => {
+    router.replace('/Dashboard/Bot-Actions/Creator');
+  }, [router]);
+
+  const onEditCommand = useCallback(
+    (id: number) => {
+      router.replace('/Dashboard/Bot-Actions/Editor/' + id);
+    },
+    [router]
+  );
+
   return {
     state: {
       commands,
@@ -34,7 +47,9 @@ const useListing = () => {
     },
     actions: {
       onChangePage: actions.onChangePage,
-      onRefresh: actions.onRefresh
+      onRefresh: actions.onRefresh,
+      onCreateCommand,
+      onEditCommand
     }
   };
 };

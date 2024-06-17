@@ -9,11 +9,11 @@ export const commandNotEditable = [5, 6, 12, 13, 10];
 interface IConfigProps {
   language: ILanguage;
   onOpenDeletePopUp: (id: number) => void;
-  onOpenPollPopUp: (command?: ICommand) => void;
+  onEditCommand: (id: number) => void;
 }
 
 export const generateConfigWithLang = (configParams: IConfigProps) => {
-  const { language, onOpenDeletePopUp, onOpenPollPopUp } = configParams;
+  const { language, onOpenDeletePopUp, onEditCommand } = configParams;
 
   return [
     {
@@ -56,7 +56,7 @@ export const generateConfigWithLang = (configParams: IConfigProps) => {
           disabled: (command: ICommand) =>
             Boolean(commandNotEditable.includes(command.commandTypeId)),
           onClick: (command: ICommand) => {
-            onOpenPollPopUp(command);
+            onEditCommand(command.botCommandId as number);
           }
         },
         {

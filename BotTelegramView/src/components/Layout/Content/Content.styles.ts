@@ -60,8 +60,10 @@ export const StepperContent = styled.div`
   padding-top: 20px;
   width: 95%;
   max-height: 100%;
+  min-height: 60vh;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   justify-content: space-evenly;
 `;
 

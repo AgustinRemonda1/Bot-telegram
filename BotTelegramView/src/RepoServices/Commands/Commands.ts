@@ -13,9 +13,27 @@ export interface IFetchResponse {
   total: number;
 }
 
+export interface IFetchOneResponse {
+  command: ICommand;
+}
+
 export interface IMessageResponse {
   message: string;
 }
+
+export const fetchCommand = async (id: number) => {
+  try {
+    const res: AxiosResponse<IFetchOneResponse> = await request.get(
+      `/api/bot-commands/${id}`
+    );
+
+    return {
+      commands: res.data.command
+    };
+  } catch (error) {
+    return 'error';
+  }
+};
 
 export const fetchCommands = async ({ page, pageSize }: IRequest) => {
   try {

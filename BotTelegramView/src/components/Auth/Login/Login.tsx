@@ -49,7 +49,7 @@ const Login = () => {
             id={inputNames.username}
             label={language.username}
             name={inputNames.username}
-            autoComplete={inputNames.username}
+            autoComplete="off"
             autoFocus
             onChange={actions.onChange}
             value={state.username}
@@ -64,7 +64,7 @@ const Login = () => {
             label={language.password}
             type={inputNames.password}
             id={inputNames.password}
-            autoComplete="current-password"
+            autoComplete="off"
             onChange={actions.onChange}
             onKeyDown={actions.onEnter}
             value={state.password}

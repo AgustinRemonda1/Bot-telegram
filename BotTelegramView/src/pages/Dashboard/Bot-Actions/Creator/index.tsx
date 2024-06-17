@@ -1,7 +1,12 @@
-import Listing from 'components/Commands/CreatorStepper';
+import Creator from 'components/Commands/Creator';
+import PageGuard from 'components/HOC/PageGuard';
 
-const CommandsPage = () => {
-  return <Listing />;
+const CreatorPage = () => {
+  return (
+    <PageGuard>
+      <Creator />
+    </PageGuard>
+  );
 };
 
-export default CommandsPage;
+export default CreatorPage;

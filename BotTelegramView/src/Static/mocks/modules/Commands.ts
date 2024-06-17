@@ -2,6 +2,17 @@ import { rest } from 'msw';
 import { commandsDataMock } from 'Static/Data';
 
 export const commands = [
+  rest.get('/api/bot-commands/:id', (req, res, ctx) => {
+    const { id } = req.params;
+
+    return res(
+      ctx.json({
+        command: commandsDataMock.find(
+          (command) => command.botCommandId === Number(id)
+        )
+      })
+    );
+  }),
   rest.get('/api/bot-commands', (req, res, ctx) => {
     const pageSize = req.url.searchParams.get('pageSize');
     const page = req.url.searchParams.get('page');

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { IPoll } from '../Types';
 import { validator } from 'LogicServices/Shared/utils';
 
@@ -7,15 +7,43 @@ interface IProps {
 }
 
 const useValidation = ({ poll }: IProps) => {
-  const emptyFields = useMemo(() => {
-    const pollInputs = validator(poll, ['name', 'description', 'userTypeId']);
+  const [hasEmptyFields, setHasEmptyFields] = useState<boolean>(false);
+
+  const mainEmptyFields = useMemo(() => {
+    const mainInputs = !validator(poll, [
+      'name',
+      'description',
+      'userTypeId',
+      'questions.length'
+    ]);
+
+    return mainInputs;
+  }, [poll]);
+
+  const secondaryEmptyFields = useMemo(() => {
     const questions =
       poll.questions && poll.questions.every((question) => question.question);
 
-    return !pollInputs || !questions;
+    return !questions;
   }, [poll]);
 
-  return { emptyFields };
+  const onHasEmptyFields = useCallback(
+    (externalFlag?: boolean) => {
+      if (typeof externalFlag === 'boolean') {
+        setHasEmptyFields(externalFlag);
+      } else {
+        setHasEmptyFields(mainEmptyFields || secondaryEmptyFields);
+      }
+    },
+    [mainEmptyFields, secondaryEmptyFields]
+  );
+
+  return {
+    hasEmptyFields,
+    mainEmptyFields,
+    secondaryEmptyFields,
+    onHasEmptyFields
+  };
 };
 
 export default useValidation;

@@ -1,67 +1,63 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
+import React, { FC, useContext } from 'react';
 import { Button, Typography } from '@mui/material';
-import { BLUE, SUTIL_GRAY, WHITE } from 'Static/Styles/Colors.index';
+import SimpleTable from '../SimpleTable';
+import { IConfig, IDataset } from 'LogicServices/Shared/Types';
+import {
+  Table,
+  Title,
+  DataCeil,
+  TableContainer,
+  Action
+} from './ViewTable.styled';
+import EditIcon from '@mui/icons-material/Edit';
+import { LanguageContext } from 'Static/Lang/Lang.lang';
 
 interface IStepData {
   title: string;
   value: string;
   correction?: boolean;
+  isTable?: boolean;
+  dataset?: IDataset;
+  config?: IConfig[];
 }
 
 interface IProps {
+  title: string;
   stepData: IStepData[];
+  onStepSelected: () => void;
 }
 
-interface IPropsContainer {
-  correction?: boolean;
-}
-
-export const DataCeil = styled.div<IPropsContainer>`
-  width: ${({ correction }) => (!correction ? '44%' : '92%')};
-  padding: 10px 20px 0;
-`;
-
-export const Title = styled.div`
-  width: 100%;
-  color: ${WHITE};
-  background: ${BLUE};
-  border-bottom: 1px solid ${SUTIL_GRAY};
-  padding: 15px 20px 10px;
-  margin-bottom: 20px;
-  border-radius: 8px 8px 0 0;
-`;
-
-export const Action = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-`;
-
-export const Table = styled.div`
-  display: flex;
-  width: 60%;
-  flex-wrap: wrap;
-  border-radius: 10px;
-  border: 1px solid ${SUTIL_GRAY};
-`;
-
-const ViewTable: FC<IProps> = ({ stepData }) => {
+const ViewTable: FC<IProps> = ({ title, stepData, onStepSelected }) => {
+  const { language } = useContext(LanguageContext);
   return (
     <Table>
       <Title>
-        <Typography variant="h4">Crear Comando base</Typography>
+        <Typography variant="h4">{title}</Typography>
       </Title>
-      {stepData.map((data) => (
-        <DataCeil correction={Boolean(data.correction)}>
-          <Typography variant="h6">{data.title}</Typography>
-          <Typography>{data.value}</Typography>
-        </DataCeil>
-      ))}
+      {stepData.map((data) =>
+        data.isTable ? (
+          <TableContainer>
+            <SimpleTable
+              dataset={data.dataset as IDataset}
+              config={data.config as IConfig[]}
+              loader={false}
+            />
+          </TableContainer>
+        ) : (
+          <DataCeil correction={Boolean(data.correction)}>
+            <Typography variant="h6">{data.title}</Typography>
+            <Typography>{data.value}</Typography>
+          </DataCeil>
+        )
+      )}
       <Action>
-        <Button variant="contained">Editar</Button>
+        <Button
+          startIcon={<EditIcon />}
+          onClick={onStepSelected}
+          variant="contained"
+        >
+          {language.edit}
+        </Button>
       </Action>
     </Table>
   );

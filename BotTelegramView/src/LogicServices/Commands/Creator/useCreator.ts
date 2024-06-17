@@ -1,14 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ICommandCreator } from './Types';
-import useCreatorFlags from './useCreatorFlags';
-import useValidation from './useValidation';
-import { saveCommand } from './service';
-
-interface IProps {
-  commandToEdit: ICommandCreator | null;
-  onClose: () => void;
-  onRefresh: (refresh: boolean) => void;
-}
+import useCreatorFlags from './Validations/useCreatorFlags';
+import useValidation from './Validations/useValidation';
+import { saveCommand, getCommand } from './service';
+import { useRouter } from 'next/router';
 
 export const INITIAL_COMMAND: ICommandCreator = {
   commandTypeId: 0,
@@ -28,7 +23,7 @@ export const INITIAL_COMMAND: ICommandCreator = {
   botNestedCommands: []
 };
 
-const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
+const useCreator = () => {
   const [command, setCommand] = useState<ICommandCreator>(INITIAL_COMMAND);
   const [confirmation, setConfirmation] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -42,30 +37,35 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
     command,
     flags
   });
+  const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
-    if (commandToEdit) {
-      setCommand({
-        ...commandToEdit,
-        description:
-          commandToEdit.botResponses?.description || commandToEdit.description,
-        botNestedCommands: commandToEdit.botNestedCommands || []
-      });
-    }
+    const getCommandById = async (id: number) => {
+      const command = await getCommand(id);
 
-    !commandToEdit && setCommand(INITIAL_COMMAND);
-    setConfirmation(false);
-  }, [commandToEdit]);
+      if (command) {
+        setCommand({
+          ...command,
+          description: command.botResponses?.description || command.description,
+          botNestedCommands: command.botNestedCommands || []
+        });
+      }
+    };
+
+    if (id) {
+      getCommandById(Number(id));
+    }
+  }, [id, getCommand]);
 
   useEffect(() => {
     if (confirmation) {
       setConfirmation(false);
-      saveCommand(command, Boolean(commandToEdit));
+      saveCommand(command, Boolean(id));
       setLoading(false);
-      onClose();
-      onRefresh(true);
+      router.replace('/Dashboard/Bot-Actions');
     }
-  }, [confirmation, onClose, command, commandToEdit, onRefresh]);
+  }, [confirmation, command, id, router]);
 
   const onChange = useCallback((command: ICommandCreator) => {
     setCommand(command);
@@ -83,7 +83,7 @@ const useCreator = ({ commandToEdit, onClose, onRefresh }: IProps) => {
       secondaryEmptyFields: secondaryEmptyFields,
       hasEmptyFields,
       loading,
-      flags: { ...flags, editMode: Boolean(commandToEdit) }
+      flags: { ...flags, editMode: Boolean(id) }
     },
     actions: { onChange, onSave, onHasEmptyFields }
   };

@@ -2,6 +2,15 @@ import { rest } from 'msw';
 import { pollDataMock } from 'Static/Data';
 
 export const polls = [
+  rest.get('/api/poll/:id', (req, res, ctx) => {
+    const { id } = req.params;
+
+    return res(
+      ctx.json({
+        poll: pollDataMock.find((poll) => poll.pollId === Number(id))
+      })
+    );
+  }),
   rest.get('/api/polls', (req, res, ctx) => {
     return res(
       ctx.json({

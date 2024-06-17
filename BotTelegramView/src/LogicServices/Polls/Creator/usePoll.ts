@@ -1,39 +1,32 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IPoll } from '../Types';
 import { buildQuestions, createArrayIterator } from './utils';
-import { inputNames } from 'components/Polls/Creator/Creator.config';
-import { INITIAL_POLL } from './useCreator';
+import { inputNames } from 'components/Polls/Creator/StepOne/StepOne.config';
 import { IEvent } from 'LogicServices/Shared/Types';
 
 interface IProps {
-  open: boolean;
   poll: IPoll;
-  questionsNumber?: number;
   onChange: (poll: IPoll) => void;
 }
 
-const usePoll = ({ open, poll, questionsNumber, onChange }: IProps) => {
+const MINIMUM_QUESTION_NUMBER = 1;
+
+const usePoll = ({ poll, onChange }: IProps) => {
   const [questionNumber, setQuestionNumber] = useState<number>(0);
 
   useEffect(() => {
-    if (!open) {
-      setQuestionNumber(0);
-      onChange(INITIAL_POLL);
-    }
-  }, [open, onChange]);
-
-  useEffect(() => {
-    questionsNumber && setQuestionNumber(questionsNumber);
-  }, [questionsNumber]);
+    poll.questions.length && setQuestionNumber(poll.questions.length);
+  }, [poll.questions.length]);
 
   useEffect(() => {
     const questions = poll.questions || [];
-    if (
-      questions.length < questionNumber ||
-      questions.length > questionNumber
-    ) {
-      const questionNumberToArray = createArrayIterator(questionNumber);
+    const isChangeQuestionNumber =
+      questions.length < questionNumber || questions.length > questionNumber;
+    const isPollActive =
+      poll.pollId && questionNumber < MINIMUM_QUESTION_NUMBER;
 
+    if (isChangeQuestionNumber && !isPollActive) {
+      const questionNumberToArray = createArrayIterator(questionNumber);
       const newQuestions = questionNumberToArray.map((e, index) =>
         questions[index] ? questions[index] : buildQuestions()
       );

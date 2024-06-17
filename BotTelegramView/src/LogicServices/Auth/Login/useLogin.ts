@@ -51,7 +51,7 @@ const useLogin = () => {
       setLoading(false);
       router.replace('/Dashboard');
     },
-    [actions]
+    [actions, router]
   );
 
   const onLogin = useCallback(async () => {

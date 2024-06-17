@@ -12,9 +12,27 @@ export interface IFetchResponse {
   total: number;
 }
 
+export interface IFetchOneResponse {
+  poll: IPoll;
+}
+
 export interface IMessageResponse {
   message: string;
 }
+
+export const fetchPoll = async (id: number) => {
+  try {
+    const res: AxiosResponse<IFetchOneResponse> = await request.get(
+      `/api/poll/${id}`
+    );
+
+    return {
+      poll: res.data.poll
+    };
+  } catch (error) {
+    return 'error';
+  }
+};
 
 export const fetchPolls = async ({ page, pageSize }: IRequest) => {
   try {

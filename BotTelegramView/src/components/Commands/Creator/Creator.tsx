@@ -1,110 +1,123 @@
 import React, { useContext } from 'react';
+import { Container, CreatorContent } from 'components/Layout/Content';
+import Stepper from 'components/Shared/Stepper';
+import SectionTitle from 'components/Shared/SectionTitle';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import {
-  generateMainInputs,
-  inputNames,
-  generateFileInputs,
-  generateParameterInput,
-  NestedCommandTableConfig
-} from './Creator.config';
-import { ContentSize } from 'components/Layout/Content';
-import RightModal from 'components/Shared/RightModal';
-import BuildInputs from 'components/Shared/BuildInputs';
-import SectionAddToTable from 'components/Shared/SectionAddToTable/SectionAddToTable';
 import useCreator, {
-  useCommandTypes,
   useCommands,
-  useNestedCommands
+  useCommandTypes
 } from 'LogicServices/Commands/Creator';
 import useUserTypes from 'LogicServices/Shared/useUserTypes';
-import { ICommand } from 'LogicServices/Commands/Types';
-import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
+import StepOne from './StepOne';
+import StepTwo from './StepTwo';
+import useStepper from 'LogicServices/Shared/useStepper';
+import { stepperIcons, maxSteps, generateStepsTitles } from './Creator.config';
+import StepperActionsButton from 'components/Shared/StepperActionsButton';
+import StepThree from './StepThree';
 
-interface IProps {
-  command?: ICommand | null;
-  open: boolean;
-  onClose: () => void;
-  onRefresh: (refresh: boolean) => void;
-}
-
-const Creator = ({ command, open, onClose, onRefresh }: IProps) => {
+const CreatorStepper = () => {
   const { language } = useContext(LanguageContext);
-  const { state, actions } = useCreator({
-    commandToEdit: command as ICommandCreator,
-    onClose,
-    onRefresh
-  });
+  const { state, actions } = useCreator();
   const commandEdit = useCommands({
     command: state.command,
     onChange: actions.onChange
   });
   const userTypes = useUserTypes();
   const commandTypes = useCommandTypes();
-  const nestedCommands = useNestedCommands({
-    command: state.command,
-    onChange: actions.onChange
+  const stepper = useStepper({
+    props: {
+      maxSteps,
+      validations: [!state.mainEmptyFields, !state.secondaryEmptyFields],
+      editorMode: state.flags.editMode
+    },
+    actions: {
+      onSave: actions.onSave,
+      onValidation: actions.onHasEmptyFields
+    }
   });
 
-  const title = state.flags.editMode
-    ? language.editCommand
-    : language.newCommand;
+  const {
+    isAButtonCommand,
+    isAFileCommand,
+    isANestedCommand,
+    isAParameterCommand
+  } = state.flags;
 
+  const hasToJumpStep = !(
+    isAButtonCommand ||
+    isAFileCommand ||
+    isANestedCommand ||
+    isAParameterCommand
+  );
+
+  const stepsTitles = generateStepsTitles(language, state.flags.editMode);
   const inputParams = {
     language,
     onChangeInputs: commandEdit.onChangeAttributes,
     command: state.command,
-    userTypesOptions: userTypes.state.userTypesOptions,
-    commandTypesOptions: commandTypes.state.commandTypesOptions,
-    isAButtonCommand: state.flags.isAButtonCommand,
+    isAButtonCommand: isAButtonCommand,
     emptyFields:
       (state.mainEmptyFields || state.secondaryEmptyFields) &&
       state.hasEmptyFields,
     editMode: state.flags.editMode
   };
 
-  const mainInputs = generateMainInputs(inputParams);
-  const fileInputs = generateFileInputs(inputParams);
-  const parameterInput = generateParameterInput(inputParams);
-  const tableConfig = {
-    language,
-    onDeleteCommand: nestedCommands.actions.onDeleteCommand,
-    editMode: state.flags.editMode
+  const typesList = {
+    commandTypes: commandTypes.state.commandTypesOptions,
+    userTypes: userTypes.state.userTypesOptions
   };
 
   return (
-    <RightModal
-      open={open}
-      onClose={onClose}
-      title={title}
-      onSave={actions.onSave}
-      loading={state.loading}
-    >
-      <ContentSize>
-        {mainInputs.map((input, index) => (
-          <BuildInputs key={'main' + index} input={input} />
-        ))}
-        {state.flags.isAFileCommand &&
-          fileInputs.map((input, index) => (
-            <BuildInputs key={'file' + index} input={input} />
-          ))}
-        {state.flags.isAParameterCommand && (
-          <BuildInputs input={parameterInput} />
+    <Container>
+      <CreatorContent>
+        <SectionTitle
+          sectionLabel={state.flags.editMode ? language.edit : language.new}
+          titleLabel={language.command}
+        />
+        <Stepper
+          steps={stepsTitles}
+          activeStep={stepper.state.step}
+          icons={stepperIcons}
+        />
+        {stepper.state.step === 0 && (
+          <StepOne inputParams={inputParams} typesLists={typesList} />
         )}
-        {state.flags.isANestedCommand && (
-          <SectionAddToTable
-            name={inputNames.nestedCommands}
-            config={NestedCommandTableConfig(tableConfig)}
-            dataset={state.command.botNestedCommands}
-            title={language.addCommand}
-            list={nestedCommands.state.nestedCommandsOptions}
-            onChange={nestedCommands.actions.onAddCommand}
-            loader={nestedCommands.state.loading}
-            disabled={state.flags.editMode}
+        {stepper.state.step === 1 && (
+          <StepTwo
+            props={{
+              command: state.command,
+              inputParams,
+              language,
+              flags: state.flags
+            }}
+            actions={{ onChange: actions.onChange }}
           />
         )}
-      </ContentSize>
-    </RightModal>
+        {stepper.state.step === maxSteps && (
+          <StepThree
+            props={{
+              command: state.command,
+              language: language,
+              typesLists: typesList,
+              flags: state.flags
+            }}
+            actions={{ ...stepper.actions }}
+          />
+        )}
+        <StepperActionsButton
+          props={{
+            ...stepper.state,
+            maxSteps,
+            jumpStep: hasToJumpStep,
+            loading: state.loading
+          }}
+          actions={{
+            ...stepper.actions
+          }}
+        />
+      </CreatorContent>
+    </Container>
   );
 };
 
-export default Creator;
+export default CreatorStepper;

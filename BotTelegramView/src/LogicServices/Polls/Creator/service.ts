@@ -1,4 +1,4 @@
-import { updatePoll, createPoll } from 'RepoServices/Polls';
+import { updatePoll, createPoll, fetchPoll } from 'RepoServices/Polls';
 import { IPoll } from '../Types';
 
 export const savePoll = async (poll: IPoll, update: boolean) => {
@@ -6,5 +6,13 @@ export const savePoll = async (poll: IPoll, update: boolean) => {
 
   if (response !== 'error') {
     return response;
+  }
+};
+
+export const getPoll = async (id: number) => {
+  const response = await fetchPoll(id);
+
+  if (response !== 'error') {
+    return response.poll;
   }
 };

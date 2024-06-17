@@ -1,16 +1,17 @@
-import { IEvent } from 'LogicServices/Shared/Types';
+import { IEvent, IOption } from 'LogicServices/Shared/Types';
+import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
+import { ILanguage } from 'Static/Lang/Lang.lang';
 
-export interface IPollQuestion {
-  pollId: null | number;
-  question: string;
-  description: string;
+export interface IInputConfigProps {
+  language: ILanguage;
+  command: ICommandCreator;
+  onChangeInputs: (e: IEvent) => void;
+  isAButtonCommand: boolean;
+  emptyFields: boolean;
+  editMode: boolean;
 }
 
-export interface IInputQuestions {
-  type: string;
-  name: string;
-  title: string;
-  onChange: (e: IEvent) => void;
-  value: string;
-  correction: boolean;
+export interface ITypesLists {
+  userTypes: IOption[];
+  commandTypes: IOption[];
 }

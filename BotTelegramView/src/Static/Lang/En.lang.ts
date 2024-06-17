@@ -66,11 +66,20 @@ const EN = {
   botBackoffice: 'Bot backoffice',
   permissionDenied: 'Permission denied',
   signInToViewThisPage: 'Sign in to view this page.',
-  createBaseCommand: 'Crear Comando base',
-  createCommandTypeFeatures: 'Crear Caracteristicas del tipo de comando.',
-  finish: 'Finalizar',
-  back: 'Atras',
-  next: 'siguiente'
+  createBaseCommand: 'Create Base Command',
+  createCommandTypeFeatures: 'Create command type features.',
+  editBaseCommand: 'Edit Base Command',
+  editCommandTypeFeatures: 'Edit command type features.',
+  finish: 'Finish',
+  back: 'Back',
+  next: 'Next',
+  confirm: 'Confirm',
+  new: 'New',
+  newF: 'New',
+  poll: 'Poll',
+  createNewPoll: 'Create new poll',
+  createQuestionsForThePoll: 'Create questions for the poll',
+  editQuestions: 'Edit questions'
 };
 
 export default EN;

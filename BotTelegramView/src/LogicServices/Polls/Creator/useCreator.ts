@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IPoll } from '../Types';
-import { savePoll } from './service';
+import { savePoll, getPoll } from './service';
 import useValidation from './useValidation';
-
-interface IProps {
-  pollToEdit: IPoll | null;
-  onClose: () => void;
-  onRefresh: (refresh: boolean) => void;
-}
+import { useRouter } from 'next/router';
 
 export const INITIAL_POLL: IPoll = {
   name: '',
@@ -16,54 +11,61 @@ export const INITIAL_POLL: IPoll = {
   questions: []
 };
 
-const useCreator = ({ pollToEdit, onClose, onRefresh }: IProps) => {
+const useCreator = () => {
   const [poll, setPoll] = useState<IPoll>(INITIAL_POLL);
   const [confirmation, setConfirmation] = useState<boolean>(false);
-  const [hasEmptyFields, setHasEmptyFields] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const { emptyFields } = useValidation({ poll });
+  const {
+    hasEmptyFields,
+    mainEmptyFields,
+    secondaryEmptyFields,
+    onHasEmptyFields
+  } = useValidation({ poll });
+  const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
-    if (pollToEdit) {
-      setPoll(pollToEdit);
+    const getPollByID = async (id: number) => {
+      const poll = await getPoll(id);
+
+      if (poll) {
+        setPoll({ ...poll, questions: poll.questions });
+      }
+    };
+
+    if (id) {
+      getPollByID(Number(id));
     }
-    setConfirmation(false);
-    setHasEmptyFields(false);
-  }, [pollToEdit]);
+  }, [id]);
 
   useEffect(() => {
     if (confirmation) {
       setConfirmation(false);
-      savePoll(poll, Boolean(pollToEdit));
+      savePoll(poll, Boolean(id));
       setLoading(false);
-      onClose();
-      onRefresh(true);
+      router.replace('/Dashboard/Polls');
     }
-  }, [confirmation, onClose, poll, pollToEdit, onRefresh]);
+  }, [confirmation, poll, id, router]);
 
   const onChange = useCallback((poll: IPoll) => {
     setPoll(poll);
   }, []);
 
   const onSave = useCallback(() => {
-    if (emptyFields) {
-      setHasEmptyFields(true);
-    } else {
-      setHasEmptyFields(false);
-      setLoading(true);
-      setConfirmation(true);
-    }
-  }, [emptyFields]);
+    setLoading(true);
+    setConfirmation(true);
+  }, []);
 
   return {
     state: {
       poll,
-      emptyFields: emptyFields && hasEmptyFields,
+      mainEmptyFields: mainEmptyFields,
+      secondaryEmptyFields: secondaryEmptyFields,
       hasEmptyFields,
-      questionsNumber: pollToEdit?.questions?.length,
+      editMode: Boolean(id),
       loading
     },
-    actions: { onChange, onSave }
+    actions: { onChange, onSave, onHasEmptyFields }
   };
 };
 

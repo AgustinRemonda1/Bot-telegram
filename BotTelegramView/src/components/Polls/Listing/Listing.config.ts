@@ -7,11 +7,11 @@ import { IConfig } from 'LogicServices/Shared/Types';
 interface IConfigProps {
   language: ILanguage;
   onOpenDeletePopUp: (id: number) => void;
-  onOpenPollPopUp: (poll?: IPoll) => void;
+  onEditPoll: (id: number) => void;
 }
 
 export const generateConfigWithLang = (configParams: IConfigProps) => {
-  const { language, onOpenDeletePopUp, onOpenPollPopUp } = configParams;
+  const { language, onOpenDeletePopUp, onEditPoll } = configParams;
 
   return [
     {
@@ -38,7 +38,7 @@ export const generateConfigWithLang = (configParams: IConfigProps) => {
           title: language.edit,
           icon: editIcon.src,
           onClick: (poll: IPoll) => {
-            onOpenPollPopUp(poll);
+            onEditPoll(Number(poll.pollId));
           }
         },
         {

@@ -1,1 +1,7 @@
-export { fetchPolls, deletePoll, updatePoll, createPoll } from './Polls';
+export {
+  fetchPolls,
+  deletePoll,
+  updatePoll,
+  createPoll,
+  fetchPoll
+} from './Polls';

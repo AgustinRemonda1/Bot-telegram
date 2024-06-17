@@ -1,4 +1,8 @@
-import { updateCommand, createCommand } from 'RepoServices/Commands';
+import {
+  updateCommand,
+  createCommand,
+  fetchCommand
+} from 'RepoServices/Commands';
 import { ICommandCreator } from './Types';
 
 export const saveCommand = async (
@@ -11,5 +15,13 @@ export const saveCommand = async (
 
   if (response !== 'error') {
     return response;
+  }
+};
+
+export const getCommand = async (id: number) => {
+  const response = await fetchCommand(id);
+
+  if (response !== 'error') {
+    return response.commands;
   }
 };

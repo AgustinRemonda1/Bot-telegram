@@ -67,10 +67,19 @@ const ES = {
   permissionDenied: 'Permiso denegado',
   signInToViewThisPage: 'Inicia sesión para ver esta página.',
   createBaseCommand: 'Crear Comando base',
-  createCommandTypeFeatures: 'Crear Caracteristicas del tipo de comando.',
+  createCommandTypeFeatures: 'Crear caracteristicas del tipo de comando',
+  editBaseCommand: 'Editar Comando base',
+  editCommandTypeFeatures: 'Editar caracteristicas del tipo de comando',
   finish: 'Finalizar',
   back: 'Atras',
-  next: 'siguiente'
+  next: 'Siguiente',
+  confirm: 'Confirmar',
+  new: 'Nuevo',
+  newF: 'Nueva',
+  poll: 'Encuesta',
+  createNewPoll: 'Crear nueva encuesta',
+  createQuestionsForThePoll: 'Crear preguntas para la encuesta',
+  editQuestions: 'Editar preguntas'
 };
 
 export default ES;

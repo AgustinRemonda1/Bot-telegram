@@ -1,7 +1,0 @@
-import BallotIcon from '@mui/icons-material/Ballot';
-import QuizIcon from '@mui/icons-material/Quiz';
-import DoneAllIcon from '@mui/icons-material/DoneAll';
-import SaveIcon from '@mui/icons-material/Save';
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import DescriptionIcon from '@mui/icons-material/Description';
-import AssignmentIcon from '@mui/icons-material/Assignment';

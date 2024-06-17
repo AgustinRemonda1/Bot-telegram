@@ -32,6 +32,7 @@ const CustomInput = ({
           disabled={disabled}
           multiline={Boolean(multiline)}
           rows={Boolean(multiline) ? 5 : 1}
+          autoComplete="off"
         />
         {!value && emptyFields && (
           <InputLabelAlert variant="subtitle1">

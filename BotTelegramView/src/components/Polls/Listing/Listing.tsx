@@ -5,28 +5,23 @@ import SectionTitle from 'components/Shared/SectionTitle';
 import DeletePopUp from 'components/Shared/DeletePopUp';
 import { Container, Content } from 'components/Layout/Content';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import useListing, {
-  useCreatorModal,
-  useDelete
-} from 'LogicServices/Polls/Listing';
-import Creator from 'components/Polls/Creator';
+import useListing, { useDelete } from 'LogicServices/Polls/Listing';
 
 const Listing = () => {
   const { language } = useContext(LanguageContext);
   const { state, actions } = useListing();
   const deletePopUp = useDelete({ onRefresh: actions.onRefresh });
-  const creatorModal = useCreatorModal();
   const configParams = {
     language,
     onOpenDeletePopUp: deletePopUp.actions.onOpen,
-    onOpenPollPopUp: creatorModal.actions.onOpen
+    onEditPoll: actions.onEditPoll
   };
 
   return (
     <Container>
       <Content>
         <SectionTitle
-          action={() => creatorModal.actions.onOpen()}
+          action={() => actions.onCreatePoll()}
           titleLabel={language.polls}
         />
         <Table
@@ -39,12 +34,6 @@ const Listing = () => {
           refreshTable={state.pagination.refresh}
         />
       </Content>
-      <Creator
-        poll={creatorModal.state.poll}
-        open={creatorModal.state.open}
-        onClose={creatorModal.actions.onClose}
-        onRefresh={actions.onRefresh}
-      />
       <DeletePopUp
         open={deletePopUp.state.open}
         onClose={deletePopUp.actions.onClose}

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 interface IProps {
-  props: { maxSteps: number; validations: boolean[] };
+  props: { maxSteps: number; validations: boolean[]; editorMode: boolean };
   actions: {
     onValidation: (externalFlag?: boolean) => void;
     onSave: () => void;
@@ -9,12 +9,21 @@ interface IProps {
 }
 
 const useStepper = ({ props, actions }: IProps) => {
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(
+    props.editorMode ? props.maxSteps : 0
+  );
+  const [confirmationStep, setConfirmationStep] = useState<boolean>(false);
+
+  const onSelectStep = useCallback((step: number) => {
+    setStep(step);
+    setConfirmationStep(true);
+  }, []);
 
   const onNextStep = useCallback(() => {
     if (step < props.maxSteps && props.validations[step]) {
       setStep(step + 1);
       actions.onValidation(false);
+      console.log('stepp', step);
     } else {
       actions.onValidation();
     }
@@ -26,11 +35,34 @@ const useStepper = ({ props, actions }: IProps) => {
     }
   }, [step]);
 
+  const onFirstStep = useCallback(() => {
+    setStep(0);
+  }, []);
+
+  const onLastStep = useCallback(() => {
+    if (step < props.maxSteps && props.validations[step]) {
+      setStep(props.maxSteps);
+      actions.onValidation(false);
+    } else {
+      actions.onValidation();
+    }
+  }, [step, props, actions.onValidation]);
+
   const onFinishStep = useCallback(() => {
     actions.onSave();
   }, [actions.onSave]);
 
-  return { step, onNextStep, onBackStep, onFinishStep };
+  return {
+    state: { step, confirmationStep },
+    actions: {
+      onNextStep,
+      onBackStep,
+      onFinishStep,
+      onSelectStep,
+      onFirstStep,
+      onLastStep
+    }
+  };
 };
 
 export default useStepper;
