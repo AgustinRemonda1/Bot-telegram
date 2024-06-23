@@ -15,6 +15,8 @@ export const findTypeAndBuild = (input: IInput): JSX.Element => {
         value={input.value}
         emptyFields={input.emptyFields}
         list={[]}
+        inputType={input.inputType}
+        customMessage={input.customMessage}
         fileValues={input.fileValues}
         fileTargets={input.fileTargets}
         correction={Boolean(input.correction)}
@@ -29,6 +31,8 @@ export const findTypeAndBuild = (input: IInput): JSX.Element => {
       onChange={input.onChange}
       value={input.value}
       list={(input && input.list) || []}
+      inputType={input.inputType}
+      customMessage={input.customMessage}
       fileValues={input.fileValues}
       fileTargets={input.fileTargets}
       emptyFields={input.emptyFields}

@@ -9,4 +9,9 @@ export interface IProps {
   correction?: boolean;
   disabled?: boolean;
   multiline?: boolean;
+  inputType?: string;
+  customMessage?: {
+    condition: boolean;
+    message: string;
+  };
 }

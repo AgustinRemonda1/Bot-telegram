@@ -1,4 +1,3 @@
-import { IInput } from 'components/Shared/BuildInputs/BuildInput.types';
 import { IUser } from 'LogicServices/Auth';
 import { IEvent } from 'LogicServices/Shared/Types';
 import { ILanguage } from '~/Static/Lang/Lang.lang';

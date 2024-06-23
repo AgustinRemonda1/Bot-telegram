@@ -17,7 +17,9 @@ const CustomInput = ({
   name,
   correction,
   disabled,
-  multiline
+  multiline,
+  inputType,
+  customMessage
 }: IProps) => {
   const { language } = useContext(LanguageContext);
 
@@ -33,10 +35,16 @@ const CustomInput = ({
           multiline={Boolean(multiline)}
           rows={Boolean(multiline) ? 5 : 1}
           autoComplete="off"
+          type={inputType}
         />
         {!value && emptyFields && (
           <InputLabelAlert variant="subtitle1">
             {language.thisFieldIsRequired}
+          </InputLabelAlert>
+        )}
+        {customMessage?.condition && (
+          <InputLabelAlert variant="subtitle1">
+            {customMessage.message}
           </InputLabelAlert>
         )}
       </InputFormControl>

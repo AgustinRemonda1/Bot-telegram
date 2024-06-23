@@ -15,5 +15,12 @@ export const auth = [
         message: 'actualizado'
       })
     );
+  }),
+  rest.put('/api/change-password', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        message: 'actualizado'
+      })
+    );
   })
 ];

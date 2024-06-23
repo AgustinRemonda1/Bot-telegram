@@ -12,6 +12,7 @@ export interface IInput {
   value: string | null | number;
   name: string;
   list?: IOption[] | null;
+  inputType?: string;
   fileValues?: {
     filename: string;
     extension: string;
@@ -24,6 +25,10 @@ export interface IInput {
   correction?: boolean;
   disabled?: boolean;
   multiline?: boolean;
+  customMessage?: {
+    condition: boolean;
+    message: string;
+  };
 }
 
 export interface IProps {

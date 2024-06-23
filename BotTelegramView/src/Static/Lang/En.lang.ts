@@ -86,7 +86,9 @@ const EN = {
   lastname: 'Lastname',
   role: 'Role',
   profileImage: 'Profile',
-  changePasssword: 'Change password'
+  changePasssword: 'Change password',
+  confirmPassword: 'Confirm Password',
+  passwordMustBeEquals: 'Passwords must be equals'
 };
 
 export default EN;

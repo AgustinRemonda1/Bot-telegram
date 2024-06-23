@@ -86,7 +86,9 @@ const ES = {
   lastname: 'Apellido',
   role: 'Rol',
   profileImage: 'Imagen de perfil',
-  changePasssword: 'Cambiar contraseña'
+  changePasssword: 'Cambiar contraseña',
+  confirmPassword: 'Confirmar contraseña',
+  passwordMustBeEquals: 'Las contraseñas deben ser iguales.'
 };
 
 export default ES;

@@ -43,7 +43,7 @@ const AppBar = ({ props, actions }: IProps) => {
     state,
     actions: { onOpenDrawer, onSignOut, onRedirectToConfigurations }
   } = useAppBar(actions);
-  console.log(lang);
+
   return (
     <AppBarContainer open={state.open}>
       <MenuContainer>
