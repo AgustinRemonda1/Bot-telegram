@@ -7,7 +7,8 @@ import { IInputConfigProps } from '../../Creator/Creator.types';
 
 export const inputNames = {
   filename: 'filename',
-  url: 'url',
+  file: 'file',
+  extension: 'extension',
   parameter: 'parameter',
   nestedCommands: 'nestedCommands'
 };
@@ -25,17 +26,23 @@ export const generateFileInputs = (
       title: language.filename,
       onChange: onChangeInputs,
       value: command.botResponses?.botResponseFiles?.filename || '',
-      emptyFields,
-      disabled: editMode
+      emptyFields
     },
     {
-      type: 'text',
-      name: inputNames.url,
-      title: language.url,
+      type: 'file',
+      name: inputNames.file,
+      title: language.file,
       onChange: onChangeInputs,
-      value: command.botResponses?.botResponseFiles?.url || '',
-      emptyFields,
-      disabled: editMode
+      value: command.botResponses?.botResponseFiles?.file || '',
+      fileValues: {
+        filename: command.botResponses.botResponseFiles?.filename || '',
+        extension: command.botResponses.botResponseFiles?.extension || ''
+      },
+      fileTargets: {
+        file: inputNames.file,
+        extension: inputNames.extension
+      },
+      emptyFields
     }
   ];
 };

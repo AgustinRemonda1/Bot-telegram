@@ -1,6 +1,6 @@
 import { IQuestion, IPoll } from 'LogicServices/Polls/Types';
 import BuildInputs from 'components/Shared/BuildInputs';
-import { IInputQuestions } from './Creator.types';
+import { IInputQuestions } from '../Creator.types';
 import { ILanguage } from 'Static/Lang/Lang.lang';
 import { IEvent } from 'LogicServices/Shared/Types';
 

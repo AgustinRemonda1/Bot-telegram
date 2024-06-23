@@ -79,7 +79,14 @@ const EN = {
   poll: 'Poll',
   createNewPoll: 'Create new poll',
   createQuestionsForThePoll: 'Create questions for the poll',
-  editQuestions: 'Edit questions'
+  editQuestions: 'Edit questions',
+  file: 'File',
+  configurations: 'Configurations',
+  firstname: 'Firstname',
+  lastname: 'Lastname',
+  role: 'Role',
+  profileImage: 'Profile',
+  changePasssword: 'Change password'
 };
 
 export default EN;

@@ -57,7 +57,7 @@ const useLogin = () => {
   const onLogin = useCallback(async () => {
     if (password && username) {
       setLoading(true);
-      console.log(password, username);
+
       loginRequest({ username, password })
         .then((res) => login(res as iLoginResponse))
         .catch((err) => console.log(err));

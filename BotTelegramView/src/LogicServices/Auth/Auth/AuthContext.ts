@@ -7,7 +7,7 @@ export interface IOnLogin {
 }
 
 export interface IAuthContext {
-  user?: IUser | null;
+  user?: IUser;
   token?: string;
   loading?: boolean;
   actions: {

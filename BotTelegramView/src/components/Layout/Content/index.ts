@@ -1,9 +1,12 @@
 export {
   Container,
   Content,
+  CenterContent,
+  LeftContent,
   CreatorContent,
   ContentSize,
   StepperContent,
   StepperFooter,
-  SectionTitleContent
+  SectionTitleContent,
+  InputContainer
 } from './Content.styles';

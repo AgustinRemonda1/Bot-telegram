@@ -41,9 +41,9 @@ const AppBar = ({ props, actions }: IProps) => {
   const { lang, language, onChangeLanguage } = useContext(LanguageContext);
   const {
     state,
-    actions: { onOpenDrawer, onSignOut }
+    actions: { onOpenDrawer, onSignOut, onRedirectToConfigurations }
   } = useAppBar(actions);
-
+  console.log(lang);
   return (
     <AppBarContainer open={state.open}>
       <MenuContainer>
@@ -92,6 +92,9 @@ const AppBar = ({ props, actions }: IProps) => {
           onClose={actions.onCloseMenu}
         >
           <UserName>{props.user ? props.user.username : null}</UserName>
+          <MenuItem onClick={onRedirectToConfigurations}>
+            {language.configurations}
+          </MenuItem>
           <MenuItem onClick={onSignOut}>{language.signOut}</MenuItem>
           <SelectContainer>
             <SelectOptions

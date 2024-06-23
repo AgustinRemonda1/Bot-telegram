@@ -1,0 +1,1 @@
+export { updateConfig } from './Config';

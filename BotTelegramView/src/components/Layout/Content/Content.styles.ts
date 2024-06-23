@@ -32,6 +32,19 @@ export const Content = styled(ContentContainer)`
   max-width: 95% !important;
 `;
 
+export const CenterContent = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const LeftContent = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const CreatorContent = styled(ContentContainer)`
   display: flex;
   justify-content: center;
@@ -80,4 +93,12 @@ export const StepperFooter = styled.div`
 
 export const SectionTitleContent = styled.div`
   width: 70%;
+`;
+
+interface IPropsContainer {
+  correction?: boolean;
+}
+
+export const InputContainer = styled.div<IPropsContainer>`
+  width: ${({ correction }) => (!correction ? '44%' : '92%')};
 `;

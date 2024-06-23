@@ -39,14 +39,25 @@ const useCommands = ({ command, onChange }: IProps) => {
             }
           }
         });
-      } else if (target === inputNames.url) {
+      } else if (target === inputNames.file) {
         onChange({
           ...command,
           botResponses: {
             ...command.botResponses,
             botResponseFiles: {
               ...command.botResponses.botResponseFiles,
-              url: value
+              file: value
+            }
+          }
+        });
+      } else if (target === inputNames.extension) {
+        onChange({
+          ...command,
+          botResponses: {
+            ...command.botResponses,
+            botResponseFiles: {
+              ...command.botResponses.botResponseFiles,
+              extension: value
             }
           }
         });

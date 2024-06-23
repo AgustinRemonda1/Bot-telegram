@@ -79,7 +79,14 @@ const ES = {
   poll: 'Encuesta',
   createNewPoll: 'Crear nueva encuesta',
   createQuestionsForThePoll: 'Crear preguntas para la encuesta',
-  editQuestions: 'Editar preguntas'
+  editQuestions: 'Editar preguntas',
+  file: 'Archivo',
+  configurations: 'Configuraciones',
+  firstname: 'Nombre',
+  lastname: 'Apellido',
+  role: 'Rol',
+  profileImage: 'Imagen de perfil',
+  changePasssword: 'Cambiar contraseña'
 };
 
 export default ES;

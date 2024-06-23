@@ -26,7 +26,7 @@ const useValidation = ({ command, flags }: IProps) => {
   const secondaryEmptyFields = useMemo(() => {
     const filesInputs = !validator(command, [
       'botResponses.botResponseFiles.filename',
-      'botResponses.botResponseFiles.url'
+      'botResponses.botResponseFiles.file'
     ]);
     const paramInput = !validator(command, ['botResponses.parameter']);
     const nestedCommands = !validator(command, ['botNestedCommands.length']);

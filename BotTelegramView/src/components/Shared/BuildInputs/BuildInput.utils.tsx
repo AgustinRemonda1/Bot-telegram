@@ -15,6 +15,8 @@ export const findTypeAndBuild = (input: IInput): JSX.Element => {
         value={input.value}
         emptyFields={input.emptyFields}
         list={[]}
+        fileValues={input.fileValues}
+        fileTargets={input.fileTargets}
         correction={Boolean(input.correction)}
         disabled={input.disabled}
         multiline={input.multiline}
@@ -27,6 +29,8 @@ export const findTypeAndBuild = (input: IInput): JSX.Element => {
       onChange={input.onChange}
       value={input.value}
       list={(input && input.list) || []}
+      fileValues={input.fileValues}
+      fileTargets={input.fileTargets}
       emptyFields={input.emptyFields}
       correction={Boolean(input.correction)}
       disabled={input.disabled}

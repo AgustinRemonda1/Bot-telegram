@@ -60,8 +60,10 @@ const generateFileStepData = ({
     value: command.botResponses?.botResponseFiles?.filename as string
   },
   {
-    title: language.url,
-    value: command.botResponses?.botResponseFiles?.url as string
+    title: language.file,
+    value:
+      String(command.botResponses?.botResponseFiles?.filename) +
+      String(command.botResponses?.botResponseFiles?.extension)
   }
 ];
 

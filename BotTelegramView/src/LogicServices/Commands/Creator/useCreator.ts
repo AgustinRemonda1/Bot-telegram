@@ -17,7 +17,8 @@ export const INITIAL_COMMAND: ICommandCreator = {
     parameter: '',
     botResponseFiles: {
       filename: '',
-      url: ''
+      file: '',
+      extension: ''
     }
   },
   botNestedCommands: []

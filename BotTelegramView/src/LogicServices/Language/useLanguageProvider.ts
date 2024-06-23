@@ -11,7 +11,9 @@ const useLanguageProvider = () => {
   useEffect(() => {
     const lang = getCookieValue('lang');
 
-    setLang(String(lang));
+    if (lang) {
+      setLang(String(lang));
+    }
   }, []);
 
   useEffect(() => {

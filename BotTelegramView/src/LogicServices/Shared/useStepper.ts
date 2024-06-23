@@ -23,7 +23,6 @@ const useStepper = ({ props, actions }: IProps) => {
     if (step < props.maxSteps && props.validations[step]) {
       setStep(step + 1);
       actions.onValidation(false);
-      console.log('stepp', step);
     } else {
       actions.onValidation();
     }

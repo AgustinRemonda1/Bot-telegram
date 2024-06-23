@@ -17,7 +17,8 @@ export interface IResponseFiles {
   botResponseId?: number;
   filename?: string;
   description?: string;
-  url?: string;
+  file?: string;
+  extension?: string;
 }
 
 export interface IResponses {
