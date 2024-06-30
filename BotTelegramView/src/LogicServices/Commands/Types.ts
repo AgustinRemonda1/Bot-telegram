@@ -45,3 +45,9 @@ export interface ICommand {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface ICommandSuggestions {
+  commandSugesttionId: number;
+  name: string;
+  description: string;
+}

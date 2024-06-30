@@ -88,7 +88,13 @@ const EN = {
   profileImage: 'Profile',
   changePasssword: 'Change password',
   confirmPassword: 'Confirm Password',
-  passwordMustBeEquals: 'Passwords must be equals'
+  passwordMustBeEquals: 'Passwords must be equals',
+  suggestionOfNewCommands: 'Suggestions of new commands',
+  surveyResults: 'Survey results',
+  backofficeUsers: 'Backoffice users',
+  view: 'View',
+  commandSuggestion: 'Command suggestion',
+  create: 'Create'
 };
 
 export default EN;

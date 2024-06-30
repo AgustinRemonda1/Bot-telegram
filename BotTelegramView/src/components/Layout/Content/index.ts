@@ -3,10 +3,12 @@ export {
   Content,
   CenterContent,
   LeftContent,
+  SpaceAroundContent,
   CreatorContent,
   ContentSize,
   StepperContent,
   StepperFooter,
   SectionTitleContent,
-  InputContainer
+  InputContainer,
+  DataCeil
 } from './Content.styles';

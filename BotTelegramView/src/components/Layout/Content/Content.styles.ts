@@ -45,6 +45,13 @@ export const LeftContent = styled.div`
   justify-content: flex-end;
 `;
 
+export const SpaceAroundContent = styled.div`
+  margin-top: 5em;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
 export const CreatorContent = styled(ContentContainer)`
   display: flex;
   justify-content: center;
@@ -101,4 +108,9 @@ interface IPropsContainer {
 
 export const InputContainer = styled.div<IPropsContainer>`
   width: ${({ correction }) => (!correction ? '44%' : '92%')};
+`;
+
+export const DataCeil = styled.div<IPropsContainer>`
+  width: ${({ correction }) => (!correction ? '44%' : '92%')};
+  padding: 10px 20px 0;
 `;

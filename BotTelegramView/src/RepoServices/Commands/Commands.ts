@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import request from 'RepoServices/Requests';
-import { ICommand } from 'LogicServices/Commands/Types';
+import { ICommand, ICommandSuggestions } from 'LogicServices/Commands/Types';
 import { ICommandCreator } from 'LogicServices/Commands/Creator/Types';
 
 export interface IRequest {
@@ -10,6 +10,11 @@ export interface IRequest {
 
 export interface IFetchResponse {
   commands: ICommand[];
+  total: number;
+}
+
+export interface IFetchSuggestionsResponse {
+  commandsSuggestions: ICommandSuggestions[];
   total: number;
 }
 
@@ -43,6 +48,24 @@ export const fetchCommands = async ({ page, pageSize }: IRequest) => {
 
     return {
       commands: res.data.commands,
+      total: res.data.total
+    };
+  } catch (error) {
+    return 'error';
+  }
+};
+
+export const fetchSuggestionsCommands = async ({
+  page,
+  pageSize
+}: IRequest) => {
+  try {
+    const res: AxiosResponse<IFetchSuggestionsResponse> = await request.get(
+      `/api/bot-commands-suggestions?page=${page}&pageSize=${pageSize}`
+    );
+    console.log(res.data, 'asdasds');
+    return {
+      commandsSuggestions: res.data.commandsSuggestions,
       total: res.data.total
     };
   } catch (error) {

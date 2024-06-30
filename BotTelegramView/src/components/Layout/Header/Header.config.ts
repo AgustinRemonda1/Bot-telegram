@@ -32,8 +32,7 @@ export const menuConfig = (language: ILanguage): IMenuConfig[] => [
   {
     icon: Activities.src,
     name: language.activities,
-    route: '/dashboard/activities',
-    permissions: ['Activities']
+    route: '/Dashboard/Activities'
   }
 ];
 

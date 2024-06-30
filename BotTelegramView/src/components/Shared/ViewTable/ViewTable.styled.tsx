@@ -1,15 +1,6 @@
 import styled from '@emotion/styled';
 import { BLUE, SUTIL_GRAY, WHITE } from 'Static/Styles/Colors.index';
 
-interface IPropsContainer {
-  correction?: boolean;
-}
-
-export const DataCeil = styled.div<IPropsContainer>`
-  width: ${({ correction }) => (!correction ? '44%' : '92%')};
-  padding: 10px 20px 0;
-`;
-
 export const TableContainer = styled.div`
   width: 100%;
   padding: 10px 20px 0;

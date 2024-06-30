@@ -542,3 +542,37 @@ export const commandsDataMock = [
     ]
   }
 ];
+
+export const commandsSugesttionsDataMock = [
+  {
+    commandSugesttionId: 0,
+    name: 'Nombre de Comando',
+    description:
+      'La Licenciatura en Química forma profesionales capaces para trabajar con sustancias químicas de cualquier tipo y desarrollar trabajos de investigación y tecnológicos en el área. Los Licenciados en Química pueden desempeñarse en laboratorios, industrias y oficinas científico-técnicas.'
+  },
+  {
+    commandSugesttionId: 2,
+    name: 'Nombre de Comando',
+    description: `
+        ¡Bienvenido al botTestUnahur!
+
+        Características (por ahora):
+        - Ubicacion de la unahur
+        - Programas de carreras
+        - Oferta Academica
+        - Encuestas
+        Recorda que tenes que registrarte para acceder a diferentes 
+        acciones!
+
+        *Primero te pido que te registres, podes hacerlo
+         apretando aca /Registrarme o escribiendo el comando.
+      
+        *Escribe /Ayuda para ver los comando disponibles
+      `
+  },
+  {
+    commandSugesttionId: 3,
+    name: 'Nombre de Comando',
+    description: 'un nombre de comando'
+  }
+];

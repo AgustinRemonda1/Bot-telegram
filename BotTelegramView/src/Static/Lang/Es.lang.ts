@@ -88,7 +88,13 @@ const ES = {
   profileImage: 'Imagen de perfil',
   changePasssword: 'Cambiar contraseña',
   confirmPassword: 'Confirmar contraseña',
-  passwordMustBeEquals: 'Las contraseñas deben ser iguales.'
+  passwordMustBeEquals: 'Las contraseñas deben ser iguales.',
+  suggestionOfNewCommands: 'Sugerencias de nuevos comandos',
+  surveyResults: 'Resultados de las encuestas',
+  backofficeUsers: 'Usuarios del backoffice',
+  view: 'Ver',
+  commandSuggestion: 'Comando de sugerencia',
+  create: 'Crear'
 };
 
 export default ES;

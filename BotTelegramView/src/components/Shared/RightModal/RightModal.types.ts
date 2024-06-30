@@ -7,4 +7,8 @@ export interface IProps {
   title: string;
   loading: boolean;
   onSave: () => void;
+  customMainAction?: {
+    title: string;
+    icon?: ReactNode;
+  };
 }

@@ -18,14 +18,14 @@ const ChangePassword = () => {
     emptyFields: state.hasEmptyFields,
     showNotEqualMessage: state.showNotEqualMessage
   });
-  console.log(state.showNotEqualMessage);
+
   return (
     <Container>
       <Content>
         <SectionTitle titleLabel={language.changePasssword} />
         <CenterContent>
           {passwordInputs.map((input, index) => (
-            <BuildInputs key={'config' + index} input={input} />
+            <BuildInputs key={'change-password' + index} input={input} />
           ))}
           <Button
             startIcon={<SaveIcon />}

@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { commandsDataMock } from 'Static/Data';
+import { commandsDataMock, commandsSugesttionsDataMock } from 'Static/Data';
 
 export const commands = [
   rest.get('/api/bot-commands/:id', (req, res, ctx) => {
@@ -57,6 +57,25 @@ export const commands = [
     return res(
       ctx.json({
         message: 'creado'
+      })
+    );
+  }),
+  rest.get('/api/bot-commands-suggestions', (req, res, ctx) => {
+    const pageSize = req.url.searchParams.get('pageSize');
+    const page = req.url.searchParams.get('page');
+    const pageSizeNumber = Number(pageSize);
+    const pageNumber = Number(page) + 1;
+
+    const startNumber =
+      pageNumber === 1 ? 0 : pageNumber > 2 ? pageNumber * 10 : 10;
+
+    return res(
+      ctx.json({
+        commandsSuggestions: commandsSugesttionsDataMock.slice(
+          startNumber,
+          pageSizeNumber * pageNumber
+        ),
+        total: commandsSugesttionsDataMock.length
       })
     );
   })

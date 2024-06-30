@@ -20,7 +20,8 @@ const RightModal = ({
   children,
   loading,
   title,
-  onSave
+  onSave,
+  customMainAction
 }: IProps) => {
   const { language } = useContext(LanguageContext);
 
@@ -37,8 +38,15 @@ const RightModal = ({
           <CloseButton onClick={onClose}>
             <Box fontWeight={600}>{language.close}</Box>
           </CloseButton>
-          <SubmitButton variant="contained" disabled={loading} onClick={onSave}>
-            <Box fontWeight={600}>{language.save}</Box>
+          <SubmitButton
+            startIcon={customMainAction?.icon}
+            variant="contained"
+            disabled={loading}
+            onClick={onSave}
+          >
+            <Box fontWeight={600}>
+              {customMainAction ? customMainAction.title : language.save}
+            </Box>
           </SubmitButton>
           {loading && (
             <LoaderContainer>

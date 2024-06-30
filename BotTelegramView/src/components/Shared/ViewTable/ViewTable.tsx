@@ -2,13 +2,8 @@ import React, { FC, useContext } from 'react';
 import { Button, Typography } from '@mui/material';
 import SimpleTable from '../SimpleTable';
 import { IConfig, IDataset } from 'LogicServices/Shared/Types';
-import {
-  Table,
-  Title,
-  DataCeil,
-  TableContainer,
-  Action
-} from './ViewTable.styled';
+import { DataCeil } from 'components/Layout/Content';
+import { Table, Title, TableContainer, Action } from './ViewTable.styled';
 import EditIcon from '@mui/icons-material/Edit';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
 

@@ -50,7 +50,7 @@ export const generateConfigWithLang = (configParams: IConfigProps) => {
       actions: [
         {
           type: 'edit',
-          id: 'button-poll-edit',
+          id: 'button-command-edit',
           title: language.edit,
           icon: editIcon.src,
           disabled: (command: ICommand) =>
@@ -61,7 +61,7 @@ export const generateConfigWithLang = (configParams: IConfigProps) => {
         },
         {
           type: 'delete',
-          id: 'button-poll-delete',
+          id: 'button-command-delete',
           title: language.delete,
           icon: trashIcon.src,
           disabled: (command: ICommand) =>
