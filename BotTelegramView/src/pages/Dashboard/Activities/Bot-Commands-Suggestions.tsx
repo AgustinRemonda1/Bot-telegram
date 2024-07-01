@@ -1,10 +1,10 @@
-import SuggestionCommands from 'components/Commands/SuggestionCommands';
+import CommandsSuggestions from 'components/Commands/CommandsSuggestions';
 import PageGuard from 'components/HOC/PageGuard';
 
 const BotCommandsSuggestionsPage = () => {
   return (
     <PageGuard>
-      <SuggestionCommands />
+      <CommandsSuggestions />
     </PageGuard>
   );
 };

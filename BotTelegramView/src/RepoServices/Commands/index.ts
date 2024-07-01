@@ -2,7 +2,7 @@ export {
   fetchCommand,
   fetchCommands,
   fetchAllCommands,
-  fetchSuggestionsCommands,
+  fetchCommandsSuggestions,
   deleteCommand,
   updateCommand,
   createCommand,

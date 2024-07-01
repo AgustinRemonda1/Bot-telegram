@@ -55,7 +55,7 @@ export const fetchCommands = async ({ page, pageSize }: IRequest) => {
   }
 };
 
-export const fetchSuggestionsCommands = async ({
+export const fetchCommandsSuggestions = async ({
   page,
   pageSize
 }: IRequest) => {

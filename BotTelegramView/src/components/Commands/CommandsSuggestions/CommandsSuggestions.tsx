@@ -3,14 +3,14 @@ import Table from 'components/Shared/Table';
 import { Container, Content } from 'components/Layout/Content';
 import SectionTitle from 'components/Shared/SectionTitle';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import useSuggestionCommands from 'LogicServices/Commands/SuggestionCommands/useSuggestionCommands';
-import useViewSuggestionDetails from 'LogicServices/Commands/SuggestionCommands/useViewSuggestionDetails';
-import { generateConfigWithLang } from './SuggestionCommands.config';
+import useCommandsSuggestions from 'LogicServices/Commands/CommandsSuggestions/useCommandsSuggestions';
+import useViewSuggestionDetails from 'LogicServices/Commands/CommandsSuggestions/useViewSuggestionDetails';
+import { generateConfigWithLang } from './CommandsSuggestions.config';
 import ViewModal from './ViewModal';
 
-const SuggestionCommands = () => {
+const CommandsSuggestions = () => {
   const { language } = useContext(LanguageContext);
-  const { state, actions } = useSuggestionCommands();
+  const { state, actions } = useCommandsSuggestions();
   const suggestionView = useViewSuggestionDetails();
   const config = generateConfigWithLang({
     language,
@@ -45,4 +45,4 @@ const SuggestionCommands = () => {
   );
 };
 
-export default SuggestionCommands;
+export default CommandsSuggestions;

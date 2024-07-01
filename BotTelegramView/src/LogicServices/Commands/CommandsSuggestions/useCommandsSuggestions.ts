@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fetchSuggestionsCommands } from 'RepoServices/Commands';
+import { fetchCommandsSuggestions } from 'RepoServices/Commands';
 import { ICommandSuggestions } from '../Types';
 import usePagination from 'LogicServices/Shared/usePagination';
 import { useRouter } from 'next/router';
 
-const useSuggestionCommands = () => {
+const useCommandsSuggestions = () => {
   const [commandsSuggestions, setCommandsSuggestions] = useState<
     ICommandSuggestions[]
   >([]);
@@ -14,7 +14,7 @@ const useSuggestionCommands = () => {
   useEffect(() => {
     actions.onLoading(true);
     const getCommands = async () => {
-      const response = await fetchSuggestionsCommands(state.pagination);
+      const response = await fetchCommandsSuggestions(state.pagination);
 
       if (response !== 'error') {
         setCommandsSuggestions(response.commandsSuggestions);
@@ -46,4 +46,4 @@ const useSuggestionCommands = () => {
   };
 };
 
-export default useSuggestionCommands;
+export default useCommandsSuggestions;
