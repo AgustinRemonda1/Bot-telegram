@@ -1,18 +1,18 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import useDashboard from './useDashboard';
-import { pollDataMock, commandsDataMock } from 'Static/Data';
+import { surveyDataMock, commandsDataMock } from 'Static/Data';
 
 const STATISTICS = {
   totalCommands: 20,
   totalSubscribers: 50,
   newLastAdmission: 12,
-  totalPolls: 10
+  totalSurveys: 10
 };
 
 const refreshCommand = jest.fn();
 
-jest.mock('RepoServices/Polls', () => ({
-  fetchPolls: () => ({ polls: pollDataMock.slice(0, 3), total: 10 })
+jest.mock('RepoServices/Surveys', () => ({
+  fetchSurveys: () => ({ surveys: surveyDataMock.slice(0, 3), total: 10 })
 }));
 
 jest.mock('RepoServices/Commands', () => ({
@@ -25,11 +25,11 @@ jest.mock('RepoServices/Statistics', () => ({
 }));
 
 describe('useDashboard', () => {
-  it('show polls, commands and statistics when hook load', async () => {
+  it('show surveys, commands and statistics when hook load', async () => {
     const { result, waitForNextUpdate } = renderHook(() => useDashboard());
 
     const expected = {
-      polls: pollDataMock.slice(0, 3),
+      surveys: surveyDataMock.slice(0, 3),
       commands: commandsDataMock.slice(0, 3),
       statistics: STATISTICS,
       loading: false

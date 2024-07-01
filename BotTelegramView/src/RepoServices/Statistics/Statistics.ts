@@ -5,7 +5,7 @@ export interface IFetchStatisticsResponse {
   totalCommands: number;
   totalSubscribers: number;
   newLastAdmission: number;
-  totalPolls: number;
+  totalSurveys: number;
 }
 
 export const fetchStatistics = async () => {

@@ -39,7 +39,9 @@ export const generateCommandConfigWithLang = ({
     }
   ] as IConfig[];
 
-export const generatePollConfigWithLang = ({ language }: ITablesConfigProps) =>
+export const generateSurveyConfigWithLang = ({
+  language
+}: ITablesConfigProps) =>
   [
     {
       name: language.name,
@@ -60,7 +62,7 @@ interface IConfigCardsProps {
   language: ILanguage;
   totalSubscribers: number;
   newLastAdmission: number;
-  totalPolls: number;
+  totalSurveys: number;
   totalCommands: number;
 }
 
@@ -69,7 +71,7 @@ export const generateCardInfo = (configParams: IConfigCardsProps) => {
     language,
     totalSubscribers,
     newLastAdmission,
-    totalPolls,
+    totalSurveys,
     totalCommands
   } = configParams;
 
@@ -83,8 +85,8 @@ export const generateCardInfo = (configParams: IConfigCardsProps) => {
       value: newLastAdmission
     },
     {
-      name: language.totalPolls.toUpperCase(),
-      value: totalPolls
+      name: language.totalSurveys.toUpperCase(),
+      value: totalSurveys
     },
     {
       name: language.totalCommands.toUpperCase(),

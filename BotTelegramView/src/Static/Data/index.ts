@@ -4,4 +4,4 @@ export { commandsSugesttionsDataMock } from './commands.data';
 export { commandsDataMock } from './commands.data';
 export { botSubsUserDataMock } from './botSubsUser.data';
 export { botUsersDataMock } from './botUsers.data';
-export { pollDataMock } from './poll.data';
+export { surveyDataMock } from './survey.data';

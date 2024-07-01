@@ -7,7 +7,7 @@ export const botStatistics = [
         totalCommands: 20,
         totalSubscribers: 50,
         newLastAdmission: 12,
-        totalPolls: 10
+        totalSurveys: 10
       })
     );
   })

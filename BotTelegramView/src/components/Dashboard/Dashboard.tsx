@@ -11,7 +11,7 @@ import { LanguageContext } from 'Static/Lang/Lang.lang';
 import {
   generateCardInfo,
   generateCommandConfigWithLang,
-  generatePollConfigWithLang
+  generateSurveyConfigWithLang
 } from './Dashboard.config';
 import SectionTitle from 'components/Shared/SectionTitle';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
@@ -61,9 +61,9 @@ const Dashboard = () => {
         </CardContainer>
         <SectionContainer>
           <SectionTitle
-            titleLabel={language.polls}
+            titleLabel={language.surveys}
             hiddenSectionFrom={true}
-            action={actions.onRedirectPoll}
+            action={actions.onRedirectSurvey}
             typeButton="CustomButton"
             buttonProps={{
               label: language.moreOptions,
@@ -72,8 +72,8 @@ const Dashboard = () => {
             }}
           />
           <SimpleTable
-            config={generatePollConfigWithLang(configParams)}
-            dataset={state.polls || []}
+            config={generateSurveyConfigWithLang(configParams)}
+            dataset={state.surveys || []}
             loader={state.loading}
           />
         </SectionContainer>

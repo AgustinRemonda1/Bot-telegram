@@ -425,7 +425,7 @@ export const commandsDataMock = [
     userType: userTypesDataMock[0],
     commandType: {
       commandTypeId: 12,
-      type: 'Poll',
+      type: 'Survey',
       name: 'Encuestas',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()

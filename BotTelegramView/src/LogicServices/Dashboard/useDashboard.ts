@@ -1,23 +1,23 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { ICommand } from 'LogicServices/Commands/Types';
-import { IPoll } from 'LogicServices/Polls/Types';
+import { ISurvey } from 'LogicServices/Surveys/Types';
 import { fetchStatistics } from 'RepoServices/Statistics';
 import { fetchCommands, refreshCommand } from 'RepoServices/Commands';
-import { fetchPolls } from 'RepoServices/Polls';
+import { fetchSurveys } from 'RepoServices/Surveys';
 import { IStatistics } from './Types';
 
 const INITIAL_STATISTICS = {
   totalCommands: 0,
   totalSubscribers: 0,
   newLastAdmission: 0,
-  totalPolls: 0
+  totalSurveys: 0
 };
 
 const useDashboard = () => {
   const [statistics, setStatistics] = useState<IStatistics>(INITIAL_STATISTICS);
   const [commands, setCommands] = useState<ICommand[]>([]);
-  const [polls, setPolls] = useState<IPoll[]>([]);
+  const [surveys, setSurveys] = useState<ISurvey[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
@@ -27,12 +27,16 @@ const useDashboard = () => {
       const PARAMS = { page: 0, pageSize: 3 };
       const statistics = await fetchStatistics();
       const commands = await fetchCommands(PARAMS);
-      const polls = await fetchPolls(PARAMS);
+      const surveys = await fetchSurveys(PARAMS);
 
-      if (statistics !== 'error' && commands !== 'error' && polls !== 'error') {
+      if (
+        statistics !== 'error' &&
+        commands !== 'error' &&
+        surveys !== 'error'
+      ) {
         setStatistics(statistics);
         setCommands(commands.commands);
-        setPolls(polls.polls);
+        setSurveys(surveys.surveys);
       }
       setLoading(false);
     };
@@ -48,13 +52,13 @@ const useDashboard = () => {
     router.replace('Dashboard/Bot-Actions');
   }, [router]);
 
-  const onRedirectPoll = useCallback(() => {
-    router.replace('Dashboard/Polls');
+  const onRedirectSurvey = useCallback(() => {
+    router.replace('Dashboard/Surveys');
   }, [router]);
 
   return {
-    state: { statistics, commands, polls, loading },
-    actions: { onRedirectBotActions, onRedirectPoll, onRefreshCommands }
+    state: { statistics, commands, surveys, loading },
+    actions: { onRedirectBotActions, onRedirectSurvey, onRefreshCommands }
   };
 };
 

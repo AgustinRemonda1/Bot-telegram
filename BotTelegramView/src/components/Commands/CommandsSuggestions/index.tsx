@@ -1,1 +1,1 @@
-export { default } from './SuggestionCommands';
+export { default } from './CommandsSuggestions';

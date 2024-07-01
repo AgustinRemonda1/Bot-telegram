@@ -1,5 +1,5 @@
 import BotAction from 'Static/Assets/Icons/robot.svg';
-import Polls from 'Static/Assets/Icons/poll-box.svg';
+import Surveys from 'Static/Assets/Icons/survey-box.svg';
 import UserTypes from 'Static/Assets/Icons/account-group.svg';
 import Subscribers from 'Static/Assets/Icons/account.svg';
 import Activities from 'Static/Assets/Icons/clipboard-text-multiple.svg';
@@ -18,7 +18,7 @@ export const menuConfig = (language: ILanguage): IMenuConfig[] => [
     name: language.botActions,
     route: '/Dashboard/Bot-Actions'
   },
-  { icon: Polls.src, name: language.polls, route: '/Dashboard/Polls' },
+  { icon: Surveys.src, name: language.surveys, route: '/Dashboard/Surveys' },
   {
     icon: UserTypes.src,
     name: language.userTypes,

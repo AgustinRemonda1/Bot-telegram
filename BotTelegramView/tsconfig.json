@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/Polls/Listing/GetPolls.style"
+    "src/components/Surveys/Listing/GetSurveys.style"
 , "src/components/File/Charge/index.tsX"  ],
   "exclude": ["node_modules"]
 }
