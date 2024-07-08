@@ -30,10 +30,7 @@ const Config = () => {
   return (
     <Container>
       <Content>
-        <SectionTitle
-          sectionLabel={language.sectionFrom}
-          titleLabel={language.configurations}
-        />
+        <SectionTitle titleLabel={language.configurations} />
         <CenterContent>
           <AvatarImage src={state.draftUser?.image} />
           <BuildInputs input={firstInput} />

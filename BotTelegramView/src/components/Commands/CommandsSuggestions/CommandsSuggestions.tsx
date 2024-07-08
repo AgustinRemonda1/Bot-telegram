@@ -3,8 +3,9 @@ import Table from 'components/Shared/Table';
 import { Container, Content } from 'components/Layout/Content';
 import SectionTitle from 'components/Shared/SectionTitle';
 import { LanguageContext } from 'Static/Lang/Lang.lang';
-import useCommandsSuggestions from 'LogicServices/Commands/CommandsSuggestions/useCommandsSuggestions';
-import useViewSuggestionDetails from 'LogicServices/Commands/CommandsSuggestions/useViewSuggestionDetails';
+import useCommandsSuggestions, {
+  useViewSuggestionDetails
+} from 'LogicServices/Commands/CommandsSuggestions';
 import { generateConfigWithLang } from './CommandsSuggestions.config';
 import ViewModal from './ViewModal';
 

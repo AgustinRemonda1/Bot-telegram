@@ -1,5 +1,9 @@
 import { rest } from 'msw';
-import { surveyDataMock } from 'Static/Data';
+import {
+  simpleSurveyDataMock,
+  surveyDataMock,
+  responsesDataMock
+} from 'Static/Data';
 
 export const surveys = [
   rest.get('/api/survey/:id', (req, res, ctx) => {
@@ -11,10 +15,28 @@ export const surveys = [
       })
     );
   }),
+  rest.get('/api/survey/:id/responses', (req, res, ctx) => {
+    const { id } = req.params;
+
+    return res(
+      ctx.json({
+        responses: responsesDataMock,
+        total: 10
+      })
+    );
+  }),
   rest.get('/api/surveys', (req, res, ctx) => {
     return res(
       ctx.json({
         surveys: surveyDataMock,
+        total: 10
+      })
+    );
+  }),
+  rest.get('/api/surveys-only', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        surveys: simpleSurveyDataMock,
         total: 10
       })
     );

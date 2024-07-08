@@ -3,5 +3,7 @@ export {
   deleteSurvey,
   updateSurvey,
   createSurvey,
-  fetchSurvey
+  fetchSurvey,
+  fetchSurveysOnly,
+  fetchSurveyResponses
 } from './Surveys';

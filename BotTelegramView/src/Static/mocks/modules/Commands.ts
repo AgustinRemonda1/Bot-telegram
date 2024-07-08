@@ -1,7 +1,18 @@
 import { rest } from 'msw';
-import { commandsDataMock, commandsSugesttionsDataMock } from 'Static/Data';
+import {
+  commandsDataMock,
+  commandsSuggestionsDataMock,
+  commandsDataWithOutFileResponseMock
+} from 'Static/Data';
 
 export const commands = [
+  rest.get('/api/bot-commands/all', async (req, res, ctx) => {
+    return res(
+      ctx.json({
+        commands: commandsDataWithOutFileResponseMock
+      })
+    );
+  }),
   rest.get('/api/bot-commands/:id', (req, res, ctx) => {
     const { id } = req.params;
 
@@ -32,13 +43,7 @@ export const commands = [
       })
     );
   }),
-  rest.get('/api/bot-commands/all', (req, res, ctx) => {
-    return res(
-      ctx.json({
-        commands: commandsDataMock
-      })
-    );
-  }),
+
   rest.delete('/api/bot-command/:id', (req, res, ctx) => {
     return res(
       ctx.json({
@@ -71,11 +76,11 @@ export const commands = [
 
     return res(
       ctx.json({
-        commandsSuggestions: commandsSugesttionsDataMock.slice(
+        commandsSuggestions: commandsSuggestionsDataMock.slice(
           startNumber,
           pageSizeNumber * pageNumber
         ),
-        total: commandsSugesttionsDataMock.length
+        total: commandsSuggestionsDataMock.length
       })
     );
   })

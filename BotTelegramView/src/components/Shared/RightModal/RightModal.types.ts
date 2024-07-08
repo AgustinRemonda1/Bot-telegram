@@ -6,7 +6,7 @@ export interface IProps {
   children: ReactNode;
   title: string;
   loading: boolean;
-  onSave: () => void;
+  onSave?: () => void;
   customMainAction?: {
     title: string;
     icon?: ReactNode;

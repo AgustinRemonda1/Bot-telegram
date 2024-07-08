@@ -94,7 +94,13 @@ const ES = {
   backofficeUsers: 'Usuarios del backoffice',
   view: 'Ver',
   commandSuggestion: 'Comando de sugerencia',
-  create: 'Crear'
+  create: 'Crear',
+  viewSurveysResults: 'Ver resultados de las encuestas',
+  id: 'ID',
+  user: 'Usuario',
+  anonymous: 'Anonimo',
+  resultFrom: 'Resultados de',
+  responsesFromSurvey: 'Respuestas de la encuesta'
 };
 
 export default ES;

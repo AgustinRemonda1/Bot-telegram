@@ -4,7 +4,7 @@ export const searchAttribute = (dataset: IDataset, item: string): any => {
   const route = item.split('.');
   const attribute = String(route.shift());
 
-  if (route.length > 0) {
+  if (route.length > 0 && dataset[attribute]) {
     return searchAttribute(dataset[attribute], route.join('.'));
   }
   try {

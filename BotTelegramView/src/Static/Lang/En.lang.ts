@@ -94,7 +94,13 @@ const EN = {
   backofficeUsers: 'Backoffice users',
   view: 'View',
   commandSuggestion: 'Command suggestion',
-  create: 'Create'
+  create: 'Create',
+  viewSurveysResults: 'View survey results',
+  id: 'ID',
+  user: 'User',
+  anonymous: 'Anonymous',
+  resultFrom: 'Result from',
+  responsesFromSurvey: 'Responses from survey'
 };
 
 export default EN;

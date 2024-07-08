@@ -15,11 +15,12 @@ const useSurvey = ({ survey, onChange }: IProps) => {
   const [questionNumber, setQuestionNumber] = useState<number>(0);
 
   useEffect(() => {
-    survey.questions.length && setQuestionNumber(survey.questions.length);
-  }, [survey.questions.length]);
+    survey.questionResponse.questions.length &&
+      setQuestionNumber(survey.questionResponse.questions.length);
+  }, [survey.questionResponse.questions.length]);
 
   useEffect(() => {
-    const questions = survey.questions || [];
+    const questions = survey.questionResponse.questions || [];
     const isChangeQuestionNumber =
       questions.length < questionNumber || questions.length > questionNumber;
     const isSurveyActive =
@@ -30,7 +31,13 @@ const useSurvey = ({ survey, onChange }: IProps) => {
       const newQuestions = questionNumberToArray.map((e, index) =>
         questions[index] ? questions[index] : buildQuestions()
       );
-      onChange({ ...survey, questions: newQuestions });
+      onChange({
+        ...survey,
+        questionResponse: {
+          ...survey.questionResponse,
+          questions: newQuestions
+        }
+      });
     }
   }, [questionNumber, survey]);
 
@@ -58,14 +65,15 @@ const useSurvey = ({ survey, onChange }: IProps) => {
 
   const onChangeQuestions = useCallback(
     (e: IEvent, questionIndex: number) => {
-      const questions = survey.questions || [];
+      const questions = survey.questionResponse.questions || [];
       const value = e.target.value;
 
       const questionReplace = questions.map((question, index) => {
         if (index === questionIndex) {
           question.question = value;
           return {
-            surveyId: question.surveyId,
+            questionId: question.questionId,
+            questionResponseId: question.questionResponseId,
             question: value,
             description: question.description
           };
@@ -73,7 +81,13 @@ const useSurvey = ({ survey, onChange }: IProps) => {
         return question;
       });
 
-      onChange({ ...survey, questions: questionReplace });
+      onChange({
+        ...survey,
+        questionResponse: {
+          ...survey.questionResponse,
+          questions: questionReplace
+        }
+      });
     },
     [survey, onChange]
   );

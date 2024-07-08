@@ -11,7 +11,9 @@ const TableHeader = ({ config }: IProps) => (
     <TableRow>
       {config.map((header: IConfig, i: number) => (
         <TableCell key={`header cell ${i}`} align={'' || header.align}>
-          <Box fontWeight={700}>{header.name && header.name.toUpperCase()}</Box>
+          <Box paddingRight={header.align === 'right' ? 2 : 0} fontWeight={700}>
+            {header.name && header.name.toUpperCase()}
+          </Box>
         </TableCell>
       ))}
     </TableRow>

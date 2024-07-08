@@ -14,7 +14,7 @@ const useValidation = ({ survey }: IProps) => {
       'name',
       'description',
       'userTypeId',
-      'questions.length'
+      'questionResponse.questions.length'
     ]);
 
     return mainInputs;
@@ -22,8 +22,8 @@ const useValidation = ({ survey }: IProps) => {
 
   const secondaryEmptyFields = useMemo(() => {
     const questions =
-      survey.questions &&
-      survey.questions.every((question) => question.question);
+      survey.questionResponse.questions &&
+      survey.questionResponse.questions.every((question) => question.question);
 
     return !questions;
   }, [survey]);

@@ -38,7 +38,7 @@ export const generateInputQuestions = ({
   onChangeQuestions,
   hasEmptyFields
 }: IGenerateInputs) => {
-  const questions: IQuestion[] = survey.questions || [];
+  const questions: IQuestion[] = survey.questionResponse.questions || [];
   const inputQuestions = questions.map((question, index) =>
     createInputQuestions({
       language,

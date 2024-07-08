@@ -6,7 +6,8 @@ export const createArrayIterator = (num: number) => {
 
 export const buildQuestions = (): IQuestion => {
   return {
-    surveyId: '',
+    questionId: '',
+    questionResponseId: '',
     question: '',
     description: ''
   };

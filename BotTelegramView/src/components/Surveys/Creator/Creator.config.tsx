@@ -11,8 +11,8 @@ export const stepperIcons = {
 
 export const maxSteps = 2;
 
-export const generateStepsTitles = (language: ILanguage, editmode: boolean) => [
-  editmode ? language.editSurvey : language.createNewSurvey,
-  editmode ? language.editQuestions : language.createQuestionsForTheSurvey,
+export const generateStepsTitles = (language: ILanguage, editMode: boolean) => [
+  editMode ? language.editSurvey : language.createNewSurvey,
+  editMode ? language.editQuestions : language.createQuestionsForTheSurvey,
   language.finish
 ];

@@ -30,7 +30,7 @@ export const generateFirstStepData = ({
   },
   {
     title: language.numberOfQuestions,
-    value: String(survey.questions.length),
+    value: String(survey.questionResponse.questions.length),
     correction: true
   }
 ];
@@ -44,7 +44,7 @@ export const generateSecondStepData = ({
   survey,
   language
 }: ISecondStepProps) =>
-  survey.questions.map((question) => ({
+  survey.questionResponse.questions.map((question) => ({
     title: language.question,
     value: question.question,
     correction: true

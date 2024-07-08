@@ -1,14 +1,20 @@
 import { AxiosResponse } from 'axios';
 import request from 'RepoServices/Requests';
-import { ISurvey } from 'LogicServices/Surveys/Types';
+import { IResponses, ISurvey } from 'LogicServices/Surveys/Types';
 
 export interface IRequest {
+  id?: number;
   page: number;
   pageSize: number;
 }
 
 export interface IFetchResponse {
   surveys: ISurvey[];
+  total: number;
+}
+
+export interface IFetchSurveyResponses {
+  responses: IResponses[];
   total: number;
 }
 
@@ -42,6 +48,40 @@ export const fetchSurveys = async ({ page, pageSize }: IRequest) => {
 
     return {
       surveys: res.data.surveys,
+      total: res.data.total
+    };
+  } catch (error) {
+    return 'error';
+  }
+};
+
+export const fetchSurveysOnly = async ({ page, pageSize }: IRequest) => {
+  try {
+    const res: AxiosResponse<IFetchResponse> = await request.get(
+      `/api/surveys-only?page=${page}&pageSize=${pageSize}`
+    );
+
+    return {
+      surveys: res.data.surveys,
+      total: res.data.total
+    };
+  } catch (error) {
+    return 'error';
+  }
+};
+
+export const fetchSurveyResponses = async ({
+  id,
+  page,
+  pageSize
+}: IRequest) => {
+  try {
+    const res: AxiosResponse<IFetchSurveyResponses> = await request.get(
+      `/api/survey/${id}/responses?page=${page}&pageSize=${pageSize}`
+    );
+
+    return {
+      responses: res.data.responses,
       total: res.data.total
     };
   } catch (error) {

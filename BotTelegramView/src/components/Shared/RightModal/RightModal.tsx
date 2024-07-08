@@ -38,16 +38,18 @@ const RightModal = ({
           <CloseButton onClick={onClose}>
             <Box fontWeight={600}>{language.close}</Box>
           </CloseButton>
-          <SubmitButton
-            startIcon={customMainAction?.icon}
-            variant="contained"
-            disabled={loading}
-            onClick={onSave}
-          >
-            <Box fontWeight={600}>
-              {customMainAction ? customMainAction.title : language.save}
-            </Box>
-          </SubmitButton>
+          {onSave && (
+            <SubmitButton
+              startIcon={customMainAction?.icon}
+              variant="contained"
+              disabled={loading}
+              onClick={onSave}
+            >
+              <Box fontWeight={600}>
+                {customMainAction ? customMainAction.title : language.save}
+              </Box>
+            </SubmitButton>
+          )}
           {loading && (
             <LoaderContainer>
               <Loader size={35} />

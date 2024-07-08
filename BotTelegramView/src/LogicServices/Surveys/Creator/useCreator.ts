@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ISurvey } from '../Types';
+import { IQuestion, ISurvey } from '../Types';
 import { saveSurvey, getSurvey } from './service';
 import useValidation from './useValidation';
 import { useRouter } from 'next/router';
@@ -8,7 +8,9 @@ export const INITIAL_POLL: ISurvey = {
   name: '',
   description: '',
   userTypeId: 0,
-  questions: []
+  questionResponse: {
+    questions: [] as IQuestion[]
+  }
 };
 
 const useCreator = () => {
@@ -29,7 +31,9 @@ const useCreator = () => {
       const survey = await getSurvey(id);
 
       if (survey) {
-        setSurvey({ ...survey, questions: survey.questions });
+        setSurvey({
+          ...survey
+        });
       }
     };
 

@@ -22,7 +22,7 @@ export const generateActivitiesButtons = ({
     {
       text: language.surveyResults,
       icon: <QueryStatsIcon />,
-      onClick: () => onChangeRoute('/Dashboard/Activities/Survey-Results')
+      onClick: () => onChangeRoute('/Dashboard/Activities/Surveys')
     },
     {
       text: language.backofficeUsers,

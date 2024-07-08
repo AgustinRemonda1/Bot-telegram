@@ -96,7 +96,7 @@ export const nestedCommandTableConfig = (configParams: ITableConfig) => {
       actions: [
         {
           type: 'delete',
-          id: 'button-survey-delete',
+          id: 'button-nested-command-delete',
           title: language.delete,
           icon: trashIcon.src,
           disabled: editMode,
